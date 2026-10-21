@@ -12,7 +12,10 @@ oxford_spires/
   ...
 ```
 
-日付で始まるシーケンスディレクトリをすべて自動検出します。添付されたデータ構成では13件です。
+日付で始まる、または `rosbag_mcap` を含むシーケンスディレクトリを再帰的に自動検出します。
+シーケンスが1階層以上下にある親ディレクトリや、単一シーケンスを `DATASET_DIR` に指定することもできます。
+シーケンスを検出した後は、その内部の大量の PCD ファイルを探索しません。同名シーケンスが複数ある場合はエラーにします。
+添付されたデータ構成では13件です。
 新しいシーケンスも同じ構造で追加すれば対象になります。bag や GT の欠損は失敗として記録し、他のシーケンスを続行します。
 
 リポジトリルートから実行してください。
@@ -20,6 +23,9 @@ oxford_spires/
 ```bash
 # 既存イメージでも python3-numpy がない場合は再ビルドが必要です。
 bash docker/build.sh
+
+# マウント先で検出されるシーケンスと実際のパスを表示。
+DATASET_DIR=/path/to/oxford_spires bash scripts/run_oxford_spires.sh --list-sequences
 
 # メタデータ、トピック、GT、bag ファイルの存在を事前確認（ビルドと推定は実行しない）。
 DATASET_DIR=/path/to/oxford_spires bash scripts/run_oxford_spires.sh --dry-run
@@ -32,6 +38,11 @@ DATASET_DIR=/path/to/oxford_spires OUTPUT_DIR=/path/to/results/run02 \
   bash scripts/run_oxford_spires.sh --play-rate 0.05 --lidar-topic /lidar/points \
   --sequence 2024-03-12-keble-college-02 --sequence 2024-03-12-keble-college-03
 ```
+
+通常実行でも、ビルド前にマウント先のシーケンス配置を確認します。
+検出できない場合はコンテナ内で見えているエントリも表示するため、ホストの `DATASET_DIR` と照合してください。
+Oxford Spires のツール用リポジトリにデータがある場合は、例えば
+`DATASET_DIR=~/dataset/oxford_spires_dataset/data/sequences/` を指定できます。
 
 デフォルト出力先は `output/oxford_spires/` です。各シーケンスのディレクトリに
 `trajectory.tum`、`svnicp.log`、`playback.log`、実際に使用した `parameters.yaml`、`qos.yaml` を保存します。

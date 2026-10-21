@@ -47,6 +47,39 @@ def sequence(root, name="2024-03-12-keble-college-02", extra_topic=False):
 
 
 class OxfordTests(unittest.TestCase):
+    def test_nested_discovery_and_single_sequence_root(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            first = sequence(root / "data/sequences")
+            second = sequence(root / "data/sequences", "2024-03-12-keble-college-03")
+            # Sequence internals must not be mistaken for more sequences.
+            sequence(first / "raw", "2024-03-12-keble-college-04")
+            self.assertEqual(oxford.discover(root, None), [first, second])
+            self.assertEqual(oxford.discover(root, [second.name]), [second])
+            self.assertEqual(oxford.discover(first, None), [first])
+
+    def test_structural_discovery_accepts_sequence_without_date_name(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            path = sequence(root, "keble-02")
+            self.assertEqual(oxford.discover(root, None), [path])
+
+    def test_missing_sequences_report_visible_entries(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "scripts").mkdir()
+            (root / "README.md").write_text("dataset tools")
+            with self.assertRaisesRegex(ValueError, r"Visible entries: README.md, scripts/.*Check DATASET_DIR"):
+                oxford.discover(root, None)
+
+    def test_duplicate_nested_names_are_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            sequence(root / "copy1")
+            sequence(root / "copy2")
+            with self.assertRaisesRegex(ValueError, "Duplicate sequence name"):
+                oxford.discover(root, None)
+
     def test_docker_wrapper_preserves_paths_and_arguments(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

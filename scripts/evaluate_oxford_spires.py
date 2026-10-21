@@ -10,6 +10,7 @@ import json
 import math
 import os
 from pathlib import Path
+import re
 import signal
 import subprocess
 import tempfile
@@ -69,14 +70,42 @@ def ate_metrics(gt, estimate, max_difference):
 def discover(root, selected):
     if not root.is_dir():
         raise ValueError(f"Dataset directory does not exist: {root}")
-    sequences = sorted(p for p in root.glob("20??-??-??-*") if p.is_dir())
+    sequences = []
+
+    def traversal_error(error):
+        raise ValueError(f"Cannot inspect dataset directory: {error}") from error
+
+    # Stop at each sequence so that raw point clouds and bag contents are not
+    # traversed. Accept both the dataset root and a parent containing it.
+    for current, directories, _ in os.walk(root, onerror=traversal_error):
+        directories[:] = [name for name in directories if name not in {".git", ".docker", "__pycache__"}]
+        path = Path(current)
+        if re.fullmatch(r"20\d{2}-\d{2}-\d{2}-.+", path.name) or "rosbag_mcap" in directories:
+            sequences.append(path)
+            directories.clear()
+    sequences.sort()
+    if not sequences:
+        children = sorted(p.name + ("/" if p.is_dir() else "") for p in root.iterdir())
+        visible = ", ".join(children[:20]) or "(empty directory)"
+        if len(children) > 20:
+            visible += ", ..."
+        raise ValueError(
+            f"No Oxford Spires sequence directories found in {root}. "
+            f"Visible entries: {visible}. Expected <sequence>/rosbag_mcap/metadata.yaml "
+            "and <sequence>/processed/trajectory/gt-tum.txt. "
+            "Check DATASET_DIR on the Docker host and its read-only mount."
+        )
+    names = {}
+    for path in sequences:
+        if path.name in names:
+            raise ValueError(f"Duplicate sequence name {path.name}: {names[path.name]} and {path}. "
+                             "Set --dataset-dir to one dataset root.")
+        names[path.name] = path
     if selected:
         unknown = set(selected) - {p.name for p in sequences}
         if unknown:
             raise ValueError(f"Unknown sequences: {sorted(unknown)}")
         sequences = [p for p in sequences if p.name in selected]
-    if not sequences:
-        raise ValueError(f"No Oxford Spires sequence directories found in {root}")
     return sequences
 
 
@@ -259,12 +288,21 @@ def main(argv=None):
     parser.add_argument("--drain-timeout", type=positive, default=180)
     parser.add_argument("--sequence-timeout", type=positive, default=86400)
     parser.add_argument("--dry-run", action="store_true", help="Validate layout, GT and metadata without ROS/GPU")
+    parser.add_argument("--list-sequences", action="store_true", help="Show discovered sequence paths without building or evaluating")
     args = parser.parse_args(argv)
     if args.read_ahead_queue_size <= 0:
         parser.error("--read-ahead-queue-size must be positive")
     if args.min_association_ratio > 1:
         parser.error("--min-association-ratio must be at most 1")
-    sequences = discover(args.dataset_dir.resolve(), args.sequence)
+    try:
+        sequences = discover(args.dataset_dir.resolve(), args.sequence)
+    except ValueError as error:
+        parser.error(str(error))
+    if args.list_sequences:
+        print(f"Found {len(sequences)} sequence(s):", flush=True)
+        for sequence in sequences:
+            print(sequence, flush=True)
+        return 0
     config = yaml.safe_load(args.config.read_text())
     if config["/svnicp/SVNICP"]["ros__parameters"]["estimator"] != "ICP":
         parser.error("This batch runner evaluates LiDAR-only ICP; KF calibration is not configured")
