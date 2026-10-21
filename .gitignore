@@ -35,3 +35,5 @@ cmake-build-*
 .idea
 
 eval/
+__pycache__/
+output/oxford_spires/

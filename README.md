@@ -70,6 +70,8 @@ You must update the LibTorch path in the `CMakeList.txt` at `line 9`.
 
 ## :gear: Run
 
+Oxford Spires の全シーケンスを Docker 上で評価する手順は [scripts/README.md](scripts/README.md) を参照してください。
+
 Running SVN-ICP on the SubT-MRS dataset is then straightforward as
 ```
 ros2 launch svn-icp subt-mrs.launch.py

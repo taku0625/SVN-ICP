@@ -60,6 +60,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-${ROS_DISTRO}-std-msgs \
     ros-${ROS_DISTRO}-tf2-ros \
     python3-colcon-common-extensions \
+    python3-numpy \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget -q --show-progress \

@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(realpath "${SCRIPT_DIR}/..")"
 DATASET_DIR="${DATASET_DIR:-/home/nakao/dataset/rosbag/iros2026/niwa2}"
+DATASET_MOUNT_PATH="${DATASET_MOUNT_PATH:-/storage/rosbag/niwa2}"
 OUTPUT_DIR="${OUTPUT_DIR:-${REPO_ROOT}/output}"
 IMAGE_NAME="${IMAGE_NAME:-svnicp:humble-cuda124}"
 VOLUME_PREFIX="${VOLUME_PREFIX:-svnicp}"
@@ -28,7 +29,7 @@ DOCKER_ARGS=(
   -e NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
   -e CMAKE_CUDA_ARCHITECTURES="${CMAKE_CUDA_ARCHITECTURES:-75;80;86;89;90}"
   -v "${REPO_ROOT}:/root/svnicp_ws/src/SVN-ICP"
-  -v "${DATASET_DIR}:/storage/rosbag/niwa2:ro"
+  -v "${DATASET_DIR}:${DATASET_MOUNT_PATH}:ro"
   -v "${OUTPUT_DIR}:/output"
   -v "${VOLUME_PREFIX}_build:/root/svnicp_ws/build"
   -v "${VOLUME_PREFIX}_install:/root/svnicp_ws/install"
