@@ -1,0 +1,2246 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-07-02-07-02-22-618858-nakao-z690s01-463
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [svnicp_lio_node-1]: process started with pid [464]
+[INFO] [ros2-2]: process started with pid [466]
+[ros2-2] stdin is not a terminal device. Keyboard handling disabled.[INFO] [1782975742.726925966] [rosbag2_player]: Set rate to 1
+[ros2-2] [INFO] [1782975742.728591966] [rosbag2_player]: Adding keyboard callbacks.
+[ros2-2] [INFO] [1782975742.728606016] [rosbag2_player]: Press SPACE for Pause/Resume
+[ros2-2] [INFO] [1782975742.728609582] [rosbag2_player]: Press CURSOR_RIGHT for Play Next Message
+[ros2-2] [INFO] [1782975742.728612421] [rosbag2_player]: Press CURSOR_UP for Increase Rate 10%
+[ros2-2] [INFO] [1782975742.728614807] [rosbag2_player]: Press CURSOR_DOWN for Decrease Rate 10%
+[svnicp_lio_node-1]  rot RW: 0.0290888
+[svnicp_lio_node-1] 0.0290888
+[svnicp_lio_node-1] 0.0290888
+[svnicp_lio_node-1]  vel RW: 16.6667
+[svnicp_lio_node-1] 16.6667
+[svnicp_lio_node-1] 16.6667
+[svnicp_lio_node-1] icp_cov_scales_: 
+[svnicp_lio_node-1] 1 : 
+[svnicp_lio_node-1] 1 : 
+[svnicp_lio_node-1] 1 : 
+[svnicp_lio_node-1] 1 : 
+[svnicp_lio_node-1] 1 : 
+[svnicp_lio_node-1] 1 : 
+[svnicp_lio_node-1] 0.0001 1e-05
+[svnicp_lio_node-1] [INFO] [1782975742.877193109] [svnicp.SVNICP]: Saving TUM trajectory to /output/room3_svnicp.tum
+[svnicp_lio_node-1] [INFO] [1782975742.877240652] [svnicp.SVNICP]: [SteinICP]: SteinICP parameter loaded
+[svnicp_lio_node-1] 
+[svnicp_lio_node-1] [INFO] [1782975742.877246399] [svnicp.SVNICP]: [SteinICP]: Particle Count: 30 Iterations: 30 Batch Size: 200 Learning Rate: 0.03
+[svnicp_lio_node-1] [INFO] [1782975742.877249296] [svnicp.SVNICP]: [SteinICP]: Subscribe topic /livox/lidar_192_168_1_182
+[svnicp_lio_node-1] [INFO] [1782975742.877252463] [svnicp.SVNICP]: [SteinICP]: Deskew pointcloud 1
+[svnicp_lio_node-1] [INFO] [1782975742.877255390] [svnicp.SVNICP]: [SteinICP]: Voxel Size 0.5
+[svnicp_lio_node-1] [INFO] [1782975742.877257634] [svnicp.SVNICP]: [SteinICP]: Use Beta-Stein-ICP 1
+[svnicp_lio_node-1] [INFO] [1782975742.877259920] [svnicp.SVNICP]:  use weight mean: 0
+[svnicp_lio_node-1] Lidar odometry with SVN-ICP 
+[svnicp_lio_node-1] [INFO] [1782975743.224910559] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] [INFO] [1782975743.324726678] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00212913
+[svnicp_lio_node-1] [INFO] [1782975743.424729046] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975743.515620711] [svnicp.SVNICP]: Align Process Time : 0.18851
+[svnicp_lio_node-1] Current Progress: 0.209671%
+[svnicp_lio_node-1] Preprocessing Time: 0.00202002
+[svnicp_lio_node-1] [INFO] [1782975743.524635996] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975743.594907411] [svnicp.SVNICP]: Align Process Time : 0.0766156
+[svnicp_lio_node-1] Current Progress: 0.419507%
+[svnicp_lio_node-1] Preprocessing Time: 0.00205704
+[svnicp_lio_node-1] [INFO] [1782975743.624018212] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975743.666146290] [svnicp.SVNICP]: Align Process Time : 0.0686641
+[svnicp_lio_node-1] Current Progress: 0.629083%
+[svnicp_lio_node-1] Preprocessing Time: 0.00179209
+[svnicp_lio_node-1] [INFO] [1782975743.723859062] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975743.737538850] [svnicp.SVNICP]: Align Process Time : 0.0692766
+[svnicp_lio_node-1] Current Progress: 0.838532%
+[svnicp_lio_node-1] Preprocessing Time: 0.00184192
+[svnicp_lio_node-1] [INFO] [1782975743.812037569] [svnicp.SVNICP]: Align Process Time : 0.0723582
+[svnicp_lio_node-1] Current Progress: 1.0481%
+[svnicp_lio_node-1] [INFO] [1782975743.824614833] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00193522
+[svnicp_lio_node-1] [INFO] [1782975743.897867175] [svnicp.SVNICP]: Align Process Time : 0.071214
+[svnicp_lio_node-1] Current Progress: 1.25777%
+[svnicp_lio_node-1] [INFO] [1782975743.934672780] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00204143
+[svnicp_lio_node-1] [INFO] [1782975744.008813909] [svnicp.SVNICP]: Align Process Time : 0.0719053
+[svnicp_lio_node-1] Current Progress: 1.46731%
+[svnicp_lio_node-1] [INFO] [1782975744.023906316] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00201118
+[svnicp_lio_node-1] [INFO] [1782975744.101548855] [svnicp.SVNICP]: Align Process Time : 0.075527
+[svnicp_lio_node-1] Current Progress: 1.67734%
+[svnicp_lio_node-1] [INFO] [1782975744.123779523] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00210354
+[svnicp_lio_node-1] [INFO] [1782975744.207876511] [svnicp.SVNICP]: Align Process Time : 0.0818249
+[svnicp_lio_node-1] Current Progress: 1.88669%
+[svnicp_lio_node-1] [INFO] [1782975744.224408191] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00203945
+[svnicp_lio_node-1] [INFO] [1782975744.310078234] [svnicp.SVNICP]: Align Process Time : 0.0835201
+[svnicp_lio_node-1] Current Progress: 2.09662%
+[svnicp_lio_node-1] [INFO] [1782975744.323953679] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00202404
+[svnicp_lio_node-1] [INFO] [1782975744.409741429] [svnicp.SVNICP]: Align Process Time : 0.0835938
+[svnicp_lio_node-1] Current Progress: 2.3062%
+[svnicp_lio_node-1] [INFO] [1782975744.424230958] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00216931
+[svnicp_lio_node-1] [INFO] [1782975744.509243393] [svnicp.SVNICP]: Align Process Time : 0.0827311
+[svnicp_lio_node-1] Current Progress: 2.5159%
+[svnicp_lio_node-1] [INFO] [1782975744.524202127] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00228889
+[svnicp_lio_node-1] [INFO] [1782975744.609808733] [svnicp.SVNICP]: Align Process Time : 0.0832048
+[svnicp_lio_node-1] Current Progress: 2.72523%
+[svnicp_lio_node-1] [INFO] [1782975744.623952102] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00212358
+[svnicp_lio_node-1] [INFO] [1782975744.712694294] [svnicp.SVNICP]: Align Process Time : 0.0865156
+[svnicp_lio_node-1] Current Progress: 2.93496%
+[svnicp_lio_node-1] [INFO] [1782975744.724276839] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00252097
+[svnicp_lio_node-1] [INFO] [1782975744.822658158] [svnicp.SVNICP]: Align Process Time : 0.0957315
+[svnicp_lio_node-1] Current Progress: 3.14502%
+[svnicp_lio_node-1] [INFO] [1782975744.824229834] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.0021448
+[svnicp_lio_node-1] [INFO] [1782975744.916084752] [svnicp.SVNICP]: Align Process Time : 0.0894784
+[svnicp_lio_node-1] Current Progress: 3.3546%
+[svnicp_lio_node-1] [INFO] [1782975744.924464818] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00263151
+[svnicp_lio_node-1] [INFO] [1782975745.014331511] [svnicp.SVNICP]: Align Process Time : 0.0871223
+[svnicp_lio_node-1] Current Progress: 3.56457%
+[svnicp_lio_node-1] [INFO] [1782975745.024633916] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00216559
+[svnicp_lio_node-1] [INFO] [1782975745.113291635] [svnicp.SVNICP]: Align Process Time : 0.0863114
+[svnicp_lio_node-1] Current Progress: 3.77451%
+[svnicp_lio_node-1] [INFO] [1782975745.125812996] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00219085
+[svnicp_lio_node-1] [INFO] [1782975745.213895451] [svnicp.SVNICP]: Align Process Time : 0.0857739
+[svnicp_lio_node-1] Current Progress: 3.98581%
+[svnicp_lio_node-1] [INFO] [1782975745.224194556] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00213959
+[svnicp_lio_node-1] [INFO] [1782975745.316673537] [svnicp.SVNICP]: Align Process Time : 0.0901729
+[svnicp_lio_node-1] Current Progress: 4.19327%
+[svnicp_lio_node-1] [INFO] [1782975745.325140466] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00223821
+[svnicp_lio_node-1] [INFO] [1782975745.417108420] [svnicp.SVNICP]: Align Process Time : 0.0896209
+[svnicp_lio_node-1] Current Progress: 4.40539%
+[svnicp_lio_node-1] [INFO] [1782975745.434498032] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00254611
+[svnicp_lio_node-1] [INFO] [1782975745.524441330] [svnicp.SVNICP]: Align Process Time : 0.0871552
+[svnicp_lio_node-1] Current Progress: 4.61143%
+[svnicp_lio_node-1] [INFO] [1782975745.525131521] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00210717
+[svnicp_lio_node-1] [INFO] [1782975745.612249335] [svnicp.SVNICP]: Align Process Time : 0.084906
+[svnicp_lio_node-1] Current Progress: 4.82411%
+[svnicp_lio_node-1] [INFO] [1782975745.624034533] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00232909
+[svnicp_lio_node-1] [INFO] [1782975745.714699589] [svnicp.SVNICP]: Align Process Time : 0.0881656
+[svnicp_lio_node-1] Current Progress: 5.03169%
+[svnicp_lio_node-1] [INFO] [1782975745.724253019] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00211536
+[svnicp_lio_node-1] [INFO] [1782975745.814189038] [svnicp.SVNICP]: Align Process Time : 0.0876568
+[svnicp_lio_node-1] Current Progress: 5.24121%
+[svnicp_lio_node-1] [INFO] [1782975745.825205398] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00212209
+[svnicp_lio_node-1] [INFO] [1782975745.917039588] [svnicp.SVNICP]: Align Process Time : 0.0896099
+[svnicp_lio_node-1] Current Progress: 5.45336%
+[svnicp_lio_node-1] [INFO] [1782975745.924996102] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00212563
+[svnicp_lio_node-1] [INFO] [1782975746.015958372] [svnicp.SVNICP]: Align Process Time : 0.0887322
+[svnicp_lio_node-1] Current Progress: 5.66228%
+[svnicp_lio_node-1] [INFO] [1782975746.025513461] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00214073
+[svnicp_lio_node-1] [INFO] [1782975746.119349286] [svnicp.SVNICP]: Align Process Time : 0.0915423
+[svnicp_lio_node-1] Current Progress: 5.87324%
+[svnicp_lio_node-1] [INFO] [1782975746.124054011] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00218226
+[svnicp_lio_node-1] [INFO] [1782975746.220943186] [svnicp.SVNICP]: Align Process Time : 0.0945995
+[svnicp_lio_node-1] Current Progress: 6.08014%
+[svnicp_lio_node-1] [INFO] [1782975746.224023294] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 0
+[svnicp_lio_node-1] Preprocessing Time: 0.00213824
+[svnicp_lio_node-1] [INFO] [1782975746.325436390] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975746.325653871] [svnicp.SVNICP]: Align Process Time : 0.0993457
+[svnicp_lio_node-1] Current Progress: 6.28948%
+[svnicp_lio_node-1] Preprocessing Time: 0.0020437
+[svnicp_lio_node-1] [INFO] [1782975746.424634615] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975746.424814956] [svnicp.SVNICP]: Align Process Time : 0.0967643
+[svnicp_lio_node-1] Current Progress: 6.50175%
+[svnicp_lio_node-1] Preprocessing Time: 0.00207186
+[svnicp_lio_node-1] [INFO] [1782975746.525409917] [svnicp.SVNICP]: Align Process Time : 0.098185
+[svnicp_lio_node-1] [INFO] [1782975746.525437748] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] Current Progress: 6.70994%
+[svnicp_lio_node-1] Preprocessing Time: 0.00208648
+[svnicp_lio_node-1] [INFO] [1782975746.624882484] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975746.625200499] [svnicp.SVNICP]: Align Process Time : 0.0973316
+[svnicp_lio_node-1] Current Progress: 6.92089%
+[svnicp_lio_node-1] Preprocessing Time: 0.00202814
+[svnicp_lio_node-1] [INFO] [1782975746.724085707] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975746.726357368] [svnicp.SVNICP]: Align Process Time : 0.0987897
+[svnicp_lio_node-1] Current Progress: 7.12974%
+[svnicp_lio_node-1] Preprocessing Time: 0.00209397
+[svnicp_lio_node-1] [INFO] [1782975746.824061034] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975746.827688108] [svnicp.SVNICP]: Align Process Time : 0.0989142
+[svnicp_lio_node-1] Current Progress: 7.33788%
+[svnicp_lio_node-1] Preprocessing Time: 0.00208832
+[svnicp_lio_node-1] [INFO] [1782975746.924265149] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975746.931098994] [svnicp.SVNICP]: Align Process Time : 0.100975
+[svnicp_lio_node-1] Current Progress: 7.54746%
+[svnicp_lio_node-1] Preprocessing Time: 0.00242763
+[svnicp_lio_node-1] [INFO] [1782975747.024744664] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.036037342] [svnicp.SVNICP]: Align Process Time : 0.102157
+[svnicp_lio_node-1] Current Progress: 7.7573%
+[svnicp_lio_node-1] Preprocessing Time: 0.00223394
+[svnicp_lio_node-1] [INFO] [1782975747.124582203] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.138029799] [svnicp.SVNICP]: Align Process Time : 0.099377
+[svnicp_lio_node-1] Current Progress: 7.968%
+[svnicp_lio_node-1] Preprocessing Time: 0.00240569
+[svnicp_lio_node-1] [INFO] [1782975747.224625879] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.242383016] [svnicp.SVNICP]: Align Process Time : 0.101598
+[svnicp_lio_node-1] Current Progress: 8.17731%
+[svnicp_lio_node-1] Preprocessing Time: 0.00219301
+[svnicp_lio_node-1] [INFO] [1782975747.324574427] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.350264432] [svnicp.SVNICP]: Align Process Time : 0.105255
+[svnicp_lio_node-1] Current Progress: 8.38702%
+[svnicp_lio_node-1] Preprocessing Time: 0.00223256
+[svnicp_lio_node-1] [INFO] [1782975747.424914795] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.452452442] [svnicp.SVNICP]: Align Process Time : 0.0995833
+[svnicp_lio_node-1] Current Progress: 8.59652%
+[svnicp_lio_node-1] Preprocessing Time: 0.00221146
+[svnicp_lio_node-1] [INFO] [1782975747.524754655] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.554983091] [svnicp.SVNICP]: Align Process Time : 0.0999567
+[svnicp_lio_node-1] Current Progress: 8.80657%
+[svnicp_lio_node-1] Preprocessing Time: 0.00243124
+[svnicp_lio_node-1] [INFO] [1782975747.624172272] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.656397353] [svnicp.SVNICP]: Align Process Time : 0.0986166
+[svnicp_lio_node-1] Current Progress: 9.01615%
+[svnicp_lio_node-1] Preprocessing Time: 0.00221288
+[svnicp_lio_node-1] [INFO] [1782975747.723973915] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.755264389] [svnicp.SVNICP]: Align Process Time : 0.096282
+[svnicp_lio_node-1] Current Progress: 9.22477%
+[svnicp_lio_node-1] Preprocessing Time: 0.00227978
+[svnicp_lio_node-1] [INFO] [1782975747.824666444] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.855539246] [svnicp.SVNICP]: Align Process Time : 0.0975834
+[svnicp_lio_node-1] Current Progress: 9.43398%
+[svnicp_lio_node-1] Preprocessing Time: 0.00217863
+[svnicp_lio_node-1] [INFO] [1782975747.924086293] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975747.955841027] [svnicp.SVNICP]: Align Process Time : 0.0977618
+[svnicp_lio_node-1] Current Progress: 9.64521%
+[svnicp_lio_node-1] Preprocessing Time: 0.00274896
+[svnicp_lio_node-1] [INFO] [1782975748.024696606] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.057452296] [svnicp.SVNICP]: Align Process Time : 0.0984814
+[svnicp_lio_node-1] Current Progress: 9.85372%
+[svnicp_lio_node-1] Preprocessing Time: 0.00223758
+[svnicp_lio_node-1] [INFO] [1782975748.124597309] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.160122556] [svnicp.SVNICP]: Align Process Time : 0.0999765
+[svnicp_lio_node-1] Current Progress: 10.0646%
+[svnicp_lio_node-1] Preprocessing Time: 0.00214822
+[svnicp_lio_node-1] [INFO] [1782975748.234543067] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.266221595] [svnicp.SVNICP]: Align Process Time : 0.103577
+[svnicp_lio_node-1] Current Progress: 10.2738%
+[svnicp_lio_node-1] Preprocessing Time: 0.00255646
+[svnicp_lio_node-1] [INFO] [1782975748.324581907] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.372266341] [svnicp.SVNICP]: Align Process Time : 0.103051
+[svnicp_lio_node-1] Current Progress: 10.4821%
+[svnicp_lio_node-1] Preprocessing Time: 0.00226727
+[svnicp_lio_node-1] [INFO] [1782975748.424831615] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.469225823] [svnicp.SVNICP]: Align Process Time : 0.0943111
+[svnicp_lio_node-1] Current Progress: 10.693%
+[svnicp_lio_node-1] Preprocessing Time: 0.00215892
+[svnicp_lio_node-1] [INFO] [1782975748.524579036] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.563001726] [svnicp.SVNICP]: Align Process Time : 0.0912099
+[svnicp_lio_node-1] Current Progress: 10.903%
+[svnicp_lio_node-1] Preprocessing Time: 0.00220096
+[svnicp_lio_node-1] [INFO] [1782975748.624552574] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.655034314] [svnicp.SVNICP]: Align Process Time : 0.0893673
+[svnicp_lio_node-1] Current Progress: 11.1123%
+[svnicp_lio_node-1] Preprocessing Time: 0.00208935
+[svnicp_lio_node-1] [INFO] [1782975748.724762918] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.747550721] [svnicp.SVNICP]: Align Process Time : 0.0899729
+[svnicp_lio_node-1] Current Progress: 11.3221%
+[svnicp_lio_node-1] Preprocessing Time: 0.00216876
+[svnicp_lio_node-1] [INFO] [1782975748.824737366] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.842110534] [svnicp.SVNICP]: Align Process Time : 0.0920279
+[svnicp_lio_node-1] Current Progress: 11.5317%
+[svnicp_lio_node-1] Preprocessing Time: 0.00239491
+[svnicp_lio_node-1] [INFO] [1782975748.924514321] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975748.938989168] [svnicp.SVNICP]: Align Process Time : 0.0940567
+[svnicp_lio_node-1] Current Progress: 11.7417%
+[svnicp_lio_node-1] Preprocessing Time: 0.00229293
+[svnicp_lio_node-1] [INFO] [1782975749.024570223] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.037315241] [svnicp.SVNICP]: Align Process Time : 0.0956574
+[svnicp_lio_node-1] Current Progress: 11.951%
+[svnicp_lio_node-1] Preprocessing Time: 0.00216099
+[svnicp_lio_node-1] [INFO] [1782975749.124698260] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.136680894] [svnicp.SVNICP]: Align Process Time : 0.0968414
+[svnicp_lio_node-1] Current Progress: 12.1609%
+[svnicp_lio_node-1] Preprocessing Time: 0.0022829
+[svnicp_lio_node-1] [INFO] [1782975749.224784399] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.236605048] [svnicp.SVNICP]: Align Process Time : 0.0972111
+[svnicp_lio_node-1] Current Progress: 12.3703%
+[svnicp_lio_node-1] Preprocessing Time: 0.00235649
+[svnicp_lio_node-1] [INFO] [1782975749.324301936] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.344735316] [svnicp.SVNICP]: Align Process Time : 0.104661
+[svnicp_lio_node-1] Current Progress: 12.5802%
+[svnicp_lio_node-1] Preprocessing Time: 0.00219219
+[svnicp_lio_node-1] [INFO] [1782975749.424609550] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.444825830] [svnicp.SVNICP]: Align Process Time : 0.0973851
+[svnicp_lio_node-1] Current Progress: 12.7889%
+[svnicp_lio_node-1] Preprocessing Time: 0.00217993
+[svnicp_lio_node-1] [INFO] [1782975749.524236483] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.551187520] [svnicp.SVNICP]: Align Process Time : 0.103711
+[svnicp_lio_node-1] Current Progress: 12.9995%
+[svnicp_lio_node-1] Preprocessing Time: 0.00238203
+[svnicp_lio_node-1] [INFO] [1782975749.624801844] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.654597942] [svnicp.SVNICP]: Align Process Time : 0.100414
+[svnicp_lio_node-1] Current Progress: 13.208%
+[svnicp_lio_node-1] Preprocessing Time: 0.00235157
+[svnicp_lio_node-1] [INFO] [1782975749.724515122] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.760202707] [svnicp.SVNICP]: Align Process Time : 0.102746
+[svnicp_lio_node-1] Current Progress: 13.4188%
+[svnicp_lio_node-1] Preprocessing Time: 0.00233381
+[svnicp_lio_node-1] [INFO] [1782975749.835234638] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.861286760] [svnicp.SVNICP]: Align Process Time : 0.0982307
+[svnicp_lio_node-1] Current Progress: 13.6279%
+[svnicp_lio_node-1] Preprocessing Time: 0.00233226
+[svnicp_lio_node-1] [INFO] [1782975749.924275599] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975749.966074553] [svnicp.SVNICP]: Align Process Time : 0.101889
+[svnicp_lio_node-1] Current Progress: 13.8379%
+[svnicp_lio_node-1] Preprocessing Time: 0.00254316
+[svnicp_lio_node-1] [INFO] [1782975750.024868599] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975750.072575029] [svnicp.SVNICP]: Align Process Time : 0.103502
+[svnicp_lio_node-1] Current Progress: 14.0467%
+[svnicp_lio_node-1] Preprocessing Time: 0.00236735
+[svnicp_lio_node-1] [INFO] [1782975750.124455742] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975750.173197571] [svnicp.SVNICP]: Align Process Time : 0.0977415
+[svnicp_lio_node-1] Current Progress: 14.2575%
+[svnicp_lio_node-1] Preprocessing Time: 0.00281341
+[svnicp_lio_node-1] [INFO] [1782975750.224822906] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975750.275296930] [svnicp.SVNICP]: Align Process Time : 0.0987828
+[svnicp_lio_node-1] Current Progress: 14.4665%
+[svnicp_lio_node-1] Preprocessing Time: 0.00301415
+[svnicp_lio_node-1] [INFO] [1782975750.324653498] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975750.385666394] [svnicp.SVNICP]: Align Process Time : 0.106821
+[svnicp_lio_node-1] Current Progress: 14.6766%
+[svnicp_lio_node-1] Preprocessing Time: 0.00310073
+[svnicp_lio_node-1] [INFO] [1782975750.423369025] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975750.492233567] [svnicp.SVNICP]: Align Process Time : 0.10296
+[svnicp_lio_node-1] Current Progress: 14.8861%
+[svnicp_lio_node-1] Preprocessing Time: 0.00297312
+[svnicp_lio_node-1] [INFO] [1782975750.524547638] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975750.603233210] [svnicp.SVNICP]: Align Process Time : 0.107342
+[svnicp_lio_node-1] Current Progress: 15.0933%
+[svnicp_lio_node-1] Preprocessing Time: 0.0030788
+[svnicp_lio_node-1] [INFO] [1782975750.624136458] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975750.718661865] [svnicp.SVNICP]: Align Process Time : 0.111863
+[svnicp_lio_node-1] Current Progress: 15.3054%
+[svnicp_lio_node-1] Preprocessing Time: 0.00284646
+[svnicp_lio_node-1] [INFO] [1782975750.724432993] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 1
+[svnicp_lio_node-1] [INFO] [1782975750.824031047] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 2
+[svnicp_lio_node-1] [INFO] [1782975750.833528924] [svnicp.SVNICP]: Align Process Time : 0.11153
+[svnicp_lio_node-1] Current Progress: 15.514%
+[svnicp_lio_node-1] Preprocessing Time: 0.00308774
+[svnicp_lio_node-1] [INFO] [1782975750.924588053] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 2
+[svnicp_lio_node-1] [INFO] [1782975750.953830025] [svnicp.SVNICP]: Align Process Time : 0.116682
+[svnicp_lio_node-1] Current Progress: 15.7245%
+[svnicp_lio_node-1] Preprocessing Time: 0.00267958
+[svnicp_lio_node-1] [INFO] [1782975751.024659827] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 2
+[svnicp_lio_node-1] [INFO] [1782975751.061096323] [svnicp.SVNICP]: Align Process Time : 0.104057
+[svnicp_lio_node-1] Current Progress: 15.9333%
+[svnicp_lio_node-1] Preprocessing Time: 0.00267907
+[svnicp_lio_node-1] [INFO] [1782975751.124654091] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 2
+[svnicp_lio_node-1] [INFO] [1782975751.183257611] [svnicp.SVNICP]: Align Process Time : 0.118938
+[svnicp_lio_node-1] Current Progress: 16.1439%
+[svnicp_lio_node-1] Preprocessing Time: 0.00422585
+[svnicp_lio_node-1] [INFO] [1782975751.224803337] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 2
+[svnicp_lio_node-1] [INFO] [1782975751.310014640] [svnicp.SVNICP]: Align Process Time : 0.121582
+[svnicp_lio_node-1] Current Progress: 16.3539%
+[svnicp_lio_node-1] Preprocessing Time: 0.00471105
+[svnicp_lio_node-1] [INFO] [1782975751.324414789] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 2
+[svnicp_lio_node-1] [INFO] [1782975751.424571227] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975751.440146814] [svnicp.SVNICP]: Align Process Time : 0.124592
+[svnicp_lio_node-1] Current Progress: 16.5633%
+[svnicp_lio_node-1] Preprocessing Time: 0.00281958
+[svnicp_lio_node-1] [INFO] [1782975751.534116281] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975751.554327066] [svnicp.SVNICP]: Align Process Time : 0.110889
+[svnicp_lio_node-1] Current Progress: 16.7734%
+[svnicp_lio_node-1] Preprocessing Time: 0.00234794
+[svnicp_lio_node-1] [INFO] [1782975751.624796168] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975751.660030172] [svnicp.SVNICP]: Align Process Time : 0.10288
+[svnicp_lio_node-1] Current Progress: 16.982%
+[svnicp_lio_node-1] Preprocessing Time: 0.0024342
+[svnicp_lio_node-1] [INFO] [1782975751.724315096] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975751.761430777] [svnicp.SVNICP]: Align Process Time : 0.0984894
+[svnicp_lio_node-1] Current Progress: 17.1922%
+[svnicp_lio_node-1] Preprocessing Time: 0.00266894
+[svnicp_lio_node-1] [INFO] [1782975751.825016320] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975751.860344537] [svnicp.SVNICP]: Align Process Time : 0.0956938
+[svnicp_lio_node-1] Current Progress: 17.4001%
+[svnicp_lio_node-1] Preprocessing Time: 0.00244803
+[svnicp_lio_node-1] [INFO] [1782975751.924711395] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975751.957050323] [svnicp.SVNICP]: Align Process Time : 0.0937898
+[svnicp_lio_node-1] Current Progress: 17.612%
+[svnicp_lio_node-1] Preprocessing Time: 0.00257041
+[svnicp_lio_node-1] [INFO] [1782975752.025342939] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975752.055777860] [svnicp.SVNICP]: Align Process Time : 0.0956346
+[svnicp_lio_node-1] Current Progress: 17.8206%
+[svnicp_lio_node-1] Preprocessing Time: 0.00241899
+[svnicp_lio_node-1] [INFO] [1782975752.124302375] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975752.158493034] [svnicp.SVNICP]: Align Process Time : 0.0997992
+[svnicp_lio_node-1] Current Progress: 18.0312%
+[svnicp_lio_node-1] Preprocessing Time: 0.00266752
+[svnicp_lio_node-1] [INFO] [1782975752.224863076] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975752.260533815] [svnicp.SVNICP]: Align Process Time : 0.098892
+[svnicp_lio_node-1] Current Progress: 18.2402%
+[svnicp_lio_node-1] Preprocessing Time: 0.00239062
+[svnicp_lio_node-1] [INFO] [1782975752.324591634] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975752.368423688] [svnicp.SVNICP]: Align Process Time : 0.105065
+[svnicp_lio_node-1] Current Progress: 18.4512%
+[svnicp_lio_node-1] Preprocessing Time: 0.00242672
+[svnicp_lio_node-1] [INFO] [1782975752.424858977] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975752.469635181] [svnicp.SVNICP]: Align Process Time : 0.0982711
+[svnicp_lio_node-1] Current Progress: 18.6591%
+[svnicp_lio_node-1] Preprocessing Time: 0.00243071
+[svnicp_lio_node-1] [INFO] [1782975752.534914828] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975752.572786965] [svnicp.SVNICP]: Align Process Time : 0.100258
+[svnicp_lio_node-1] Current Progress: 18.8698%
+[svnicp_lio_node-1] Preprocessing Time: 0.00268259
+[svnicp_lio_node-1] [INFO] [1782975752.624251043] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975752.676568421] [svnicp.SVNICP]: Align Process Time : 0.100653
+[svnicp_lio_node-1] Current Progress: 19.0788%
+[svnicp_lio_node-1] Preprocessing Time: 0.00259531
+[svnicp_lio_node-1] [INFO] [1782975752.724471857] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975752.789738392] [svnicp.SVNICP]: Align Process Time : 0.110031
+[svnicp_lio_node-1] Current Progress: 19.2889%
+[svnicp_lio_node-1] Preprocessing Time: 0.00277885
+[svnicp_lio_node-1] [INFO] [1782975752.824696166] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975752.902828488] [svnicp.SVNICP]: Align Process Time : 0.109746
+[svnicp_lio_node-1] Current Progress: 19.4975%
+[svnicp_lio_node-1] Preprocessing Time: 0.00263038
+[svnicp_lio_node-1] [INFO] [1782975752.924293863] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975753.016220868] [svnicp.SVNICP]: Align Process Time : 0.110232
+[svnicp_lio_node-1] Current Progress: 19.7073%
+[svnicp_lio_node-1] Preprocessing Time: 0.00265979
+[svnicp_lio_node-1] [INFO] [1782975753.024674010] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 3
+[svnicp_lio_node-1] [INFO] [1782975753.124283507] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 4
+[svnicp_lio_node-1] [INFO] [1782975753.132912083] [svnicp.SVNICP]: Align Process Time : 0.1135
+[svnicp_lio_node-1] Current Progress: 19.9173%
+[svnicp_lio_node-1] Preprocessing Time: 0.00270015
+[svnicp_lio_node-1] [INFO] [1782975753.224136104] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 4
+[svnicp_lio_node-1] [INFO] [1782975753.253520295] [svnicp.SVNICP]: Align Process Time : 0.117352
+[svnicp_lio_node-1] Current Progress: 20.1273%
+[svnicp_lio_node-1] Preprocessing Time: 0.00315111
+[svnicp_lio_node-1] [INFO] [1782975753.324779013] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 4
+[svnicp_lio_node-1] [INFO] [1782975753.398040904] [svnicp.SVNICP]: Align Process Time : 0.140854
+[svnicp_lio_node-1] Current Progress: 20.3363%
+[svnicp_lio_node-1] Preprocessing Time: 0.0053213
+[svnicp_lio_node-1] [INFO] [1782975753.424296659] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 4
+[svnicp_lio_node-1] [INFO] [1782975753.524482486] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 5
+[svnicp_lio_node-1] [INFO] [1782975753.537931617] [svnicp.SVNICP]: Align Process Time : 0.133888
+[svnicp_lio_node-1] Current Progress: 20.5467%
+[svnicp_lio_node-1] Preprocessing Time: 0.00345467
+[svnicp_lio_node-1] [INFO] [1782975753.624429971] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 5
+[svnicp_lio_node-1] [INFO] [1782975753.669979683] [svnicp.SVNICP]: Align Process Time : 0.127919
+[svnicp_lio_node-1] Current Progress: 20.7553%
+[svnicp_lio_node-1] Preprocessing Time: 0.00293117
+[svnicp_lio_node-1] [INFO] [1782975753.724282071] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 5
+[svnicp_lio_node-1] [INFO] [1782975753.801481734] [svnicp.SVNICP]: Align Process Time : 0.127965
+[svnicp_lio_node-1] Current Progress: 20.9647%
+[svnicp_lio_node-1] Preprocessing Time: 0.00313334
+[svnicp_lio_node-1] [INFO] [1782975753.824333101] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 5
+[svnicp_lio_node-1] [INFO] [1782975753.924294336] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 6
+[svnicp_lio_node-1] [INFO] [1782975753.932825730] [svnicp.SVNICP]: Align Process Time : 0.127669
+[svnicp_lio_node-1] Current Progress: 21.1747%
+[svnicp_lio_node-1] Preprocessing Time: 0.00340114
+[svnicp_lio_node-1] [INFO] [1782975754.024243630] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 6
+[svnicp_lio_node-1] [INFO] [1782975754.060937108] [svnicp.SVNICP]: Align Process Time : 0.124167
+[svnicp_lio_node-1] Current Progress: 21.3842%
+[svnicp_lio_node-1] Preprocessing Time: 0.00285569
+[svnicp_lio_node-1] [INFO] [1782975754.124599213] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 6
+[svnicp_lio_node-1] [INFO] [1782975754.191585928] [svnicp.SVNICP]: Align Process Time : 0.127243
+[svnicp_lio_node-1] Current Progress: 21.5938%
+[svnicp_lio_node-1] Preprocessing Time: 0.00302636
+[svnicp_lio_node-1] [INFO] [1782975754.224699060] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 6
+[svnicp_lio_node-1] [INFO] [1782975754.324528819] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 7
+[svnicp_lio_node-1] [INFO] [1782975754.330489651] [svnicp.SVNICP]: Align Process Time : 0.135339
+[svnicp_lio_node-1] Current Progress: 21.8036%
+[svnicp_lio_node-1] Preprocessing Time: 0.00334121
+[svnicp_lio_node-1] [INFO] [1782975754.424636467] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 7
+[svnicp_lio_node-1] [INFO] [1782975754.463477937] [svnicp.SVNICP]: Align Process Time : 0.128883
+[svnicp_lio_node-1] Current Progress: 22.013%
+[svnicp_lio_node-1] Preprocessing Time: 0.00322314
+[svnicp_lio_node-1] [INFO] [1782975754.524405534] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 7
+[svnicp_lio_node-1] [INFO] [1782975754.580852958] [svnicp.SVNICP]: Align Process Time : 0.111719
+[svnicp_lio_node-1] Current Progress: 22.2226%
+[svnicp_lio_node-1] Preprocessing Time: 0.00279749
+[svnicp_lio_node-1] [INFO] [1782975754.624844913] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 7
+[svnicp_lio_node-1] [INFO] [1782975754.697898530] [svnicp.SVNICP]: Align Process Time : 0.113637
+[svnicp_lio_node-1] Current Progress: 22.4325%
+[svnicp_lio_node-1] Preprocessing Time: 0.00466592
+[svnicp_lio_node-1] [INFO] [1782975754.724758149] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 7
+[svnicp_lio_node-1] [INFO] [1782975754.821230631] [svnicp.SVNICP]: Align Process Time : 0.117883
+[svnicp_lio_node-1] Current Progress: 22.6422%
+[svnicp_lio_node-1] [INFO] [1782975754.824419603] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 7
+[svnicp_lio_node-1] Preprocessing Time: 0.00304278
+[svnicp_lio_node-1] [INFO] [1782975754.924461799] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975754.927578867] [svnicp.SVNICP]: Align Process Time : 0.102532
+[svnicp_lio_node-1] Current Progress: 22.852%
+[svnicp_lio_node-1] Preprocessing Time: 0.00265963
+[svnicp_lio_node-1] [INFO] [1782975755.024196428] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.031881063] [svnicp.SVNICP]: Align Process Time : 0.101055
+[svnicp_lio_node-1] Current Progress: 23.0618%
+[svnicp_lio_node-1] Preprocessing Time: 0.0034725
+[svnicp_lio_node-1] [INFO] [1782975755.125175930] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.134959170] [svnicp.SVNICP]: Align Process Time : 0.0990235
+[svnicp_lio_node-1] Current Progress: 23.2713%
+[svnicp_lio_node-1] Preprocessing Time: 0.00280988
+[svnicp_lio_node-1] [INFO] [1782975755.224390711] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.235039340] [svnicp.SVNICP]: Align Process Time : 0.0966047
+[svnicp_lio_node-1] Current Progress: 23.4806%
+[svnicp_lio_node-1] Preprocessing Time: 0.00273154
+[svnicp_lio_node-1] [INFO] [1782975755.324404362] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.345485985] [svnicp.SVNICP]: Align Process Time : 0.107036
+[svnicp_lio_node-1] Current Progress: 23.6905%
+[svnicp_lio_node-1] Preprocessing Time: 0.00265241
+[svnicp_lio_node-1] [INFO] [1782975755.424210437] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.448117709] [svnicp.SVNICP]: Align Process Time : 0.0993818
+[svnicp_lio_node-1] Current Progress: 23.9009%
+[svnicp_lio_node-1] Preprocessing Time: 0.00309884
+[svnicp_lio_node-1] [INFO] [1782975755.524355505] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.546889746] [svnicp.SVNICP]: Align Process Time : 0.0951076
+[svnicp_lio_node-1] Current Progress: 24.1099%
+[svnicp_lio_node-1] Preprocessing Time: 0.00307681
+[svnicp_lio_node-1] [INFO] [1782975755.624389896] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.647657194] [svnicp.SVNICP]: Align Process Time : 0.0970627
+[svnicp_lio_node-1] Current Progress: 24.3193%
+[svnicp_lio_node-1] Preprocessing Time: 0.00334665
+[svnicp_lio_node-1] [INFO] [1782975755.724420643] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.757125366] [svnicp.SVNICP]: Align Process Time : 0.105534
+[svnicp_lio_node-1] Current Progress: 24.5292%
+[svnicp_lio_node-1] Preprocessing Time: 0.00281706
+[svnicp_lio_node-1] [INFO] [1782975755.824402996] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.872080900] [svnicp.SVNICP]: Align Process Time : 0.11148
+[svnicp_lio_node-1] Current Progress: 24.7384%
+[svnicp_lio_node-1] Preprocessing Time: 0.0028644
+[svnicp_lio_node-1] [INFO] [1782975755.924503835] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975755.996703168] [svnicp.SVNICP]: Align Process Time : 0.121112
+[svnicp_lio_node-1] Current Progress: 24.9495%
+[svnicp_lio_node-1] Preprocessing Time: 0.00529202
+[svnicp_lio_node-1] [INFO] [1782975756.024455096] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 8
+[svnicp_lio_node-1] [INFO] [1782975756.124407252] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 9
+[svnicp_lio_node-1] [INFO] [1782975756.140488362] [svnicp.SVNICP]: Align Process Time : 0.137727
+[svnicp_lio_node-1] Current Progress: 25.158%
+[svnicp_lio_node-1] Preprocessing Time: 0.00319789
+[svnicp_lio_node-1] [INFO] [1782975756.224985154] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 9
+[svnicp_lio_node-1] [INFO] [1782975756.273492756] [svnicp.SVNICP]: Align Process Time : 0.129008
+[svnicp_lio_node-1] Current Progress: 25.3675%
+[svnicp_lio_node-1] Preprocessing Time: 0.00287251
+[svnicp_lio_node-1] [INFO] [1782975756.324289219] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 9
+[svnicp_lio_node-1] [INFO] [1782975756.401422579] [svnicp.SVNICP]: Align Process Time : 0.124399
+[svnicp_lio_node-1] Current Progress: 25.5771%
+[svnicp_lio_node-1] Preprocessing Time: 0.00291411
+[svnicp_lio_node-1] [INFO] [1782975756.424293170] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 9
+[svnicp_lio_node-1] [INFO] [1782975756.520843301] [svnicp.SVNICP]: Align Process Time : 0.115843
+[svnicp_lio_node-1] Current Progress: 25.7869%
+[svnicp_lio_node-1] Preprocessing Time: 0.00292375
+[svnicp_lio_node-1] [INFO] [1782975756.524547876] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 9
+[svnicp_lio_node-1] [INFO] [1782975756.624150602] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 10
+[svnicp_lio_node-1] [INFO] [1782975756.645156245] [svnicp.SVNICP]: Align Process Time : 0.12072
+[svnicp_lio_node-1] Current Progress: 25.9965%
+[svnicp_lio_node-1] Preprocessing Time: 0.003178
+[svnicp_lio_node-1] [INFO] [1782975756.724665596] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 10
+[svnicp_lio_node-1] [INFO] [1782975756.773701224] [svnicp.SVNICP]: Align Process Time : 0.124662
+[svnicp_lio_node-1] Current Progress: 26.2061%
+[svnicp_lio_node-1] Preprocessing Time: 0.00295115
+[svnicp_lio_node-1] [INFO] [1782975756.824405444] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 10
+[svnicp_lio_node-1] [INFO] [1782975756.897277731] [svnicp.SVNICP]: Align Process Time : 0.119901
+[svnicp_lio_node-1] Current Progress: 26.416%
+[svnicp_lio_node-1] Preprocessing Time: 0.00331144
+[svnicp_lio_node-1] [INFO] [1782975756.924418429] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 10
+[svnicp_lio_node-1] [INFO] [1782975757.024520890] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 11
+[svnicp_lio_node-1] [INFO] [1782975757.025023983] [svnicp.SVNICP]: Align Process Time : 0.12372
+[svnicp_lio_node-1] Current Progress: 26.6255%
+[svnicp_lio_node-1] Preprocessing Time: 0.002861
+[svnicp_lio_node-1] [INFO] [1782975757.134740978] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 11
+[svnicp_lio_node-1] [INFO] [1782975757.144038673] [svnicp.SVNICP]: Align Process Time : 0.115494
+[svnicp_lio_node-1] Current Progress: 26.8348%
+[svnicp_lio_node-1] Preprocessing Time: 0.00276878
+[svnicp_lio_node-1] [INFO] [1782975757.224284953] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 11
+[svnicp_lio_node-1] [INFO] [1782975757.261950535] [svnicp.SVNICP]: Align Process Time : 0.114459
+[svnicp_lio_node-1] Current Progress: 27.0447%
+[svnicp_lio_node-1] Preprocessing Time: 0.00286265
+[svnicp_lio_node-1] [INFO] [1782975757.324486471] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 11
+[svnicp_lio_node-1] [INFO] [1782975757.387670551] [svnicp.SVNICP]: Align Process Time : 0.122179
+[svnicp_lio_node-1] Current Progress: 27.2559%
+[svnicp_lio_node-1] Preprocessing Time: 0.00282203
+[svnicp_lio_node-1] [INFO] [1782975757.424464829] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 11
+[svnicp_lio_node-1] [INFO] [1782975757.507568831] [svnicp.SVNICP]: Align Process Time : 0.116441
+[svnicp_lio_node-1] Current Progress: 27.4637%
+[svnicp_lio_node-1] Preprocessing Time: 0.00281315
+[svnicp_lio_node-1] [INFO] [1782975757.524294254] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 11
+[svnicp_lio_node-1] [INFO] [1782975757.618385636] [svnicp.SVNICP]: Align Process Time : 0.107294
+[svnicp_lio_node-1] Current Progress: 27.6735%
+[svnicp_lio_node-1] Preprocessing Time: 0.00288517
+[svnicp_lio_node-1] [INFO] [1782975757.624805355] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 11
+[svnicp_lio_node-1] [INFO] [1782975757.724730744] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 12
+[svnicp_lio_node-1] [INFO] [1782975757.727919036] [svnicp.SVNICP]: Align Process Time : 0.106034
+[svnicp_lio_node-1] Current Progress: 27.8832%
+[svnicp_lio_node-1] Preprocessing Time: 0.0028236
+[svnicp_lio_node-1] [INFO] [1782975757.824974098] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 12
+[svnicp_lio_node-1] [INFO] [1782975757.835937790] [svnicp.SVNICP]: Align Process Time : 0.104538
+[svnicp_lio_node-1] Current Progress: 28.0924%
+[svnicp_lio_node-1] Preprocessing Time: 0.00281415
+[svnicp_lio_node-1] [INFO] [1782975757.924797507] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 12
+[svnicp_lio_node-1] [INFO] [1782975757.944950027] [svnicp.SVNICP]: Align Process Time : 0.105539
+[svnicp_lio_node-1] Current Progress: 28.3028%
+[svnicp_lio_node-1] Preprocessing Time: 0.00294254
+[svnicp_lio_node-1] [INFO] [1782975758.024474724] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 12
+[svnicp_lio_node-1] [INFO] [1782975758.064233903] [svnicp.SVNICP]: Align Process Time : 0.11572
+[svnicp_lio_node-1] Current Progress: 28.5124%
+[svnicp_lio_node-1] Preprocessing Time: 0.00374663
+[svnicp_lio_node-1] [INFO] [1782975758.124352472] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 12
+[svnicp_lio_node-1] [INFO] [1782975758.188885051] [svnicp.SVNICP]: Align Process Time : 0.120199
+[svnicp_lio_node-1] Current Progress: 28.7221%
+[svnicp_lio_node-1] Preprocessing Time: 0.00341894
+[svnicp_lio_node-1] [INFO] [1782975758.224381550] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 12
+[svnicp_lio_node-1] [INFO] [1782975758.324385020] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 13
+[svnicp_lio_node-1] [INFO] [1782975758.326508855] [svnicp.SVNICP]: Align Process Time : 0.133558
+[svnicp_lio_node-1] Current Progress: 28.9317%
+[svnicp_lio_node-1] Preprocessing Time: 0.00292884
+[svnicp_lio_node-1] [INFO] [1782975758.424350901] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 13
+[svnicp_lio_node-1] [INFO] [1782975758.465504752] [svnicp.SVNICP]: Align Process Time : 0.135368
+[svnicp_lio_node-1] Current Progress: 29.1411%
+[svnicp_lio_node-1] Preprocessing Time: 0.00353969
+[svnicp_lio_node-1] [INFO] [1782975758.524581108] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 13
+[svnicp_lio_node-1] [INFO] [1782975758.589911825] [svnicp.SVNICP]: Align Process Time : 0.120132
+[svnicp_lio_node-1] Current Progress: 29.3507%
+[svnicp_lio_node-1] Preprocessing Time: 0.0029307
+[svnicp_lio_node-1] [INFO] [1782975758.634869062] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 13
+[svnicp_lio_node-1] [INFO] [1782975758.724543032] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 14
+[svnicp_lio_node-1] [INFO] [1782975758.728105788] [svnicp.SVNICP]: Align Process Time : 0.134554
+[svnicp_lio_node-1] Current Progress: 29.5607%
+[svnicp_lio_node-1] Preprocessing Time: 0.00322001
+[svnicp_lio_node-1] [INFO] [1782975758.824393799] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 14
+[svnicp_lio_node-1] [INFO] [1782975758.848583542] [svnicp.SVNICP]: Align Process Time : 0.116598
+[svnicp_lio_node-1] Current Progress: 29.7702%
+[svnicp_lio_node-1] Preprocessing Time: 0.00347516
+[svnicp_lio_node-1] [INFO] [1782975758.924387806] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 14
+[svnicp_lio_node-1] [INFO] [1782975758.968269911] [svnicp.SVNICP]: Align Process Time : 0.115259
+[svnicp_lio_node-1] Current Progress: 29.9797%
+[svnicp_lio_node-1] Preprocessing Time: 0.00294845
+[svnicp_lio_node-1] [INFO] [1782975759.024678499] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 14
+[svnicp_lio_node-1] [INFO] [1782975759.095204357] [svnicp.SVNICP]: Align Process Time : 0.12334
+[svnicp_lio_node-1] Current Progress: 30.1903%
+[svnicp_lio_node-1] Preprocessing Time: 0.00433808
+[svnicp_lio_node-1] [INFO] [1782975759.124637195] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 14
+[svnicp_lio_node-1] [INFO] [1782975759.224619276] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 15
+[svnicp_lio_node-1] [INFO] [1782975759.225895185] [svnicp.SVNICP]: Align Process Time : 0.124992
+[svnicp_lio_node-1] Current Progress: 30.3991%
+[svnicp_lio_node-1] Preprocessing Time: 0.004835
+[svnicp_lio_node-1] [INFO] [1782975759.325127652] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 15
+[svnicp_lio_node-1] [INFO] [1782975759.345796416] [svnicp.SVNICP]: Align Process Time : 0.114192
+[svnicp_lio_node-1] Current Progress: 30.6101%
+[svnicp_lio_node-1] Preprocessing Time: 0.00471762
+[svnicp_lio_node-1] [INFO] [1782975759.425029403] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 15
+[svnicp_lio_node-1] [INFO] [1782975759.467826244] [svnicp.SVNICP]: Align Process Time : 0.116616
+[svnicp_lio_node-1] Current Progress: 30.8192%
+[svnicp_lio_node-1] Preprocessing Time: 0.0032701
+[svnicp_lio_node-1] [INFO] [1782975759.524515883] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 15
+[svnicp_lio_node-1] [INFO] [1782975759.589398819] [svnicp.SVNICP]: Align Process Time : 0.117625
+[svnicp_lio_node-1] Current Progress: 31.0282%
+[svnicp_lio_node-1] Preprocessing Time: 0.0036585
+[svnicp_lio_node-1] [INFO] [1782975759.624558331] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 15
+[svnicp_lio_node-1] [INFO] [1782975759.714768632] [svnicp.SVNICP]: Align Process Time : 0.120993
+[svnicp_lio_node-1] Current Progress: 31.2375%
+[svnicp_lio_node-1] Preprocessing Time: 0.00395989
+[svnicp_lio_node-1] [INFO] [1782975759.724338614] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 15
+[svnicp_lio_node-1] [INFO] [1782975759.824368393] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 16
+[svnicp_lio_node-1] [INFO] [1782975759.850726765] [svnicp.SVNICP]: Align Process Time : 0.131293
+[svnicp_lio_node-1] Current Progress: 31.4471%
+[svnicp_lio_node-1] Preprocessing Time: 0.00382529
+[svnicp_lio_node-1] [INFO] [1782975759.924422104] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 16
+[svnicp_lio_node-1] [INFO] [1782975759.980805098] [svnicp.SVNICP]: Align Process Time : 0.125498
+[svnicp_lio_node-1] Current Progress: 31.6569%
+[svnicp_lio_node-1] Preprocessing Time: 0.00615802
+[svnicp_lio_node-1] [INFO] [1782975760.024461710] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 16
+[svnicp_lio_node-1] [INFO] [1782975760.124448080] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 17
+[svnicp_lio_node-1] [INFO] [1782975760.126181707] [svnicp.SVNICP]: Align Process Time : 0.138398
+[svnicp_lio_node-1] Current Progress: 31.8665%
+[svnicp_lio_node-1] Preprocessing Time: 0.00425663
+[svnicp_lio_node-1] [INFO] [1782975760.224757132] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 17
+[svnicp_lio_node-1] [INFO] [1782975760.260512306] [svnicp.SVNICP]: Align Process Time : 0.12937
+[svnicp_lio_node-1] Current Progress: 32.0763%
+[svnicp_lio_node-1] Preprocessing Time: 0.00343133
+[svnicp_lio_node-1] [INFO] [1782975760.324270657] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 17
+[svnicp_lio_node-1] [INFO] [1782975760.397560734] [svnicp.SVNICP]: Align Process Time : 0.132763
+[svnicp_lio_node-1] Current Progress: 32.2858%
+[svnicp_lio_node-1] Preprocessing Time: 0.00602085
+[svnicp_lio_node-1] [INFO] [1782975760.424474310] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 17
+[svnicp_lio_node-1] [INFO] [1782975760.514581754] [svnicp.SVNICP]: Align Process Time : 0.11005
+[svnicp_lio_node-1] Current Progress: 32.4957%
+[svnicp_lio_node-1] Preprocessing Time: 0.00400091
+[svnicp_lio_node-1] [INFO] [1782975760.524259827] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 17
+[svnicp_lio_node-1] [INFO] [1782975760.624570073] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 18
+[svnicp_lio_node-1] [INFO] [1782975760.640568291] [svnicp.SVNICP]: Align Process Time : 0.121271
+[svnicp_lio_node-1] Current Progress: 32.7053%
+[svnicp_lio_node-1] Preprocessing Time: 0.00328093
+[svnicp_lio_node-1] [INFO] [1782975760.724657689] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 18
+[svnicp_lio_node-1] [INFO] [1782975760.773315517] [svnicp.SVNICP]: Align Process Time : 0.128644
+[svnicp_lio_node-1] Current Progress: 32.915%
+[svnicp_lio_node-1] Preprocessing Time: 0.00553072
+[svnicp_lio_node-1] [INFO] [1782975760.824197283] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 18
+[svnicp_lio_node-1] [INFO] [1782975760.891468689] [svnicp.SVNICP]: Align Process Time : 0.111819
+[svnicp_lio_node-1] Current Progress: 33.1246%
+[svnicp_lio_node-1] Preprocessing Time: 0.00422805
+[svnicp_lio_node-1] [INFO] [1782975760.924467056] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 18
+[svnicp_lio_node-1] [INFO] [1782975761.009961891] [svnicp.SVNICP]: Align Process Time : 0.113546
+[svnicp_lio_node-1] Current Progress: 33.3345%
+[svnicp_lio_node-1] Preprocessing Time: 0.00383739
+[svnicp_lio_node-1] [INFO] [1782975761.024261769] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 18
+[svnicp_lio_node-1] [INFO] [1782975761.124615030] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 19
+[svnicp_lio_node-1] [INFO] [1782975761.136538819] [svnicp.SVNICP]: Align Process Time : 0.121973
+[svnicp_lio_node-1] Current Progress: 33.544%
+[svnicp_lio_node-1] Preprocessing Time: 0.00392203
+[svnicp_lio_node-1] [INFO] [1782975761.224473747] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 19
+[svnicp_lio_node-1] [INFO] [1782975761.269151514] [svnicp.SVNICP]: Align Process Time : 0.12784
+[svnicp_lio_node-1] Current Progress: 33.7549%
+[svnicp_lio_node-1] Preprocessing Time: 0.00398962
+[svnicp_lio_node-1] [INFO] [1782975761.324362878] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 19
+[svnicp_lio_node-1] [INFO] [1782975761.423588296] [svnicp.SVNICP]: Align Process Time : 0.149636
+[svnicp_lio_node-1] [INFO] [1782975761.424578857] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 20
+[svnicp_lio_node-1] Current Progress: 33.9641%
+[svnicp_lio_node-1] Preprocessing Time: 0.00606723
+[svnicp_lio_node-1] [INFO] [1782975761.535415655] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 20
+[svnicp_lio_node-1] [INFO] [1782975761.561590438] [svnicp.SVNICP]: Align Process Time : 0.130635
+[svnicp_lio_node-1] Current Progress: 34.1728%
+[svnicp_lio_node-1] Preprocessing Time: 0.00452486
+[svnicp_lio_node-1] [INFO] [1782975761.624489316] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 20
+[svnicp_lio_node-1] [INFO] [1782975761.698873876] [svnicp.SVNICP]: Align Process Time : 0.132055
+[svnicp_lio_node-1] Current Progress: 34.3825%
+[svnicp_lio_node-1] Preprocessing Time: 0.00396006
+[svnicp_lio_node-1] [INFO] [1782975761.724735033] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 20
+[svnicp_lio_node-1] [INFO] [1782975761.824562955] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 21
+[svnicp_lio_node-1] [INFO] [1782975761.837082780] [svnicp.SVNICP]: Align Process Time : 0.133433
+[svnicp_lio_node-1] Current Progress: 34.5918%
+[svnicp_lio_node-1] Preprocessing Time: 0.00383967
+[svnicp_lio_node-1] [INFO] [1782975761.924513058] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 21
+[svnicp_lio_node-1] [INFO] [1782975761.972039201] [svnicp.SVNICP]: Align Process Time : 0.130386
+[svnicp_lio_node-1] Current Progress: 34.8016%
+[svnicp_lio_node-1] Preprocessing Time: 0.00346082
+[svnicp_lio_node-1] [INFO] [1782975762.024400596] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 21
+[svnicp_lio_node-1] [INFO] [1782975762.103864336] [svnicp.SVNICP]: Align Process Time : 0.127565
+[svnicp_lio_node-1] Current Progress: 35.0114%
+[svnicp_lio_node-1] Preprocessing Time: 0.00371797
+[svnicp_lio_node-1] [INFO] [1782975762.124523267] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 21
+[svnicp_lio_node-1] [INFO] [1782975762.224514818] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 22
+[svnicp_lio_node-1] [INFO] [1782975762.235297718] [svnicp.SVNICP]: Align Process Time : 0.126908
+[svnicp_lio_node-1] Current Progress: 35.2208%
+[svnicp_lio_node-1] Preprocessing Time: 0.00438464
+[svnicp_lio_node-1] [INFO] [1782975762.324413718] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 22
+[svnicp_lio_node-1] [INFO] [1782975762.363223057] [svnicp.SVNICP]: Align Process Time : 0.122769
+[svnicp_lio_node-1] Current Progress: 35.4306%
+[svnicp_lio_node-1] Preprocessing Time: 0.00385159
+[svnicp_lio_node-1] [INFO] [1782975762.424237270] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 22
+[svnicp_lio_node-1] [INFO] [1782975762.477102463] [svnicp.SVNICP]: Align Process Time : 0.109314
+[svnicp_lio_node-1] Current Progress: 35.6405%
+[svnicp_lio_node-1] Preprocessing Time: 0.00354233
+[svnicp_lio_node-1] [INFO] [1782975762.524534176] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 22
+[svnicp_lio_node-1] [INFO] [1782975762.590144770] [svnicp.SVNICP]: Align Process Time : 0.108813
+[svnicp_lio_node-1] Current Progress: 35.8497%
+[svnicp_lio_node-1] Preprocessing Time: 0.00357225
+[svnicp_lio_node-1] [INFO] [1782975762.624664664] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 22
+[svnicp_lio_node-1] [INFO] [1782975762.722473160] [svnicp.SVNICP]: Align Process Time : 0.128046
+[svnicp_lio_node-1] Current Progress: 36.0596%
+[svnicp_lio_node-1] [INFO] [1782975762.724752700] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 22
+[svnicp_lio_node-1] Preprocessing Time: 0.00496762
+[svnicp_lio_node-1] [INFO] [1782975762.824490076] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 23
+[svnicp_lio_node-1] [INFO] [1782975762.866397270] [svnicp.SVNICP]: Align Process Time : 0.137877
+[svnicp_lio_node-1] Current Progress: 36.269%
+[svnicp_lio_node-1] Preprocessing Time: 0.0049518
+[svnicp_lio_node-1] [INFO] [1782975762.924468910] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 23
+[svnicp_lio_node-1] [INFO] [1782975763.020654716] [svnicp.SVNICP]: Align Process Time : 0.148204
+[svnicp_lio_node-1] Current Progress: 36.4787%
+[svnicp_lio_node-1] [INFO] [1782975763.025001699] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 23
+[svnicp_lio_node-1] Preprocessing Time: 0.00418505
+[svnicp_lio_node-1] [INFO] [1782975763.124541969] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 24
+[svnicp_lio_node-1] [INFO] [1782975763.165225884] [svnicp.SVNICP]: Align Process Time : 0.139396
+[svnicp_lio_node-1] Current Progress: 36.6887%
+[svnicp_lio_node-1] Preprocessing Time: 0.0034769
+[svnicp_lio_node-1] [INFO] [1782975763.224749725] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 24
+[svnicp_lio_node-1] [INFO] [1782975763.298483685] [svnicp.SVNICP]: Align Process Time : 0.129025
+[svnicp_lio_node-1] Current Progress: 36.898%
+[svnicp_lio_node-1] Preprocessing Time: 0.00412815
+[svnicp_lio_node-1] [INFO] [1782975763.324451282] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 24
+[svnicp_lio_node-1] [INFO] [1782975763.424424430] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 25
+[svnicp_lio_node-1] [INFO] [1782975763.438692464] [svnicp.SVNICP]: Align Process Time : 0.135315
+[svnicp_lio_node-1] Current Progress: 37.1077%
+[svnicp_lio_node-1] Preprocessing Time: 0.00346313
+[svnicp_lio_node-1] [INFO] [1782975763.524502004] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 25
+[svnicp_lio_node-1] [INFO] [1782975763.571037597] [svnicp.SVNICP]: Align Process Time : 0.128187
+[svnicp_lio_node-1] Current Progress: 37.3174%
+[svnicp_lio_node-1] Preprocessing Time: 0.00440384
+[svnicp_lio_node-1] [INFO] [1782975763.624371056] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 25
+[svnicp_lio_node-1] [INFO] [1782975763.708851504] [svnicp.SVNICP]: Align Process Time : 0.132679
+[svnicp_lio_node-1] Current Progress: 37.5272%
+[svnicp_lio_node-1] Preprocessing Time: 0.00354564
+[svnicp_lio_node-1] [INFO] [1782975763.724660987] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 25
+[svnicp_lio_node-1] [INFO] [1782975763.824457827] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 26
+[svnicp_lio_node-1] [INFO] [1782975763.843773981] [svnicp.SVNICP]: Align Process Time : 0.130585
+[svnicp_lio_node-1] Current Progress: 37.7368%
+[svnicp_lio_node-1] Preprocessing Time: 0.003292
+[svnicp_lio_node-1] [INFO] [1782975763.924440296] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 26
+[svnicp_lio_node-1] [INFO] [1782975763.978344830] [svnicp.SVNICP]: Align Process Time : 0.130569
+[svnicp_lio_node-1] Current Progress: 37.9463%
+[svnicp_lio_node-1] Preprocessing Time: 0.00418546
+[svnicp_lio_node-1] [INFO] [1782975764.024644354] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 26
+[svnicp_lio_node-1] [INFO] [1782975764.110364942] [svnicp.SVNICP]: Align Process Time : 0.12705
+[svnicp_lio_node-1] Current Progress: 38.1559%
+[svnicp_lio_node-1] Preprocessing Time: 0.00368272
+[svnicp_lio_node-1] [INFO] [1782975764.124497986] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 26
+[svnicp_lio_node-1] [INFO] [1782975764.224345687] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 27
+[svnicp_lio_node-1] [INFO] [1782975764.247433659] [svnicp.SVNICP]: Align Process Time : 0.132598
+[svnicp_lio_node-1] Current Progress: 38.3659%
+[svnicp_lio_node-1] Preprocessing Time: 0.00376482
+[svnicp_lio_node-1] [INFO] [1782975764.324818332] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 27
+[svnicp_lio_node-1] [INFO] [1782975764.401801961] [svnicp.SVNICP]: Align Process Time : 0.149879
+[svnicp_lio_node-1] Current Progress: 38.5753%
+[svnicp_lio_node-1] Preprocessing Time: 0.00418053
+[svnicp_lio_node-1] [INFO] [1782975764.424472010] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 27
+[svnicp_lio_node-1] [INFO] [1782975764.524575448] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 28
+[svnicp_lio_node-1] [INFO] [1782975764.529772705] [svnicp.SVNICP]: Align Process Time : 0.122713
+[svnicp_lio_node-1] Current Progress: 38.7852%
+[svnicp_lio_node-1] Preprocessing Time: 0.0037887
+[svnicp_lio_node-1] [INFO] [1782975764.624773817] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 28
+[svnicp_lio_node-1] [INFO] [1782975764.657167529] [svnicp.SVNICP]: Align Process Time : 0.122923
+[svnicp_lio_node-1] Current Progress: 38.9948%
+[svnicp_lio_node-1] Preprocessing Time: 0.00399659
+[svnicp_lio_node-1] [INFO] [1782975764.724292582] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 28
+[svnicp_lio_node-1] [INFO] [1782975764.797492657] [svnicp.SVNICP]: Align Process Time : 0.135598
+[svnicp_lio_node-1] Current Progress: 39.2043%
+[svnicp_lio_node-1] Preprocessing Time: 0.00368453
+[svnicp_lio_node-1] [INFO] [1782975764.824479150] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 28
+[svnicp_lio_node-1] [INFO] [1782975764.924482638] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 29
+[svnicp_lio_node-1] [INFO] [1782975764.939224024] [svnicp.SVNICP]: Align Process Time : 0.137277
+[svnicp_lio_node-1] Current Progress: 39.4138%
+[svnicp_lio_node-1] Preprocessing Time: 0.00382462
+[svnicp_lio_node-1] [INFO] [1782975765.024367298] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 29
+[svnicp_lio_node-1] [INFO] [1782975765.075753436] [svnicp.SVNICP]: Align Process Time : 0.131973
+[svnicp_lio_node-1] Current Progress: 39.6239%
+[svnicp_lio_node-1] Preprocessing Time: 0.00504985
+[svnicp_lio_node-1] [INFO] [1782975765.124454740] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 29
+[svnicp_lio_node-1] [INFO] [1782975765.215350488] [svnicp.SVNICP]: Align Process Time : 0.130546
+[svnicp_lio_node-1] Current Progress: 39.8333%
+[svnicp_lio_node-1] Preprocessing Time: 0.00412527
+[svnicp_lio_node-1] [INFO] [1782975765.224388392] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 29
+[svnicp_lio_node-1] [INFO] [1782975765.324567713] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 30
+[svnicp_lio_node-1] [INFO] [1782975765.357192009] [svnicp.SVNICP]: Align Process Time : 0.136694
+[svnicp_lio_node-1] Current Progress: 40.0426%
+[svnicp_lio_node-1] Preprocessing Time: 0.00402999
+[svnicp_lio_node-1] [INFO] [1782975765.424536943] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 30
+[svnicp_lio_node-1] [INFO] [1782975765.499873873] [svnicp.SVNICP]: Align Process Time : 0.137716
+[svnicp_lio_node-1] Current Progress: 40.2521%
+[svnicp_lio_node-1] Preprocessing Time: 0.00433185
+[svnicp_lio_node-1] [INFO] [1782975765.524558368] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 30
+[svnicp_lio_node-1] [INFO] [1782975765.624909698] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 31
+[svnicp_lio_node-1] [INFO] [1782975765.644098946] [svnicp.SVNICP]: Align Process Time : 0.138962
+[svnicp_lio_node-1] Current Progress: 40.4618%
+[svnicp_lio_node-1] Preprocessing Time: 0.00444407
+[svnicp_lio_node-1] [INFO] [1782975765.724614256] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 31
+[svnicp_lio_node-1] [INFO] [1782975765.793985053] [svnicp.SVNICP]: Align Process Time : 0.144574
+[svnicp_lio_node-1] Current Progress: 40.6719%
+[svnicp_lio_node-1] Preprocessing Time: 0.00378564
+[svnicp_lio_node-1] [INFO] [1782975765.824614759] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 31
+[svnicp_lio_node-1] [INFO] [1782975765.924563757] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 32
+[svnicp_lio_node-1] [INFO] [1782975765.934630749] [svnicp.SVNICP]: Align Process Time : 0.135943
+[svnicp_lio_node-1] Current Progress: 40.8815%
+[svnicp_lio_node-1] Preprocessing Time: 0.00374225
+[svnicp_lio_node-1] [INFO] [1782975766.024419823] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 32
+[svnicp_lio_node-1] [INFO] [1782975766.068678275] [svnicp.SVNICP]: Align Process Time : 0.129413
+[svnicp_lio_node-1] Current Progress: 41.0911%
+[svnicp_lio_node-1] Preprocessing Time: 0.00392683
+[svnicp_lio_node-1] [INFO] [1782975766.124564660] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 32
+[svnicp_lio_node-1] [INFO] [1782975766.198481487] [svnicp.SVNICP]: Align Process Time : 0.124937
+[svnicp_lio_node-1] Current Progress: 41.3007%
+[svnicp_lio_node-1] Preprocessing Time: 0.00375585
+[svnicp_lio_node-1] [INFO] [1782975766.224408431] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 32
+[svnicp_lio_node-1] [INFO] [1782975766.324688371] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 33
+[svnicp_lio_node-1] [INFO] [1782975766.331100026] [svnicp.SVNICP]: Align Process Time : 0.127868
+[svnicp_lio_node-1] Current Progress: 41.5104%
+[svnicp_lio_node-1] Preprocessing Time: 0.00370052
+[svnicp_lio_node-1] [INFO] [1782975766.424621285] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 33
+[svnicp_lio_node-1] [INFO] [1782975766.457165091] [svnicp.SVNICP]: Align Process Time : 0.121458
+[svnicp_lio_node-1] Current Progress: 41.7201%
+[svnicp_lio_node-1] Preprocessing Time: 0.00349731
+[svnicp_lio_node-1] [INFO] [1782975766.524634341] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 33
+[svnicp_lio_node-1] [INFO] [1782975766.589171014] [svnicp.SVNICP]: Align Process Time : 0.127678
+[svnicp_lio_node-1] Current Progress: 41.9297%
+[svnicp_lio_node-1] Preprocessing Time: 0.00371788
+[svnicp_lio_node-1] [INFO] [1782975766.624505693] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 33
+[svnicp_lio_node-1] [INFO] [1782975766.724432289] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 34
+[svnicp_lio_node-1] [INFO] [1782975766.724533653] [svnicp.SVNICP]: Align Process Time : 0.130781
+[svnicp_lio_node-1] Current Progress: 42.1395%
+[svnicp_lio_node-1] Preprocessing Time: 0.00366688
+[svnicp_lio_node-1] [INFO] [1782975766.824613122] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 34
+[svnicp_lio_node-1] [INFO] [1782975766.860156149] [svnicp.SVNICP]: Align Process Time : 0.131111
+[svnicp_lio_node-1] Current Progress: 42.349%
+[svnicp_lio_node-1] Preprocessing Time: 0.00375071
+[svnicp_lio_node-1] [INFO] [1782975766.924570099] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 34
+[svnicp_lio_node-1] [INFO] [1782975766.997955965] [svnicp.SVNICP]: Align Process Time : 0.133185
+[svnicp_lio_node-1] Current Progress: 42.5587%
+[svnicp_lio_node-1] Preprocessing Time: 0.00412934
+[svnicp_lio_node-1] [INFO] [1782975767.024585291] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 34
+[svnicp_lio_node-1] [INFO] [1782975767.124820099] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 35
+[svnicp_lio_node-1] [INFO] [1782975767.139623141] [svnicp.SVNICP]: Align Process Time : 0.136482
+[svnicp_lio_node-1] Current Progress: 42.7683%
+[svnicp_lio_node-1] Preprocessing Time: 0.00400632
+[svnicp_lio_node-1] [INFO] [1782975767.224418979] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 35
+[svnicp_lio_node-1] [INFO] [1782975767.279316379] [svnicp.SVNICP]: Align Process Time : 0.134776
+[svnicp_lio_node-1] Current Progress: 42.9781%
+[svnicp_lio_node-1] Preprocessing Time: 0.00462236
+[svnicp_lio_node-1] [INFO] [1782975767.324719268] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 35
+[svnicp_lio_node-1] [INFO] [1782975767.424578473] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 36
+[svnicp_lio_node-1] [INFO] [1782975767.425140918] [svnicp.SVNICP]: Align Process Time : 0.140299
+[svnicp_lio_node-1] Current Progress: 43.1875%
+[svnicp_lio_node-1] Preprocessing Time: 0.00377998
+[svnicp_lio_node-1] [INFO] [1782975767.524746135] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 36
+[svnicp_lio_node-1] [INFO] [1782975767.565622264] [svnicp.SVNICP]: Align Process Time : 0.135791
+[svnicp_lio_node-1] Current Progress: 43.3972%
+[svnicp_lio_node-1] Preprocessing Time: 0.00406283
+[svnicp_lio_node-1] [INFO] [1782975767.624596814] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 36
+[svnicp_lio_node-1] [INFO] [1782975767.710691858] [svnicp.SVNICP]: Align Process Time : 0.140116
+[svnicp_lio_node-1] Current Progress: 43.6071%
+[svnicp_lio_node-1] Preprocessing Time: 0.00429764
+[svnicp_lio_node-1] [INFO] [1782975767.724611375] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 36
+[svnicp_lio_node-1] [INFO] [1782975767.824460844] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 37
+[svnicp_lio_node-1] [INFO] [1782975767.854238136] [svnicp.SVNICP]: Align Process Time : 0.138357
+[svnicp_lio_node-1] Current Progress: 43.8165%
+[svnicp_lio_node-1] Preprocessing Time: 0.00406762
+[svnicp_lio_node-1] [INFO] [1782975767.924414007] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 37
+[svnicp_lio_node-1] [INFO] [1782975767.993253879] [svnicp.SVNICP]: Align Process Time : 0.134038
+[svnicp_lio_node-1] Current Progress: 44.0261%
+[svnicp_lio_node-1] Preprocessing Time: 0.00383539
+[svnicp_lio_node-1] [INFO] [1782975768.024654742] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 37
+[svnicp_lio_node-1] [INFO] [1782975768.122419542] [svnicp.SVNICP]: Align Process Time : 0.124345
+[svnicp_lio_node-1] Current Progress: 44.236%
+[svnicp_lio_node-1] [INFO] [1782975768.123998667] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 37
+[svnicp_lio_node-1] Preprocessing Time: 0.00434057
+[svnicp_lio_node-1] [INFO] [1782975768.223693347] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 38
+[svnicp_lio_node-1] [INFO] [1782975768.252260262] [svnicp.SVNICP]: Align Process Time : 0.124535
+[svnicp_lio_node-1] Current Progress: 44.4456%
+[svnicp_lio_node-1] Preprocessing Time: 0.00378677
+[svnicp_lio_node-1] [INFO] [1782975768.324279070] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 38
+[svnicp_lio_node-1] [INFO] [1782975768.399425536] [svnicp.SVNICP]: Align Process Time : 0.142423
+[svnicp_lio_node-1] Current Progress: 44.6552%
+[svnicp_lio_node-1] Preprocessing Time: 0.00448665
+[svnicp_lio_node-1] [INFO] [1782975768.424447439] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 38
+[svnicp_lio_node-1] [INFO] [1782975768.524806670] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 39
+[svnicp_lio_node-1] [INFO] [1782975768.546440934] [svnicp.SVNICP]: Align Process Time : 0.141378
+[svnicp_lio_node-1] Current Progress: 44.8648%
+[svnicp_lio_node-1] Preprocessing Time: 0.00567067
+[svnicp_lio_node-1] [INFO] [1782975768.624646668] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 39
+[svnicp_lio_node-1] [INFO] [1782975768.685334914] [svnicp.SVNICP]: Align Process Time : 0.132189
+[svnicp_lio_node-1] Current Progress: 45.0743%
+[svnicp_lio_node-1] Preprocessing Time: 0.00379029
+[svnicp_lio_node-1] [INFO] [1782975768.724594670] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 39
+[svnicp_lio_node-1] [INFO] [1782975768.824730436] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 40
+[svnicp_lio_node-1] [INFO] [1782975768.826513391] [svnicp.SVNICP]: Align Process Time : 0.136494
+[svnicp_lio_node-1] Current Progress: 45.2842%
+[svnicp_lio_node-1] Preprocessing Time: 0.00393362
+[svnicp_lio_node-1] [INFO] [1782975768.924636133] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 40
+[svnicp_lio_node-1] [INFO] [1782975768.970815612] [svnicp.SVNICP]: Align Process Time : 0.139474
+[svnicp_lio_node-1] Current Progress: 45.4937%
+[svnicp_lio_node-1] Preprocessing Time: 0.00422809
+[svnicp_lio_node-1] [INFO] [1782975769.024675632] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 40
+[svnicp_lio_node-1] [INFO] [1782975769.117933297] [svnicp.SVNICP]: Align Process Time : 0.14189
+[svnicp_lio_node-1] Current Progress: 45.7034%
+[svnicp_lio_node-1] Preprocessing Time: 0.00393468
+[svnicp_lio_node-1] [INFO] [1782975769.124579810] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 40
+[svnicp_lio_node-1] [INFO] [1782975769.224832903] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 41
+[svnicp_lio_node-1] [INFO] [1782975769.260239278] [svnicp.SVNICP]: Align Process Time : 0.137343
+[svnicp_lio_node-1] Current Progress: 45.9132%
+[svnicp_lio_node-1] Preprocessing Time: 0.0044082
+[svnicp_lio_node-1] [INFO] [1782975769.324741516] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 41
+[svnicp_lio_node-1] [INFO] [1782975769.413208534] [svnicp.SVNICP]: Align Process Time : 0.147612
+[svnicp_lio_node-1] Current Progress: 46.1226%
+[svnicp_lio_node-1] Preprocessing Time: 0.00415612
+[svnicp_lio_node-1] [INFO] [1782975769.424629744] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 41
+[svnicp_lio_node-1] [INFO] [1782975769.524726221] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 42
+[svnicp_lio_node-1] [INFO] [1782975769.552820160] [svnicp.SVNICP]: Align Process Time : 0.13451
+[svnicp_lio_node-1] Current Progress: 46.3322%
+[svnicp_lio_node-1] Preprocessing Time: 0.00427827
+[svnicp_lio_node-1] [INFO] [1782975769.624619197] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 42
+[svnicp_lio_node-1] [INFO] [1782975769.696909318] [svnicp.SVNICP]: Align Process Time : 0.138859
+[svnicp_lio_node-1] Current Progress: 46.5419%
+[svnicp_lio_node-1] Preprocessing Time: 0.00428101
+[svnicp_lio_node-1] [INFO] [1782975769.724680218] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 42
+[svnicp_lio_node-1] [INFO] [1782975769.824730065] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 43
+[svnicp_lio_node-1] [INFO] [1782975769.840381340] [svnicp.SVNICP]: Align Process Time : 0.138245
+[svnicp_lio_node-1] Current Progress: 46.7517%
+[svnicp_lio_node-1] Preprocessing Time: 0.00434115
+[svnicp_lio_node-1] [INFO] [1782975769.924825718] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 43
+[svnicp_lio_node-1] [INFO] [1782975769.991230128] [svnicp.SVNICP]: Align Process Time : 0.145522
+[svnicp_lio_node-1] Current Progress: 46.9621%
+[svnicp_lio_node-1] Preprocessing Time: 0.00403172
+[svnicp_lio_node-1] [INFO] [1782975770.024948453] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 43
+[svnicp_lio_node-1] [INFO] [1782975770.124827406] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 44
+[svnicp_lio_node-1] [INFO] [1782975770.136153824] [svnicp.SVNICP]: Align Process Time : 0.139886
+[svnicp_lio_node-1] Current Progress: 47.1712%
+[svnicp_lio_node-1] Preprocessing Time: 0.0038702
+[svnicp_lio_node-1] [INFO] [1782975770.224742166] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 44
+[svnicp_lio_node-1] [INFO] [1782975770.280607445] [svnicp.SVNICP]: Align Process Time : 0.139612
+[svnicp_lio_node-1] Current Progress: 47.3807%
+[svnicp_lio_node-1] Preprocessing Time: 0.00395275
+[svnicp_lio_node-1] [INFO] [1782975770.325018847] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 44
+[svnicp_lio_node-1] [INFO] [1782975770.412547713] [svnicp.SVNICP]: Align Process Time : 0.127025
+[svnicp_lio_node-1] Current Progress: 47.5902%
+[svnicp_lio_node-1] Preprocessing Time: 0.00448888
+[svnicp_lio_node-1] [INFO] [1782975770.424661738] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 44
+[svnicp_lio_node-1] [INFO] [1782975770.524938746] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 45
+[svnicp_lio_node-1] [INFO] [1782975770.533647116] [svnicp.SVNICP]: Align Process Time : 0.11559
+[svnicp_lio_node-1] Current Progress: 47.7996%
+[svnicp_lio_node-1] Preprocessing Time: 0.00363079
+[svnicp_lio_node-1] [INFO] [1782975770.624865655] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 45
+[svnicp_lio_node-1] [INFO] [1782975770.658927987] [svnicp.SVNICP]: Align Process Time : 0.120762
+[svnicp_lio_node-1] Current Progress: 48.0095%
+[svnicp_lio_node-1] Preprocessing Time: 0.00390231
+[svnicp_lio_node-1] [INFO] [1782975770.734991018] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 45
+[svnicp_lio_node-1] [INFO] [1782975770.797458633] [svnicp.SVNICP]: Align Process Time : 0.133732
+[svnicp_lio_node-1] Current Progress: 48.2191%
+[svnicp_lio_node-1] Preprocessing Time: 0.00430033
+[svnicp_lio_node-1] [INFO] [1782975770.824706996] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 45
+[svnicp_lio_node-1] [INFO] [1782975770.935122364] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 46
+[svnicp_lio_node-1] [INFO] [1782975770.942129528] [svnicp.SVNICP]: Align Process Time : 0.139203
+[svnicp_lio_node-1] Current Progress: 48.4288%
+[svnicp_lio_node-1] Preprocessing Time: 0.00406898
+[svnicp_lio_node-1] [INFO] [1782975771.035201054] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 46
+[svnicp_lio_node-1] [INFO] [1782975771.095546944] [svnicp.SVNICP]: Align Process Time : 0.148388
+[svnicp_lio_node-1] Current Progress: 48.6386%
+[svnicp_lio_node-1] Preprocessing Time: 0.00501553
+[svnicp_lio_node-1] [INFO] [1782975771.124829960] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 46
+[svnicp_lio_node-1] [INFO] [1782975771.225475288] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 47
+[svnicp_lio_node-1] [INFO] [1782975771.254212545] [svnicp.SVNICP]: Align Process Time : 0.152654
+[svnicp_lio_node-1] Current Progress: 48.8484%
+[svnicp_lio_node-1] Preprocessing Time: 0.00414958
+[svnicp_lio_node-1] [INFO] [1782975771.324616067] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 47
+[svnicp_lio_node-1] [INFO] [1782975771.415446358] [svnicp.SVNICP]: Align Process Time : 0.1561
+[svnicp_lio_node-1] Current Progress: 49.0579%
+[svnicp_lio_node-1] Preprocessing Time: 0.00412829
+[svnicp_lio_node-1] [INFO] [1782975771.424614720] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 47
+[svnicp_lio_node-1] [INFO] [1782975771.524938058] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 48
+[svnicp_lio_node-1] [INFO] [1782975771.565779565] [svnicp.SVNICP]: Align Process Time : 0.14517
+[svnicp_lio_node-1] Current Progress: 49.2674%
+[svnicp_lio_node-1] Preprocessing Time: 0.00411321
+[svnicp_lio_node-1] [INFO] [1782975771.624801581] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 48
+[svnicp_lio_node-1] [INFO] [1782975771.714331613] [svnicp.SVNICP]: Align Process Time : 0.143457
+[svnicp_lio_node-1] Current Progress: 49.4774%
+[svnicp_lio_node-1] Preprocessing Time: 0.00430613
+[svnicp_lio_node-1] [INFO] [1782975771.734242363] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 48
+[svnicp_lio_node-1] [INFO] [1782975771.824206729] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 49
+[svnicp_lio_node-1] [INFO] [1782975771.854214136] [svnicp.SVNICP]: Align Process Time : 0.134523
+[svnicp_lio_node-1] Current Progress: 49.687%
+[svnicp_lio_node-1] Preprocessing Time: 0.00395586
+[svnicp_lio_node-1] [INFO] [1782975771.933971746] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 49
+[svnicp_lio_node-1] [INFO] [1782975772.002019121] [svnicp.SVNICP]: Align Process Time : 0.142831
+[svnicp_lio_node-1] Current Progress: 49.8966%
+[svnicp_lio_node-1] Preprocessing Time: 0.00411045
+[svnicp_lio_node-1] [INFO] [1782975772.024583366] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 49
+[svnicp_lio_node-1] [INFO] [1782975772.124557094] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 50
+[svnicp_lio_node-1] [INFO] [1782975772.170738673] [svnicp.SVNICP]: Align Process Time : 0.16324
+[svnicp_lio_node-1] Current Progress: 50.1063%
+[svnicp_lio_node-1] Preprocessing Time: 0.00448351
+[svnicp_lio_node-1] [INFO] [1782975772.224716166] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 50
+[svnicp_lio_node-1] [INFO] [1782975772.322001611] [svnicp.SVNICP]: Align Process Time : 0.14567
+[svnicp_lio_node-1] Current Progress: 50.3157%
+[svnicp_lio_node-1] [INFO] [1782975772.324905734] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 50
+[svnicp_lio_node-1] Preprocessing Time: 0.00396775
+[svnicp_lio_node-1] [INFO] [1782975772.424635465] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 51
+[svnicp_lio_node-1] [INFO] [1782975772.465506615] [svnicp.SVNICP]: Align Process Time : 0.138508
+[svnicp_lio_node-1] Current Progress: 50.5254%
+[svnicp_lio_node-1] Preprocessing Time: 0.00383933
+[svnicp_lio_node-1] [INFO] [1782975772.524750121] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 51
+[svnicp_lio_node-1] [INFO] [1782975772.606118263] [svnicp.SVNICP]: Align Process Time : 0.135827
+[svnicp_lio_node-1] Current Progress: 50.7349%
+[svnicp_lio_node-1] Preprocessing Time: 0.00387194
+[svnicp_lio_node-1] [INFO] [1782975772.623589221] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 51
+[svnicp_lio_node-1] [INFO] [1782975772.725183971] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 52
+[svnicp_lio_node-1] [INFO] [1782975772.749024473] [svnicp.SVNICP]: Align Process Time : 0.138116
+[svnicp_lio_node-1] Current Progress: 50.9446%
+[svnicp_lio_node-1] Preprocessing Time: 0.00416164
+[svnicp_lio_node-1] [INFO] [1782975772.824670326] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 52
+[svnicp_lio_node-1] [INFO] [1782975772.891720942] [svnicp.SVNICP]: Align Process Time : 0.137548
+[svnicp_lio_node-1] Current Progress: 51.1542%
+[svnicp_lio_node-1] Preprocessing Time: 0.00409457
+[svnicp_lio_node-1] [INFO] [1782975772.923551911] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 52
+[svnicp_lio_node-1] [INFO] [1782975773.034358179] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 53
+[svnicp_lio_node-1] [INFO] [1782975773.041264140] [svnicp.SVNICP]: Align Process Time : 0.144439
+[svnicp_lio_node-1] Current Progress: 51.3638%
+[svnicp_lio_node-1] Preprocessing Time: 0.00446906
+[svnicp_lio_node-1] [INFO] [1782975773.124872443] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 53
+[svnicp_lio_node-1] [INFO] [1782975773.197336226] [svnicp.SVNICP]: Align Process Time : 0.150453
+[svnicp_lio_node-1] Current Progress: 51.5735%
+[svnicp_lio_node-1] Preprocessing Time: 0.00424791
+[svnicp_lio_node-1] [INFO] [1782975773.224636819] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 53
+[svnicp_lio_node-1] [INFO] [1782975773.325208955] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 54
+[svnicp_lio_node-1] [INFO] [1782975773.359779693] [svnicp.SVNICP]: Align Process Time : 0.157164
+[svnicp_lio_node-1] Current Progress: 51.7831%
+[svnicp_lio_node-1] Preprocessing Time: 0.00787879
+[svnicp_lio_node-1] [INFO] [1782975773.423568857] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 54
+[svnicp_lio_node-1] [INFO] [1782975773.517580587] [svnicp.SVNICP]: Align Process Time : 0.148956
+[svnicp_lio_node-1] Current Progress: 51.9929%
+[svnicp_lio_node-1] Preprocessing Time: 0.00408189
+[svnicp_lio_node-1] [INFO] [1782975773.523604808] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 54
+[svnicp_lio_node-1] [INFO] [1782975773.623693586] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 55
+[svnicp_lio_node-1] [INFO] [1782975773.674204604] [svnicp.SVNICP]: Align Process Time : 0.151543
+[svnicp_lio_node-1] Current Progress: 52.2011%
+[svnicp_lio_node-1] Preprocessing Time: 0.00470201
+[svnicp_lio_node-1] [INFO] [1782975773.734444930] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 55
+[svnicp_lio_node-1] [INFO] [1782975773.825063547] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 56
+[svnicp_lio_node-1] [INFO] [1782975773.837474017] [svnicp.SVNICP]: Align Process Time : 0.157541
+[svnicp_lio_node-1] Current Progress: 52.4106%
+[svnicp_lio_node-1] Preprocessing Time: 0.00434672
+[svnicp_lio_node-1] [INFO] [1782975773.935375664] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 56
+[svnicp_lio_node-1] [INFO] [1782975774.000938688] [svnicp.SVNICP]: Align Process Time : 0.158168
+[svnicp_lio_node-1] Current Progress: 52.6214%
+[svnicp_lio_node-1] Preprocessing Time: 0.00420585
+[svnicp_lio_node-1] [INFO] [1782975774.024856725] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 56
+[svnicp_lio_node-1] [INFO] [1782975774.123746207] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 57
+[svnicp_lio_node-1] [INFO] [1782975774.157255449] [svnicp.SVNICP]: Align Process Time : 0.151056
+[svnicp_lio_node-1] Current Progress: 52.8313%
+[svnicp_lio_node-1] Preprocessing Time: 0.00451346
+[svnicp_lio_node-1] [INFO] [1782975774.224700615] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 57
+[svnicp_lio_node-1] [INFO] [1782975774.313081849] [svnicp.SVNICP]: Align Process Time : 0.150333
+[svnicp_lio_node-1] Current Progress: 53.0413%
+[svnicp_lio_node-1] Preprocessing Time: 0.00436381
+[svnicp_lio_node-1] [INFO] [1782975774.323740207] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 57
+[svnicp_lio_node-1] [INFO] [1782975774.423964187] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 58
+[svnicp_lio_node-1] [INFO] [1782975774.466928804] [svnicp.SVNICP]: Align Process Time : 0.148486
+[svnicp_lio_node-1] Current Progress: 53.2507%
+[svnicp_lio_node-1] Preprocessing Time: 0.00412971
+[svnicp_lio_node-1] [INFO] [1782975774.523895172] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 58
+[svnicp_lio_node-1] [INFO] [1782975774.616352965] [svnicp.SVNICP]: Align Process Time : 0.144268
+[svnicp_lio_node-1] Current Progress: 53.4602%
+[svnicp_lio_node-1] Preprocessing Time: 0.00429148
+[svnicp_lio_node-1] [INFO] [1782975774.624847362] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 58
+[svnicp_lio_node-1] [INFO] [1782975774.723998839] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 59
+[svnicp_lio_node-1] [INFO] [1782975774.768420225] [svnicp.SVNICP]: Align Process Time : 0.146777
+[svnicp_lio_node-1] Current Progress: 53.6697%
+[svnicp_lio_node-1] Preprocessing Time: 0.00421723
+[svnicp_lio_node-1] [INFO] [1782975774.825105407] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 59
+[svnicp_lio_node-1] [INFO] [1782975774.924848093] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 60
+[svnicp_lio_node-1] [INFO] [1782975774.925572678] [svnicp.SVNICP]: Align Process Time : 0.15191
+[svnicp_lio_node-1] Current Progress: 53.8796%
+[svnicp_lio_node-1] Preprocessing Time: 0.00489063
+[svnicp_lio_node-1] [INFO] [1782975775.025300183] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 60
+[svnicp_lio_node-1] [INFO] [1782975775.083619549] [svnicp.SVNICP]: Align Process Time : 0.152213
+[svnicp_lio_node-1] Current Progress: 54.089%
+[svnicp_lio_node-1] Preprocessing Time: 0.00438423
+[svnicp_lio_node-1] [INFO] [1782975775.125093131] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 60
+[svnicp_lio_node-1] [INFO] [1782975775.223776780] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 61
+[svnicp_lio_node-1] [INFO] [1782975775.240077583] [svnicp.SVNICP]: Align Process Time : 0.151072
+[svnicp_lio_node-1] Current Progress: 54.2988%
+[svnicp_lio_node-1] Preprocessing Time: 0.00423647
+[svnicp_lio_node-1] [INFO] [1782975775.323985184] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 61
+[svnicp_lio_node-1] [INFO] [1782975775.403895615] [svnicp.SVNICP]: Align Process Time : 0.158608
+[svnicp_lio_node-1] Current Progress: 54.5087%
+[svnicp_lio_node-1] Preprocessing Time: 0.00425944
+[svnicp_lio_node-1] [INFO] [1782975775.424641838] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 61
+[svnicp_lio_node-1] [INFO] [1782975775.523851032] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 62
+[svnicp_lio_node-1] [INFO] [1782975775.563078381] [svnicp.SVNICP]: Align Process Time : 0.153957
+[svnicp_lio_node-1] Current Progress: 54.718%
+[svnicp_lio_node-1] Preprocessing Time: 0.00437501
+[svnicp_lio_node-1] [INFO] [1782975775.623833532] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 62
+[svnicp_lio_node-1] [INFO] [1782975775.721304863] [svnicp.SVNICP]: Align Process Time : 0.152901
+[svnicp_lio_node-1] Current Progress: 54.9276%
+[svnicp_lio_node-1] [INFO] [1782975775.724980730] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 62
+[svnicp_lio_node-1] Preprocessing Time: 0.00447376
+[svnicp_lio_node-1] [INFO] [1782975775.824759076] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 63
+[svnicp_lio_node-1] [INFO] [1782975775.877268464] [svnicp.SVNICP]: Align Process Time : 0.150513
+[svnicp_lio_node-1] Current Progress: 55.1374%
+[svnicp_lio_node-1] Preprocessing Time: 0.00443766
+[svnicp_lio_node-1] [INFO] [1782975775.924420137] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 63
+[svnicp_lio_node-1] [INFO] [1782975776.024783022] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 64
+[svnicp_lio_node-1] [INFO] [1782975776.035599772] [svnicp.SVNICP]: Align Process Time : 0.152891
+[svnicp_lio_node-1] Current Progress: 55.3468%
+[svnicp_lio_node-1] Preprocessing Time: 0.00422021
+[svnicp_lio_node-1] [INFO] [1782975776.124767920] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 64
+[svnicp_lio_node-1] [INFO] [1782975776.196096599] [svnicp.SVNICP]: Align Process Time : 0.155238
+[svnicp_lio_node-1] Current Progress: 55.5566%
+[svnicp_lio_node-1] Preprocessing Time: 0.00464849
+[svnicp_lio_node-1] [INFO] [1782975776.224882370] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 64
+[svnicp_lio_node-1] [INFO] [1782975776.324789518] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 65
+[svnicp_lio_node-1] [INFO] [1782975776.363045477] [svnicp.SVNICP]: Align Process Time : 0.161277
+[svnicp_lio_node-1] Current Progress: 55.7663%
+[svnicp_lio_node-1] Preprocessing Time: 0.00450831
+[svnicp_lio_node-1] [INFO] [1782975776.424670445] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 65
+[svnicp_lio_node-1] [INFO] [1782975776.519083765] [svnicp.SVNICP]: Align Process Time : 0.150568
+[svnicp_lio_node-1] Current Progress: 55.9763%
+[svnicp_lio_node-1] [INFO] [1782975776.524729128] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 65
+[svnicp_lio_node-1] Preprocessing Time: 0.00504295
+[svnicp_lio_node-1] [INFO] [1782975776.624706131] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 66
+[svnicp_lio_node-1] [INFO] [1782975776.682883262] [svnicp.SVNICP]: Align Process Time : 0.157751
+[svnicp_lio_node-1] Current Progress: 56.186%
+[svnicp_lio_node-1] Preprocessing Time: 0.00431917
+[svnicp_lio_node-1] [INFO] [1782975776.724694884] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 66
+[svnicp_lio_node-1] [INFO] [1782975776.835246509] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 67
+[svnicp_lio_node-1] [INFO] [1782975776.841573934] [svnicp.SVNICP]: Align Process Time : 0.153388
+[svnicp_lio_node-1] Current Progress: 56.3954%
+[svnicp_lio_node-1] Preprocessing Time: 0.0043425
+[svnicp_lio_node-1] [INFO] [1782975776.923940196] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 67
+[svnicp_lio_node-1] [INFO] [1782975777.003667615] [svnicp.SVNICP]: Align Process Time : 0.156818
+[svnicp_lio_node-1] Current Progress: 56.6051%
+[svnicp_lio_node-1] Preprocessing Time: 0.00440507
+[svnicp_lio_node-1] [INFO] [1782975777.024690692] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 67
+[svnicp_lio_node-1] [INFO] [1782975777.124796161] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 68
+[svnicp_lio_node-1] [INFO] [1782975777.165525326] [svnicp.SVNICP]: Align Process Time : 0.156472
+[svnicp_lio_node-1] Current Progress: 56.8149%
+[svnicp_lio_node-1] Preprocessing Time: 0.00444083
+[svnicp_lio_node-1] [INFO] [1782975777.224622906] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 68
+[svnicp_lio_node-1] [INFO] [1782975777.324990835] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 69
+[svnicp_lio_node-1] [INFO] [1782975777.337442875] [svnicp.SVNICP]: Align Process Time : 0.166481
+[svnicp_lio_node-1] Current Progress: 57.0244%
+[svnicp_lio_node-1] Preprocessing Time: 0.00639178
+[svnicp_lio_node-1] [INFO] [1782975777.424769358] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 69
+[svnicp_lio_node-1] [INFO] [1782975777.507485708] [svnicp.SVNICP]: Align Process Time : 0.162558
+[svnicp_lio_node-1] Current Progress: 57.2341%
+[svnicp_lio_node-1] Preprocessing Time: 0.00447964
+[svnicp_lio_node-1] [INFO] [1782975777.524568174] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 69
+[svnicp_lio_node-1] [INFO] [1782975777.624819730] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 70
+[svnicp_lio_node-1] [INFO] [1782975777.666384208] [svnicp.SVNICP]: Align Process Time : 0.153235
+[svnicp_lio_node-1] Current Progress: 57.4436%
+[svnicp_lio_node-1] Preprocessing Time: 0.00439221
+[svnicp_lio_node-1] [INFO] [1782975777.723721235] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 70
+[svnicp_lio_node-1] [INFO] [1782975777.821755240] [svnicp.SVNICP]: Align Process Time : 0.149959
+[svnicp_lio_node-1] Current Progress: 57.6532%
+[svnicp_lio_node-1] [INFO] [1782975777.823685939] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 70
+[svnicp_lio_node-1] Preprocessing Time: 0.00433364
+[svnicp_lio_node-1] [INFO] [1782975777.925106278] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 71
+[svnicp_lio_node-1] [INFO] [1782975777.965378418] [svnicp.SVNICP]: Align Process Time : 0.138321
+[svnicp_lio_node-1] Current Progress: 57.8631%
+[svnicp_lio_node-1] Preprocessing Time: 0.00422973
+[svnicp_lio_node-1] [INFO] [1782975778.024870554] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 71
+[svnicp_lio_node-1] [INFO] [1782975778.116791104] [svnicp.SVNICP]: Align Process Time : 0.146123
+[svnicp_lio_node-1] Current Progress: 58.0727%
+[svnicp_lio_node-1] Preprocessing Time: 0.00409625
+[svnicp_lio_node-1] [INFO] [1782975778.125178033] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 71
+[svnicp_lio_node-1] [INFO] [1782975778.224646998] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 72
+[svnicp_lio_node-1] [INFO] [1782975778.265965181] [svnicp.SVNICP]: Align Process Time : 0.144131
+[svnicp_lio_node-1] Current Progress: 58.2825%
+[svnicp_lio_node-1] Preprocessing Time: 0.00408171
+[svnicp_lio_node-1] [INFO] [1782975778.324824919] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 72
+[svnicp_lio_node-1] [INFO] [1782975778.419900257] [svnicp.SVNICP]: Align Process Time : 0.148886
+[svnicp_lio_node-1] Current Progress: 58.4919%
+[svnicp_lio_node-1] [INFO] [1782975778.424723263] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 72
+[svnicp_lio_node-1] Preprocessing Time: 0.00422786
+[svnicp_lio_node-1] [INFO] [1782975778.524556494] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 73
+[svnicp_lio_node-1] [INFO] [1782975778.569241650] [svnicp.SVNICP]: Align Process Time : 0.144172
+[svnicp_lio_node-1] Current Progress: 58.703%
+[svnicp_lio_node-1] Preprocessing Time: 0.00418363
+[svnicp_lio_node-1] [INFO] [1782975778.623654912] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 73
+[svnicp_lio_node-1] [INFO] [1782975778.724565189] [svnicp.SVNICP]: Align Process Time : 0.150189
+[svnicp_lio_node-1] [INFO] [1782975778.724667537] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 74
+[svnicp_lio_node-1] Current Progress: 58.911%
+[svnicp_lio_node-1] Preprocessing Time: 0.00438769
+[svnicp_lio_node-1] [INFO] [1782975778.835403700] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 74
+[svnicp_lio_node-1] [INFO] [1782975778.883176419] [svnicp.SVNICP]: Align Process Time : 0.153214
+[svnicp_lio_node-1] Current Progress: 59.1205%
+[svnicp_lio_node-1] Preprocessing Time: 0.00489568
+[svnicp_lio_node-1] [INFO] [1782975778.924867513] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 74
+[svnicp_lio_node-1] [INFO] [1782975779.024689722] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 75
+[svnicp_lio_node-1] [INFO] [1782975779.051812608] [svnicp.SVNICP]: Align Process Time : 0.162674
+[svnicp_lio_node-1] Current Progress: 59.3303%
+[svnicp_lio_node-1] Preprocessing Time: 0.00438889
+[svnicp_lio_node-1] [INFO] [1782975779.124748466] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 75
+[svnicp_lio_node-1] [INFO] [1782975779.217984314] [svnicp.SVNICP]: Align Process Time : 0.16074
+[svnicp_lio_node-1] Current Progress: 59.5404%
+[svnicp_lio_node-1] Preprocessing Time: 0.00439638
+[svnicp_lio_node-1] [INFO] [1782975779.223790139] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 75
+[svnicp_lio_node-1] [INFO] [1782975779.323902737] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 76
+[svnicp_lio_node-1] [INFO] [1782975779.386579715] [svnicp.SVNICP]: Align Process Time : 0.163137
+[svnicp_lio_node-1] Current Progress: 59.7477%
+[svnicp_lio_node-1] Preprocessing Time: 0.00434959
+[svnicp_lio_node-1] [INFO] [1782975779.424428846] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 76
+[svnicp_lio_node-1] [INFO] [1782975779.524606683] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 77
+[svnicp_lio_node-1] [INFO] [1782975779.545631734] [svnicp.SVNICP]: Align Process Time : 0.153724
+[svnicp_lio_node-1] Current Progress: 59.9578%
+[svnicp_lio_node-1] Preprocessing Time: 0.00484945
+[svnicp_lio_node-1] [INFO] [1782975779.635198012] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 77
+[svnicp_lio_node-1] [INFO] [1782975779.704898899] [svnicp.SVNICP]: Align Process Time : 0.153417
+[svnicp_lio_node-1] Current Progress: 60.1665%
+[svnicp_lio_node-1] Preprocessing Time: 0.00438183
+[svnicp_lio_node-1] [INFO] [1782975779.724606113] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 77
+[svnicp_lio_node-1] [INFO] [1782975779.824004666] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 78
+[svnicp_lio_node-1] [INFO] [1782975779.861286458] [svnicp.SVNICP]: Align Process Time : 0.151047
+[svnicp_lio_node-1] Current Progress: 60.3785%
+[svnicp_lio_node-1] Preprocessing Time: 0.00616066
+[svnicp_lio_node-1] [INFO] [1782975779.935058232] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 78
+[svnicp_lio_node-1] [INFO] [1782975780.021364238] [svnicp.SVNICP]: Align Process Time : 0.152956
+[svnicp_lio_node-1] Current Progress: 60.5883%
+[svnicp_lio_node-1] [INFO] [1782975780.024954540] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 78
+[svnicp_lio_node-1] Preprocessing Time: 0.00536841
+[svnicp_lio_node-1] [INFO] [1782975780.124888732] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 79
+[svnicp_lio_node-1] [INFO] [1782975780.181762767] [svnicp.SVNICP]: Align Process Time : 0.154002
+[svnicp_lio_node-1] Current Progress: 60.7979%
+[svnicp_lio_node-1] Preprocessing Time: 0.00469742
+[svnicp_lio_node-1] [INFO] [1782975780.223677389] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 79
+[svnicp_lio_node-1] [INFO] [1782975780.323788648] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 80
+[svnicp_lio_node-1] [INFO] [1782975780.337953818] [svnicp.SVNICP]: Align Process Time : 0.150385
+[svnicp_lio_node-1] Current Progress: 61.0075%
+[svnicp_lio_node-1] Preprocessing Time: 0.00718166
+[svnicp_lio_node-1] [INFO] [1782975780.424665461] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 80
+[svnicp_lio_node-1] [INFO] [1782975780.495787334] [svnicp.SVNICP]: Align Process Time : 0.149671
+[svnicp_lio_node-1] Current Progress: 61.2171%
+[svnicp_lio_node-1] Preprocessing Time: 0.00434047
+[svnicp_lio_node-1] [INFO] [1782975780.523980033] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 80
+[svnicp_lio_node-1] [INFO] [1782975780.624663470] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 81
+[svnicp_lio_node-1] [INFO] [1782975780.651724381] [svnicp.SVNICP]: Align Process Time : 0.150647
+[svnicp_lio_node-1] Current Progress: 61.427%
+[svnicp_lio_node-1] Preprocessing Time: 0.00451738
+[svnicp_lio_node-1] [INFO] [1782975780.724602786] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 81
+[svnicp_lio_node-1] [INFO] [1782975780.815915596] [svnicp.SVNICP]: Align Process Time : 0.158653
+[svnicp_lio_node-1] Current Progress: 61.6342%
+[svnicp_lio_node-1] Preprocessing Time: 0.00460096
+[svnicp_lio_node-1] [INFO] [1782975780.824660826] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 81
+[svnicp_lio_node-1] [INFO] [1782975780.923690108] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 82
+[svnicp_lio_node-1] [INFO] [1782975780.984430076] [svnicp.SVNICP]: Align Process Time : 0.162931
+[svnicp_lio_node-1] Current Progress: 61.8468%
+[svnicp_lio_node-1] Preprocessing Time: 0.00451336
+[svnicp_lio_node-1] [INFO] [1782975781.024520897] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 82
+[svnicp_lio_node-1] [INFO] [1782975781.124970021] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 83
+[svnicp_lio_node-1] [INFO] [1782975781.140390981] [svnicp.SVNICP]: Align Process Time : 0.150428
+[svnicp_lio_node-1] Current Progress: 62.0558%
+[svnicp_lio_node-1] Preprocessing Time: 0.00442319
+[svnicp_lio_node-1] [INFO] [1782975781.224774051] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 83
+[svnicp_lio_node-1] [INFO] [1782975781.292864038] [svnicp.SVNICP]: Align Process Time : 0.147011
+[svnicp_lio_node-1] Current Progress: 62.2631%
+[svnicp_lio_node-1] Preprocessing Time: 0.00464718
+[svnicp_lio_node-1] [INFO] [1782975781.324593392] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 83
+[svnicp_lio_node-1] [INFO] [1782975781.424714769] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 84
+[svnicp_lio_node-1] [INFO] [1782975781.461285131] [svnicp.SVNICP]: Align Process Time : 0.162736
+[svnicp_lio_node-1] Current Progress: 62.4733%
+[svnicp_lio_node-1] Preprocessing Time: 0.00544972
+[svnicp_lio_node-1] [INFO] [1782975781.524650161] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 84
+[svnicp_lio_node-1] [INFO] [1782975781.624877657] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 85
+[svnicp_lio_node-1] [INFO] [1782975781.629193251] [svnicp.SVNICP]: Align Process Time : 0.161506
+[svnicp_lio_node-1] Current Progress: 62.6847%
+[svnicp_lio_node-1] Preprocessing Time: 0.00567618
+[svnicp_lio_node-1] [INFO] [1782975781.724842315] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 85
+[svnicp_lio_node-1] [INFO] [1782975781.798300562] [svnicp.SVNICP]: Align Process Time : 0.16237
+[svnicp_lio_node-1] Current Progress: 62.8944%
+[svnicp_lio_node-1] Preprocessing Time: 0.00535614
+[svnicp_lio_node-1] [INFO] [1782975781.823998718] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 85
+[svnicp_lio_node-1] [INFO] [1782975781.924762778] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 86
+[svnicp_lio_node-1] [INFO] [1782975781.964398394] [svnicp.SVNICP]: Align Process Time : 0.159759
+[svnicp_lio_node-1] Current Progress: 63.1046%
+[svnicp_lio_node-1] Preprocessing Time: 0.00475724
+[svnicp_lio_node-1] [INFO] [1782975782.024076405] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 86
+[svnicp_lio_node-1] [INFO] [1782975782.124785936] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 87
+[svnicp_lio_node-1] [INFO] [1782975782.130253693] [svnicp.SVNICP]: Align Process Time : 0.160054
+[svnicp_lio_node-1] Current Progress: 63.3115%
+[svnicp_lio_node-1] Preprocessing Time: 0.00452753
+[svnicp_lio_node-1] [INFO] [1782975782.224712264] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 87
+[svnicp_lio_node-1] [INFO] [1782975782.292575214] [svnicp.SVNICP]: Align Process Time : 0.156744
+[svnicp_lio_node-1] Current Progress: 63.5209%
+[svnicp_lio_node-1] Preprocessing Time: 0.00457431
+[svnicp_lio_node-1] [INFO] [1782975782.324884411] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 87
+[svnicp_lio_node-1] [INFO] [1782975782.424656976] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 88
+[svnicp_lio_node-1] [INFO] [1782975782.456958745] [svnicp.SVNICP]: Align Process Time : 0.158835
+[svnicp_lio_node-1] Current Progress: 63.7312%
+[svnicp_lio_node-1] Preprocessing Time: 0.00443401
+[svnicp_lio_node-1] [INFO] [1782975782.524775357] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 88
+[svnicp_lio_node-1] [INFO] [1782975782.624870610] [svnicp.SVNICP]: Align Process Time : 0.16244
+[svnicp_lio_node-1] [INFO] [1782975782.625165526] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 89
+[svnicp_lio_node-1] Current Progress: 63.9408%
+[svnicp_lio_node-1] Preprocessing Time: 0.00731211
+[svnicp_lio_node-1] [INFO] [1782975782.724637548] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 89
+[svnicp_lio_node-1] [INFO] [1782975782.790106105] [svnicp.SVNICP]: Align Process Time : 0.156812
+[svnicp_lio_node-1] Current Progress: 64.1528%
+[svnicp_lio_node-1] Preprocessing Time: 0.00612642
+[svnicp_lio_node-1] [INFO] [1782975782.824730092] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 89
+[svnicp_lio_node-1] [INFO] [1782975782.924815032] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 90
+[svnicp_lio_node-1] [INFO] [1782975782.957442788] [svnicp.SVNICP]: Align Process Time : 0.160092
+[svnicp_lio_node-1] Current Progress: 64.3625%
+[svnicp_lio_node-1] Preprocessing Time: 0.00600304
+[svnicp_lio_node-1] [INFO] [1782975783.024716828] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 90
+[svnicp_lio_node-1] [INFO] [1782975783.111301239] [svnicp.SVNICP]: Align Process Time : 0.14679
+[svnicp_lio_node-1] Current Progress: 64.5719%
+[svnicp_lio_node-1] Preprocessing Time: 0.00534449
+[svnicp_lio_node-1] [INFO] [1782975783.124702614] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 90
+[svnicp_lio_node-1] [INFO] [1782975783.224908715] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 91
+[svnicp_lio_node-1] [INFO] [1782975783.269338679] [svnicp.SVNICP]: Align Process Time : 0.151644
+[svnicp_lio_node-1] Current Progress: 64.7789%
+[svnicp_lio_node-1] Preprocessing Time: 0.0053387
+[svnicp_lio_node-1] [INFO] [1782975783.324867249] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 91
+[svnicp_lio_node-1] [INFO] [1782975783.424616661] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 92
+[svnicp_lio_node-1] [INFO] [1782975783.433383704] [svnicp.SVNICP]: Align Process Time : 0.157729
+[svnicp_lio_node-1] Current Progress: 64.9908%
+[svnicp_lio_node-1] Preprocessing Time: 0.00498222
+[svnicp_lio_node-1] [INFO] [1782975783.524661883] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 92
+[svnicp_lio_node-1] [INFO] [1782975783.602660212] [svnicp.SVNICP]: Align Process Time : 0.163285
+[svnicp_lio_node-1] Current Progress: 65.1984%
+[svnicp_lio_node-1] Preprocessing Time: 0.0046486
+[svnicp_lio_node-1] [INFO] [1782975783.624712499] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 92
+[svnicp_lio_node-1] [INFO] [1782975783.724719159] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 93
+[svnicp_lio_node-1] [INFO] [1782975783.769560656] [svnicp.SVNICP]: Align Process Time : 0.161191
+[svnicp_lio_node-1] Current Progress: 65.4079%
+[svnicp_lio_node-1] Preprocessing Time: 0.00504844
+[svnicp_lio_node-1] [INFO] [1782975783.824658432] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 93
+[svnicp_lio_node-1] [INFO] [1782975783.925079319] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 94
+[svnicp_lio_node-1] [INFO] [1782975783.936090774] [svnicp.SVNICP]: Align Process Time : 0.160495
+[svnicp_lio_node-1] Current Progress: 65.6182%
+[svnicp_lio_node-1] Preprocessing Time: 0.00510708
+[svnicp_lio_node-1] [INFO] [1782975784.025066474] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 94
+[svnicp_lio_node-1] [INFO] [1782975784.098613449] [svnicp.SVNICP]: Align Process Time : 0.156438
+[svnicp_lio_node-1] Current Progress: 65.8298%
+[svnicp_lio_node-1] Preprocessing Time: 0.00467704
+[svnicp_lio_node-1] [INFO] [1782975784.135447531] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 94
+[svnicp_lio_node-1] [INFO] [1782975784.225214984] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 95
+[svnicp_lio_node-1] [INFO] [1782975784.268140181] [svnicp.SVNICP]: Align Process Time : 0.163798
+[svnicp_lio_node-1] Current Progress: 66.037%
+[svnicp_lio_node-1] Preprocessing Time: 0.00465755
+[svnicp_lio_node-1] [INFO] [1782975784.335634758] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 95
+[svnicp_lio_node-1] [INFO] [1782975784.424734051] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 96
+[svnicp_lio_node-1] [INFO] [1782975784.436325014] [svnicp.SVNICP]: Align Process Time : 0.162521
+[svnicp_lio_node-1] Current Progress: 66.2493%
+[svnicp_lio_node-1] Preprocessing Time: 0.00522508
+[svnicp_lio_node-1] [INFO] [1782975784.524711183] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 96
+[svnicp_lio_node-1] [INFO] [1782975784.595756576] [svnicp.SVNICP]: Align Process Time : 0.153262
+[svnicp_lio_node-1] Current Progress: 66.4588%
+[svnicp_lio_node-1] Preprocessing Time: 0.00465604
+[svnicp_lio_node-1] [INFO] [1782975784.625064566] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 96
+[svnicp_lio_node-1] [INFO] [1782975784.725142462] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 97
+[svnicp_lio_node-1] [INFO] [1782975784.759587778] [svnicp.SVNICP]: Align Process Time : 0.158091
+[svnicp_lio_node-1] Current Progress: 66.6682%
+[svnicp_lio_node-1] Preprocessing Time: 0.00489601
+[svnicp_lio_node-1] [INFO] [1782975784.825002036] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 97
+[svnicp_lio_node-1] [INFO] [1782975784.925071219] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 98
+[svnicp_lio_node-1] [INFO] [1782975784.926425269] [svnicp.SVNICP]: Align Process Time : 0.160971
+[svnicp_lio_node-1] Current Progress: 66.8779%
+[svnicp_lio_node-1] Preprocessing Time: 0.00521025
+[svnicp_lio_node-1] [INFO] [1782975785.025040869] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 98
+[svnicp_lio_node-1] [INFO] [1782975785.093882001] [svnicp.SVNICP]: Align Process Time : 0.161176
+[svnicp_lio_node-1] Current Progress: 67.0854%
+[svnicp_lio_node-1] Preprocessing Time: 0.00496428
+[svnicp_lio_node-1] [INFO] [1782975785.124770760] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 98
+[svnicp_lio_node-1] [INFO] [1782975785.224886812] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 99
+[svnicp_lio_node-1] [INFO] [1782975785.254795715] [svnicp.SVNICP]: Align Process Time : 0.154849
+[svnicp_lio_node-1] Current Progress: 67.2953%
+[svnicp_lio_node-1] Preprocessing Time: 0.0046743
+[svnicp_lio_node-1] [INFO] [1782975785.324953592] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 99
+[svnicp_lio_node-1] [INFO] [1782975785.419344494] [svnicp.SVNICP]: Align Process Time : 0.158864
+[svnicp_lio_node-1] Current Progress: 67.5067%
+[svnicp_lio_node-1] [INFO] [1782975785.424016351] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 99
+[svnicp_lio_node-1] Preprocessing Time: 0.00583826
+[svnicp_lio_node-1] [INFO] [1782975785.525200042] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975785.580324973] [svnicp.SVNICP]: Align Process Time : 0.154066
+[svnicp_lio_node-1] Current Progress: 67.7142%
+[svnicp_lio_node-1] Preprocessing Time: 0.00443992
+[svnicp_lio_node-1] [INFO] [1782975785.635409117] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975785.723942696] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975785.737288482] [svnicp.SVNICP]: Align Process Time : 0.151406
+[svnicp_lio_node-1] Current Progress: 67.9242%
+[svnicp_lio_node-1] Preprocessing Time: 0.00445738
+[svnicp_lio_node-1] [INFO] [1782975785.824037471] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975785.895688356] [svnicp.SVNICP]: Align Process Time : 0.152988
+[svnicp_lio_node-1] Current Progress: 68.3454%
+[svnicp_lio_node-1] Preprocessing Time: 0.00458579
+[svnicp_lio_node-1] [INFO] [1782975785.924911115] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.024982769] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.055046038] [svnicp.SVNICP]: Align Process Time : 0.153717
+[svnicp_lio_node-1] Current Progress: 68.5545%
+[svnicp_lio_node-1] Preprocessing Time: 0.00486687
+[svnicp_lio_node-1] [INFO] [1782975786.124839907] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.228174778] [svnicp.SVNICP]: Align Process Time : 0.167189
+[svnicp_lio_node-1] Current Progress: 68.9744%
+[svnicp_lio_node-1] Preprocessing Time: 0.00492025
+[svnicp_lio_node-1] [INFO] [1782975786.234618935] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.324094858] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.405549704] [svnicp.SVNICP]: Align Process Time : 0.171311
+[svnicp_lio_node-1] Current Progress: 69.184%
+[svnicp_lio_node-1] Preprocessing Time: 0.00474539
+[svnicp_lio_node-1] [INFO] [1782975786.424004465] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.534865113] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.568735618] [svnicp.SVNICP]: Align Process Time : 0.157444
+[svnicp_lio_node-1] Current Progress: 69.6032%
+[svnicp_lio_node-1] Preprocessing Time: 0.00487967
+[svnicp_lio_node-1] [INFO] [1782975786.624006928] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.723963027] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.741647089] [svnicp.SVNICP]: Align Process Time : 0.167062
+[svnicp_lio_node-1] Current Progress: 70.0223%
+[svnicp_lio_node-1] Preprocessing Time: 0.00466142
+[svnicp_lio_node-1] [INFO] [1782975786.824049942] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975786.908611309] [svnicp.SVNICP]: Align Process Time : 0.161275
+[svnicp_lio_node-1] Current Progress: 70.4417%
+[svnicp_lio_node-1] Preprocessing Time: 0.0045211
+[svnicp_lio_node-1] [INFO] [1782975786.924861586] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.024720097] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.050043185] [svnicp.SVNICP]: Align Process Time : 0.135851
+[svnicp_lio_node-1] Current Progress: 70.6488%
+[svnicp_lio_node-1] Preprocessing Time: 0.00450568
+[svnicp_lio_node-1] [INFO] [1782975787.124897039] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.213839107] [svnicp.SVNICP]: Align Process Time : 0.158304
+[svnicp_lio_node-1] Current Progress: 71.071%
+[svnicp_lio_node-1] Preprocessing Time: 0.00489588
+[svnicp_lio_node-1] [INFO] [1782975787.225098497] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.335255974] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.397679207] [svnicp.SVNICP]: Align Process Time : 0.17789
+[svnicp_lio_node-1] Current Progress: 71.2801%
+[svnicp_lio_node-1] Preprocessing Time: 0.00494725
+[svnicp_lio_node-1] [INFO] [1782975787.425160125] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.524784716] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.570554120] [svnicp.SVNICP]: Align Process Time : 0.166892
+[svnicp_lio_node-1] Current Progress: 71.6997%
+[svnicp_lio_node-1] Preprocessing Time: 0.00472202
+[svnicp_lio_node-1] [INFO] [1782975787.624364047] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.723948003] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.736770638] [svnicp.SVNICP]: Align Process Time : 0.160465
+[svnicp_lio_node-1] Current Progress: 72.1193%
+[svnicp_lio_node-1] Preprocessing Time: 0.00473502
+[svnicp_lio_node-1] [INFO] [1782975787.824724119] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975787.889847294] [svnicp.SVNICP]: Align Process Time : 0.147313
+[svnicp_lio_node-1] Current Progress: 72.5361%
+[svnicp_lio_node-1] Preprocessing Time: 0.00462575
+[svnicp_lio_node-1] [INFO] [1782975787.924766376] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.024751237] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.041020849] [svnicp.SVNICP]: Align Process Time : 0.145554
+[svnicp_lio_node-1] Current Progress: 72.7479%
+[svnicp_lio_node-1] Preprocessing Time: 0.00478776
+[svnicp_lio_node-1] [INFO] [1782975788.124895090] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.198772319] [svnicp.SVNICP]: Align Process Time : 0.151979
+[svnicp_lio_node-1] Current Progress: 73.1676%
+[svnicp_lio_node-1] Preprocessing Time: 0.00479698
+[svnicp_lio_node-1] [INFO] [1782975788.224949210] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.324801660] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.367464008] [svnicp.SVNICP]: Align Process Time : 0.162883
+[svnicp_lio_node-1] Current Progress: 73.3767%
+[svnicp_lio_node-1] Preprocessing Time: 0.00504262
+[svnicp_lio_node-1] [INFO] [1782975788.424797132] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.524863623] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.542114970] [svnicp.SVNICP]: Align Process Time : 0.168503
+[svnicp_lio_node-1] Current Progress: 73.7961%
+[svnicp_lio_node-1] Preprocessing Time: 0.00508225
+[svnicp_lio_node-1] [INFO] [1782975788.625006103] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.715852453] [svnicp.SVNICP]: Align Process Time : 0.167593
+[svnicp_lio_node-1] Current Progress: 74.2134%
+[svnicp_lio_node-1] Preprocessing Time: 0.00501814
+[svnicp_lio_node-1] [INFO] [1782975788.723811992] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.824894773] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975788.892588570] [svnicp.SVNICP]: Align Process Time : 0.17058
+[svnicp_lio_node-1] Current Progress: 74.4252%
+[svnicp_lio_node-1] Preprocessing Time: 0.00529861
+[svnicp_lio_node-1] [INFO] [1782975788.924810695] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.024865644] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.052914043] [svnicp.SVNICP]: Align Process Time : 0.153962
+[svnicp_lio_node-1] Current Progress: 74.844%
+[svnicp_lio_node-1] Preprocessing Time: 0.00485821
+[svnicp_lio_node-1] [INFO] [1782975789.125057432] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.223881218] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.233233048] [svnicp.SVNICP]: Align Process Time : 0.174429
+[svnicp_lio_node-1] Current Progress: 75.2635%
+[svnicp_lio_node-1] Preprocessing Time: 0.00458293
+[svnicp_lio_node-1] [INFO] [1782975789.335740051] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.399796428] [svnicp.SVNICP]: Align Process Time : 0.160861
+[svnicp_lio_node-1] Current Progress: 75.6811%
+[svnicp_lio_node-1] Preprocessing Time: 0.0047899
+[svnicp_lio_node-1] [INFO] [1782975789.424295101] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.524972814] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.566719088] [svnicp.SVNICP]: Align Process Time : 0.161102
+[svnicp_lio_node-1] Current Progress: 75.8922%
+[svnicp_lio_node-1] Preprocessing Time: 0.00473461
+[svnicp_lio_node-1] [INFO] [1782975789.623920672] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.724864505] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.737966041] [svnicp.SVNICP]: Align Process Time : 0.165415
+[svnicp_lio_node-1] Current Progress: 76.3119%
+[svnicp_lio_node-1] Preprocessing Time: 0.00523447
+[svnicp_lio_node-1] [INFO] [1782975789.823790728] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975789.912679550] [svnicp.SVNICP]: Align Process Time : 0.168385
+[svnicp_lio_node-1] Current Progress: 76.7291%
+[svnicp_lio_node-1] Preprocessing Time: 0.00496202
+[svnicp_lio_node-1] [INFO] [1782975789.925109135] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.024817380] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.089855414] [svnicp.SVNICP]: Align Process Time : 0.171165
+[svnicp_lio_node-1] Current Progress: 76.9409%
+[svnicp_lio_node-1] Preprocessing Time: 0.00520953
+[svnicp_lio_node-1] [INFO] [1782975790.124953906] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.223911170] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.263450793] [svnicp.SVNICP]: Align Process Time : 0.167345
+[svnicp_lio_node-1] Current Progress: 77.3605%
+[svnicp_lio_node-1] Preprocessing Time: 0.00469909
+[svnicp_lio_node-1] [INFO] [1782975790.325090350] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.424987519] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.447256087] [svnicp.SVNICP]: Align Process Time : 0.178005
+[svnicp_lio_node-1] Current Progress: 77.7773%
+[svnicp_lio_node-1] Preprocessing Time: 0.00464928
+[svnicp_lio_node-1] [INFO] [1782975790.523747242] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.616915838] [svnicp.SVNICP]: Align Process Time : 0.163963
+[svnicp_lio_node-1] Current Progress: 78.1968%
+[svnicp_lio_node-1] Preprocessing Time: 0.00464331
+[svnicp_lio_node-1] [INFO] [1782975790.624003230] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.725061147] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.787934674] [svnicp.SVNICP]: Align Process Time : 0.165342
+[svnicp_lio_node-1] Current Progress: 78.4084%
+[svnicp_lio_node-1] Preprocessing Time: 0.0050063
+[svnicp_lio_node-1] [INFO] [1782975790.823873425] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.924935560] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975790.966128365] [svnicp.SVNICP]: Align Process Time : 0.172124
+[svnicp_lio_node-1] Current Progress: 78.8273%
+[svnicp_lio_node-1] Preprocessing Time: 0.00468787
+[svnicp_lio_node-1] [INFO] [1782975791.025396824] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.123981638] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.140925889] [svnicp.SVNICP]: Align Process Time : 0.169005
+[svnicp_lio_node-1] Current Progress: 79.2466%
+[svnicp_lio_node-1] Preprocessing Time: 0.00496658
+[svnicp_lio_node-1] [INFO] [1782975791.225033947] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.314471670] [svnicp.SVNICP]: Align Process Time : 0.167526
+[svnicp_lio_node-1] Current Progress: 79.6662%
+[svnicp_lio_node-1] Preprocessing Time: 0.00461175
+[svnicp_lio_node-1] [INFO] [1782975791.324075827] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.425097323] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.490011515] [svnicp.SVNICP]: Align Process Time : 0.16984
+[svnicp_lio_node-1] Current Progress: 79.8757%
+[svnicp_lio_node-1] Preprocessing Time: 0.00513823
+[svnicp_lio_node-1] [INFO] [1782975791.524070595] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.624211769] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.657688714] [svnicp.SVNICP]: Align Process Time : 0.161512
+[svnicp_lio_node-1] Current Progress: 80.295%
+[svnicp_lio_node-1] Preprocessing Time: 0.00502016
+[svnicp_lio_node-1] [INFO] [1782975791.723727126] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.823970694] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.825057609] [svnicp.SVNICP]: Align Process Time : 0.161281
+[svnicp_lio_node-1] Current Progress: 80.7147%
+[svnicp_lio_node-1] Preprocessing Time: 0.00510374
+[svnicp_lio_node-1] [INFO] [1782975791.935481464] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975791.996635522] [svnicp.SVNICP]: Align Process Time : 0.165383
+[svnicp_lio_node-1] Current Progress: 81.1336%
+[svnicp_lio_node-1] Preprocessing Time: 0.00485511
+[svnicp_lio_node-1] [INFO] [1782975792.024360889] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975792.124075845] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975792.173829637] [svnicp.SVNICP]: Align Process Time : 0.171216
+[svnicp_lio_node-1] Current Progress: 81.3414%
+[svnicp_lio_node-1] Preprocessing Time: 0.00544079
+[svnicp_lio_node-1] [INFO] [1782975792.224864858] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975792.323658553] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975792.356288664] [svnicp.SVNICP]: Align Process Time : 0.17591
+[svnicp_lio_node-1] Current Progress: 81.7625%
+[svnicp_lio_node-1] Preprocessing Time: 0.00537927
+[svnicp_lio_node-1] [INFO] [1782975792.424536129] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975792.524156414] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975792.538252693] [svnicp.SVNICP]: Align Process Time : 0.175503
+[svnicp_lio_node-1] Current Progress: 82.182%
+[svnicp_lio_node-1] Preprocessing Time: 0.00496307
+[svnicp_lio_node-1] [INFO] [1782975792.624107237] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975792.716081418] [svnicp.SVNICP]: Align Process Time : 0.171833
+[svnicp_lio_node-1] Current Progress: 82.6013%
+[svnicp_lio_node-1] [INFO] [1782975792.724065600] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00515852
+[svnicp_lio_node-1] [INFO] [1782975792.824184118] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975792.890387225] [svnicp.SVNICP]: Align Process Time : 0.164258
+[svnicp_lio_node-1] Current Progress: 82.811%
+[svnicp_lio_node-1] Preprocessing Time: 0.00528577
+[svnicp_lio_node-1] [INFO] [1782975792.934382415] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.025141437] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.070241723] [svnicp.SVNICP]: Align Process Time : 0.173452
+[svnicp_lio_node-1] Current Progress: 83.2302%
+[svnicp_lio_node-1] Preprocessing Time: 0.00508404
+[svnicp_lio_node-1] [INFO] [1782975793.124079964] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.224244288] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.253613371] [svnicp.SVNICP]: Align Process Time : 0.177163
+[svnicp_lio_node-1] Current Progress: 83.6492%
+[svnicp_lio_node-1] Preprocessing Time: 0.0050667
+[svnicp_lio_node-1] [INFO] [1782975793.325103025] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.424950548] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.443671429] [svnicp.SVNICP]: Align Process Time : 0.183922
+[svnicp_lio_node-1] Current Progress: 84.0687%
+[svnicp_lio_node-1] Preprocessing Time: 0.00556562
+[svnicp_lio_node-1] [INFO] [1782975793.523803280] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.621365152] [svnicp.SVNICP]: Align Process Time : 0.171074
+[svnicp_lio_node-1] Current Progress: 84.488%
+[svnicp_lio_node-1] [INFO] [1782975793.624993219] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00529702
+[svnicp_lio_node-1] [INFO] [1782975793.723956435] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.805600142] [svnicp.SVNICP]: Align Process Time : 0.17786
+[svnicp_lio_node-1] Current Progress: 84.6976%
+[svnicp_lio_node-1] Preprocessing Time: 0.00530677
+[svnicp_lio_node-1] [INFO] [1782975793.823980339] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.924792421] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975793.988537636] [svnicp.SVNICP]: Align Process Time : 0.176537
+[svnicp_lio_node-1] Current Progress: 85.1169%
+[svnicp_lio_node-1] Preprocessing Time: 0.00569446
+[svnicp_lio_node-1] [INFO] [1782975794.024051472] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975794.125206510] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975794.171980099] [svnicp.SVNICP]: Align Process Time : 0.176583
+[svnicp_lio_node-1] Current Progress: 85.5366%
+[svnicp_lio_node-1] Preprocessing Time: 0.00486814
+[svnicp_lio_node-1] [INFO] [1782975794.223900562] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975794.323771692] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975794.325306999] [svnicp.SVNICP]: Align Process Time : 0.147388
+[svnicp_lio_node-1] Current Progress: 85.9555%
+[svnicp_lio_node-1] Preprocessing Time: 0.00511075
+[svnicp_lio_node-1] [INFO] [1782975794.424125625] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975794.494197007] [svnicp.SVNICP]: Align Process Time : 0.162675
+[svnicp_lio_node-1] Current Progress: 86.3747%
+[svnicp_lio_node-1] Preprocessing Time: 0.00519977
+[svnicp_lio_node-1] [INFO] [1782975794.523948491] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975794.623964853] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975794.660531526] [svnicp.SVNICP]: Align Process Time : 0.160077
+[svnicp_lio_node-1] Current Progress: 86.5844%
+[svnicp_lio_node-1] Preprocessing Time: 0.00513161
+[svnicp_lio_node-1] [INFO] [1782975794.724034948] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975794.823563408] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975794.837170841] [svnicp.SVNICP]: Align Process Time : 0.170473
+[svnicp_lio_node-1] Current Progress: 87.0041%
+[svnicp_lio_node-1] Preprocessing Time: 0.0052415
+[svnicp_lio_node-1] [INFO] [1782975794.925329941] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975795.020539718] [svnicp.SVNICP]: Align Process Time : 0.177011
+[svnicp_lio_node-1] Current Progress: 87.4234%
+[svnicp_lio_node-1] [INFO] [1782975795.024317532] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00606069
+[svnicp_lio_node-1] [INFO] [1782975795.123719098] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975795.205769004] [svnicp.SVNICP]: Align Process Time : 0.178013
+[svnicp_lio_node-1] Current Progress: 87.6327%
+[svnicp_lio_node-1] Preprocessing Time: 0.00556599
+[svnicp_lio_node-1] [INFO] [1782975795.224845134] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975795.323989046] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975795.400507359] [svnicp.SVNICP]: Align Process Time : 0.188043
+[svnicp_lio_node-1] Current Progress: 88.052%
+[svnicp_lio_node-1] Preprocessing Time: 0.00558166
+[svnicp_lio_node-1] [INFO] [1782975795.424150468] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975795.524994846] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975795.569708530] [svnicp.SVNICP]: Align Process Time : 0.162464
+[svnicp_lio_node-1] Current Progress: 88.4695%
+[svnicp_lio_node-1] Preprocessing Time: 0.00521916
+[svnicp_lio_node-1] [INFO] [1782975795.624243456] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975795.724165455] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975795.745929263] [svnicp.SVNICP]: Align Process Time : 0.169872
+[svnicp_lio_node-1] Current Progress: 88.8906%
+[svnicp_lio_node-1] Preprocessing Time: 0.00578282
+[svnicp_lio_node-1] [INFO] [1782975795.824119720] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975795.923077493] [svnicp.SVNICP]: Align Process Time : 0.1703
+[svnicp_lio_node-1] [INFO] [1782975795.924057309] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Current Progress: 89.3082%
+[svnicp_lio_node-1] Preprocessing Time: 0.00554772
+[svnicp_lio_node-1] [INFO] [1782975796.024160206] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975796.101539699] [svnicp.SVNICP]: Align Process Time : 0.171759
+[svnicp_lio_node-1] Current Progress: 89.7294%
+[svnicp_lio_node-1] Preprocessing Time: 0.00555245
+[svnicp_lio_node-1] [INFO] [1782975796.124031975] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975796.225087500] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975796.285279045] [svnicp.SVNICP]: Align Process Time : 0.177042
+[svnicp_lio_node-1] Current Progress: 89.9387%
+[svnicp_lio_node-1] Preprocessing Time: 0.00542104
+[svnicp_lio_node-1] [INFO] [1782975796.323932583] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975796.423661871] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975796.475980068] [svnicp.SVNICP]: Align Process Time : 0.18417
+[svnicp_lio_node-1] Current Progress: 90.3564%
+[svnicp_lio_node-1] Preprocessing Time: 0.00554443
+[svnicp_lio_node-1] [INFO] [1782975796.524194814] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975796.624024890] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975796.647787686] [svnicp.SVNICP]: Align Process Time : 0.165104
+[svnicp_lio_node-1] Current Progress: 90.7759%
+[svnicp_lio_node-1] Preprocessing Time: 0.00558393
+[svnicp_lio_node-1] [INFO] [1782975796.723728989] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975796.832849027] [svnicp.SVNICP]: Align Process Time : 0.17842
+[svnicp_lio_node-1] Current Progress: 91.1949%
+[svnicp_lio_node-1] [INFO] [1782975796.834434369] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00554198
+[svnicp_lio_node-1] [INFO] [1782975796.924037274] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.021476807] [svnicp.SVNICP]: Align Process Time : 0.181947
+[svnicp_lio_node-1] Current Progress: 91.4046%
+[svnicp_lio_node-1] Preprocessing Time: 0.00583792
+[svnicp_lio_node-1] [INFO] [1782975797.034794504] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.124188057] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.221431824] [svnicp.SVNICP]: Align Process Time : 0.192958
+[svnicp_lio_node-1] Current Progress: 91.8257%
+[svnicp_lio_node-1] [INFO] [1782975797.224301838] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00605934
+[svnicp_lio_node-1] [INFO] [1782975797.324124448] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.413209012] [svnicp.SVNICP]: Align Process Time : 0.184608
+[svnicp_lio_node-1] Current Progress: 92.2451%
+[svnicp_lio_node-1] Preprocessing Time: 0.00523705
+[svnicp_lio_node-1] [INFO] [1782975797.423937531] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.523874413] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.590777870] [svnicp.SVNICP]: Align Process Time : 0.171184
+[svnicp_lio_node-1] Current Progress: 92.6651%
+[svnicp_lio_node-1] Preprocessing Time: 0.0055185
+[svnicp_lio_node-1] [INFO] [1782975797.624124313] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.724076815] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.782113298] [svnicp.SVNICP]: Align Process Time : 0.184768
+[svnicp_lio_node-1] Current Progress: 93.0827%
+[svnicp_lio_node-1] Preprocessing Time: 0.00552281
+[svnicp_lio_node-1] [INFO] [1782975797.823849969] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.924157044] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975797.970194487] [svnicp.SVNICP]: Align Process Time : 0.181489
+[svnicp_lio_node-1] Current Progress: 93.5027%
+[svnicp_lio_node-1] Preprocessing Time: 0.00558404
+[svnicp_lio_node-1] [INFO] [1782975798.024057954] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975798.124988323] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975798.148801322] [svnicp.SVNICP]: Align Process Time : 0.171818
+[svnicp_lio_node-1] Current Progress: 93.9222%
+[svnicp_lio_node-1] Preprocessing Time: 0.0053753
+[svnicp_lio_node-1] [INFO] [1782975798.224020163] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975798.324043699] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975798.340015983] [svnicp.SVNICP]: Align Process Time : 0.184741
+[svnicp_lio_node-1] Current Progress: 94.3415%
+[svnicp_lio_node-1] Preprocessing Time: 0.00543773
+[svnicp_lio_node-1] [INFO] [1782975798.423835989] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975798.518538070] [svnicp.SVNICP]: Align Process Time : 0.17195
+[svnicp_lio_node-1] Current Progress: 94.7608%
+[svnicp_lio_node-1] [INFO] [1782975798.524437603] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00563997
+[svnicp_lio_node-1] [INFO] [1782975798.623929387] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975798.698131598] [svnicp.SVNICP]: Align Process Time : 0.172874
+[svnicp_lio_node-1] Current Progress: 94.9704%
+[svnicp_lio_node-1] Preprocessing Time: 0.00591651
+[svnicp_lio_node-1] [INFO] [1782975798.724868696] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975798.824162348] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975798.887677361] [svnicp.SVNICP]: Align Process Time : 0.182477
+[svnicp_lio_node-1] Current Progress: 95.3878%
+[svnicp_lio_node-1] Preprocessing Time: 0.00573609
+[svnicp_lio_node-1] [INFO] [1782975798.923893806] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.024166297] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.079243697] [svnicp.SVNICP]: Align Process Time : 0.184696
+[svnicp_lio_node-1] Current Progress: 95.809%
+[svnicp_lio_node-1] Preprocessing Time: 0.00567896
+[svnicp_lio_node-1] [INFO] [1782975799.123984378] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.224170185] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.265681899] [svnicp.SVNICP]: Align Process Time : 0.179539
+[svnicp_lio_node-1] Current Progress: 96.2284%
+[svnicp_lio_node-1] Preprocessing Time: 0.00560541
+[svnicp_lio_node-1] [INFO] [1782975799.323996070] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.424056260] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.470325508] [svnicp.SVNICP]: Align Process Time : 0.197935
+[svnicp_lio_node-1] Current Progress: 96.6475%
+[svnicp_lio_node-1] Preprocessing Time: 0.005534
+[svnicp_lio_node-1] [INFO] [1782975799.524082803] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.623558089] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.661016592] [svnicp.SVNICP]: Align Process Time : 0.184051
+[svnicp_lio_node-1] Current Progress: 97.067%
+[svnicp_lio_node-1] Preprocessing Time: 0.0054289
+[svnicp_lio_node-1] [INFO] [1782975799.723945504] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.823612736] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975799.842434401] [svnicp.SVNICP]: Align Process Time : 0.174716
+[svnicp_lio_node-1] Current Progress: 97.4862%
+[svnicp_lio_node-1] Preprocessing Time: 0.00531853
+[svnicp_lio_node-1] [INFO] [1782975799.923797628] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.022329279] [svnicp.SVNICP]: Align Process Time : 0.173533
+[svnicp_lio_node-1] Current Progress: 97.9055%
+[svnicp_lio_node-1] [INFO] [1782975800.023993086] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00546093
+[svnicp_lio_node-1] [INFO] [1782975800.124194062] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.201227537] [svnicp.SVNICP]: Align Process Time : 0.172358
+[svnicp_lio_node-1] Current Progress: 98.115%
+[svnicp_lio_node-1] Preprocessing Time: 0.00553597
+[svnicp_lio_node-1] [INFO] [1782975800.224080535] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.323990391] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.399431671] [svnicp.SVNICP]: Align Process Time : 0.191598
+[svnicp_lio_node-1] Current Progress: 98.5322%
+[svnicp_lio_node-1] Preprocessing Time: 0.00541134
+[svnicp_lio_node-1] [INFO] [1782975800.423942540] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.523673230] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.568580504] [svnicp.SVNICP]: Align Process Time : 0.162633
+[svnicp_lio_node-1] Current Progress: 98.9538%
+[svnicp_lio_node-1] Preprocessing Time: 0.00542021
+[svnicp_lio_node-1] [INFO] [1782975800.623754409] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.723944948] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.750200978] [svnicp.SVNICP]: Align Process Time : 0.175046
+[svnicp_lio_node-1] Current Progress: 99.3709%
+[svnicp_lio_node-1] Preprocessing Time: 0.005718
+[svnicp_lio_node-1] [INFO] [1782975800.823812154] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.923693131] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975800.953685278] [svnicp.SVNICP]: Align Process Time : 0.196611
+[svnicp_lio_node-1] Current Progress: 99.79%
+[svnicp_lio_node-1] Preprocessing Time: 0.00535185
+[svnicp_lio_node-1] [INFO] [1782975801.023865445] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975801.123735164] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975801.133091086] [svnicp.SVNICP]: Align Process Time : 0.172888
+[svnicp_lio_node-1] Current Progress: 100.212%
+[svnicp_lio_node-1] Preprocessing Time: 0.00567029
+[svnicp_lio_node-1] [INFO] [1782975801.224022767] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975801.318169754] [svnicp.SVNICP]: Align Process Time : 0.178351
+[svnicp_lio_node-1] Current Progress: 100.631%
+[svnicp_lio_node-1] [INFO] [1782975801.323979272] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00606733
+[svnicp_lio_node-1] [INFO] [1782975801.423998497] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975801.509747189] [svnicp.SVNICP]: Align Process Time : 0.184386
+[svnicp_lio_node-1] Current Progress: 100.838%
+[svnicp_lio_node-1] Preprocessing Time: 0.00556762
+[svnicp_lio_node-1] [INFO] [1782975801.523663896] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975801.623527982] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975801.696927080] [svnicp.SVNICP]: Align Process Time : 0.180481
+[svnicp_lio_node-1] Current Progress: 101.258%
+[svnicp_lio_node-1] Preprocessing Time: 0.005609
+[svnicp_lio_node-1] [INFO] [1782975801.723476527] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975801.824135950] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975801.881297446] [svnicp.SVNICP]: Align Process Time : 0.177598
+[svnicp_lio_node-1] Current Progress: 101.676%
+[svnicp_lio_node-1] Preprocessing Time: 0.0054875
+[svnicp_lio_node-1] [INFO] [1782975801.924140389] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.023705789] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.065360800] [svnicp.SVNICP]: Align Process Time : 0.177484
+[svnicp_lio_node-1] Current Progress: 102.099%
+[svnicp_lio_node-1] Preprocessing Time: 0.00552225
+[svnicp_lio_node-1] [INFO] [1782975802.124197422] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.224041626] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.258906588] [svnicp.SVNICP]: Align Process Time : 0.186909
+[svnicp_lio_node-1] Current Progress: 102.516%
+[svnicp_lio_node-1] Preprocessing Time: 0.00559795
+[svnicp_lio_node-1] [INFO] [1782975802.323787213] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.423998749] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.462142119] [svnicp.SVNICP]: Align Process Time : 0.196527
+[svnicp_lio_node-1] Current Progress: 102.934%
+[svnicp_lio_node-1] Preprocessing Time: 0.00546379
+[svnicp_lio_node-1] [INFO] [1782975802.523854483] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.623812122] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.644934650] [svnicp.SVNICP]: Align Process Time : 0.176152
+[svnicp_lio_node-1] Current Progress: 103.355%
+[svnicp_lio_node-1] Preprocessing Time: 0.00559962
+[svnicp_lio_node-1] [INFO] [1782975802.724368364] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.824271767] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975802.845692835] [svnicp.SVNICP]: Align Process Time : 0.194001
+[svnicp_lio_node-1] Current Progress: 103.773%
+[svnicp_lio_node-1] Preprocessing Time: 0.00536996
+[svnicp_lio_node-1] [INFO] [1782975802.924139039] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.024475083] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.030542065] [svnicp.SVNICP]: Align Process Time : 0.178304
+[svnicp_lio_node-1] Current Progress: 104.192%
+[svnicp_lio_node-1] Preprocessing Time: 0.00558725
+[svnicp_lio_node-1] [INFO] [1782975803.123909826] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.223946404] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.233724161] [svnicp.SVNICP]: Align Process Time : 0.196471
+[svnicp_lio_node-1] Current Progress: 104.612%
+[svnicp_lio_node-1] Preprocessing Time: 0.0105376
+[svnicp_lio_node-1] [INFO] [1782975803.323781126] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.424142751] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.443381882] [svnicp.SVNICP]: Align Process Time : 0.198005
+[svnicp_lio_node-1] Current Progress: 105.033%
+[svnicp_lio_node-1] Preprocessing Time: 0.00742769
+[svnicp_lio_node-1] [INFO] [1782975803.523798118] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.624028192] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.649096729] [svnicp.SVNICP]: Align Process Time : 0.197123
+[svnicp_lio_node-1] Current Progress: 105.45%
+[svnicp_lio_node-1] Preprocessing Time: 0.0069667
+[svnicp_lio_node-1] [INFO] [1782975803.723973883] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.823724360] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975803.838215195] [svnicp.SVNICP]: Align Process Time : 0.181045
+[svnicp_lio_node-1] Current Progress: 105.87%
+[svnicp_lio_node-1] Preprocessing Time: 0.00685834
+[svnicp_lio_node-1] [INFO] [1782975803.923711171] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975804.021351578] [svnicp.SVNICP]: Align Process Time : 0.175099
+[svnicp_lio_node-1] Current Progress: 106.291%
+[svnicp_lio_node-1] [INFO] [1782975804.023653216] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00707806
+[svnicp_lio_node-1] [INFO] [1782975804.123821774] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975804.196278534] [svnicp.SVNICP]: Align Process Time : 0.166737
+[svnicp_lio_node-1] Current Progress: 106.499%
+[svnicp_lio_node-1] Preprocessing Time: 0.0067891
+[svnicp_lio_node-1] [INFO] [1782975804.223696904] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975804.324025855] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975804.373419559] [svnicp.SVNICP]: Align Process Time : 0.169246
+[svnicp_lio_node-1] Current Progress: 106.918%
+[svnicp_lio_node-1] Preprocessing Time: 0.00757486
+[svnicp_lio_node-1] [INFO] [1782975804.423762149] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975804.524199794] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975804.568766825] [svnicp.SVNICP]: Align Process Time : 0.186605
+[svnicp_lio_node-1] Current Progress: 107.338%
+[svnicp_lio_node-1] Preprocessing Time: 0.00727653
+[svnicp_lio_node-1] [INFO] [1782975804.624015932] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975804.724065540] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975804.742498280] [svnicp.SVNICP]: Align Process Time : 0.16528
+[svnicp_lio_node-1] Current Progress: 107.757%
+[svnicp_lio_node-1] Preprocessing Time: 0.00693591
+[svnicp_lio_node-1] [INFO] [1782975804.824220842] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975804.922270500] [svnicp.SVNICP]: Align Process Time : 0.171733
+[svnicp_lio_node-1] Current Progress: 108.175%
+[svnicp_lio_node-1] [INFO] [1782975804.923808124] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] Preprocessing Time: 0.00776799
+[svnicp_lio_node-1] [INFO] [1782975805.023780628] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975805.108975103] [svnicp.SVNICP]: Align Process Time : 0.177794
+[svnicp_lio_node-1] Current Progress: 108.388%
+[svnicp_lio_node-1] Preprocessing Time: 0.00715934
+[svnicp_lio_node-1] [INFO] [1782975805.123775840] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975805.224350224] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975805.292733665] [svnicp.SVNICP]: Align Process Time : 0.175407
+[svnicp_lio_node-1] Current Progress: 108.805%
+[svnicp_lio_node-1] Preprocessing Time: 0.00704584
+[svnicp_lio_node-1] [INFO] [1782975805.323885044] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975805.424352997] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975805.499331797] [svnicp.SVNICP]: Align Process Time : 0.19837
+[svnicp_lio_node-1] Current Progress: 109.224%
+[svnicp_lio_node-1] Preprocessing Time: 0.00703694
+[svnicp_lio_node-1] [INFO] [1782975805.523847941] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975805.624196893] [svnicp.SVNICP]: [SteinICP]: Msg buffer size: 100
+[svnicp_lio_node-1] [INFO] [1782975805.702458130] [svnicp.SVNICP]: Align Process Time : 0.194933
+[svnicp_lio_node-1] Current Progress: 109.646%
+[svnicp_lio_node-1] Preprocessing Time: 0.00738418
+[INFO] [ros2-2]: process has finished cleanly [pid 466]
+[svnicp_lio_node-1] [INFO] [1782975805.901547176] [svnicp.SVNICP]: Align Process Time : 0.190435
+[svnicp_lio_node-1] Current Progress: 110.063%
+[svnicp_lio_node-1] Preprocessing Time: 0.00777012
+[svnicp_lio_node-1] [INFO] [1782975806.099953314] [svnicp.SVNICP]: Align Process Time : 0.189404
+[svnicp_lio_node-1] Current Progress: 110.273%
+[svnicp_lio_node-1] Preprocessing Time: 0.00800119
+[svnicp_lio_node-1] [INFO] [1782975806.297540139] [svnicp.SVNICP]: Align Process Time : 0.188342
+[svnicp_lio_node-1] Current Progress: 110.482%
+[svnicp_lio_node-1] Preprocessing Time: 0.0101781
+[svnicp_lio_node-1] [INFO] [1782975806.504799916] [svnicp.SVNICP]: Align Process Time : 0.195914
+[svnicp_lio_node-1] Current Progress: 110.692%
+[svnicp_lio_node-1] Preprocessing Time: 0.00763793
+[svnicp_lio_node-1] [INFO] [1782975806.706974542] [svnicp.SVNICP]: Align Process Time : 0.193311
+[svnicp_lio_node-1] Current Progress: 110.902%
+[svnicp_lio_node-1] Preprocessing Time: 0.00766003
+[svnicp_lio_node-1] [INFO] [1782975806.907276320] [svnicp.SVNICP]: Align Process Time : 0.191481
+[svnicp_lio_node-1] Current Progress: 111.113%
+[svnicp_lio_node-1] Preprocessing Time: 0.00729121
+[svnicp_lio_node-1] [INFO] [1782975807.105026627] [svnicp.SVNICP]: Align Process Time : 0.189228
+[svnicp_lio_node-1] Current Progress: 111.321%
+[svnicp_lio_node-1] Preprocessing Time: 0.00633355
+[svnicp_lio_node-1] [INFO] [1782975807.301320486] [svnicp.SVNICP]: Align Process Time : 0.188755
+[svnicp_lio_node-1] Current Progress: 111.53%
+[svnicp_lio_node-1] Preprocessing Time: 0.0057555
+[svnicp_lio_node-1] [INFO] [1782975807.506076471] [svnicp.SVNICP]: Align Process Time : 0.19785
+[svnicp_lio_node-1] Current Progress: 111.74%
+[svnicp_lio_node-1] Preprocessing Time: 0.0104012
+[svnicp_lio_node-1] [INFO] [1782975807.705677457] [svnicp.SVNICP]: Align Process Time : 0.188002
+[svnicp_lio_node-1] Current Progress: 111.95%
+[svnicp_lio_node-1] Preprocessing Time: 0.00777358
+[svnicp_lio_node-1] [INFO] [1782975807.905635134] [svnicp.SVNICP]: Align Process Time : 0.190956
+[svnicp_lio_node-1] Current Progress: 112.159%
+[svnicp_lio_node-1] Preprocessing Time: 0.00779741
+[svnicp_lio_node-1] [INFO] [1782975808.106860419] [svnicp.SVNICP]: Align Process Time : 0.192165
+[svnicp_lio_node-1] Current Progress: 112.369%
+[svnicp_lio_node-1] Preprocessing Time: 0.00807081
+[svnicp_lio_node-1] [INFO] [1782975808.307480516] [svnicp.SVNICP]: Align Process Time : 0.191358
+[svnicp_lio_node-1] Current Progress: 112.579%
+[svnicp_lio_node-1] Preprocessing Time: 0.00733709
+[svnicp_lio_node-1] [INFO] [1782975808.514865828] [svnicp.SVNICP]: Align Process Time : 0.198839
+[svnicp_lio_node-1] Current Progress: 112.789%
+[svnicp_lio_node-1] Preprocessing Time: 0.00704416
+[svnicp_lio_node-1] [INFO] [1782975808.728014552] [svnicp.SVNICP]: Align Process Time : 0.204915
+[svnicp_lio_node-1] Current Progress: 112.998%
+[svnicp_lio_node-1] Preprocessing Time: 0.00780327
+[svnicp_lio_node-1] [INFO] [1782975808.930157173] [svnicp.SVNICP]: Align Process Time : 0.193174
+[svnicp_lio_node-1] Current Progress: 113.208%
+[svnicp_lio_node-1] Preprocessing Time: 0.00592757
+[svnicp_lio_node-1] [INFO] [1782975809.127867535] [svnicp.SVNICP]: Align Process Time : 0.19063
+[svnicp_lio_node-1] Current Progress: 113.417%
+[svnicp_lio_node-1] Preprocessing Time: 0.00555972
+[svnicp_lio_node-1] [INFO] [1782975809.325202131] [svnicp.SVNICP]: Align Process Time : 0.190614
+[svnicp_lio_node-1] Current Progress: 113.627%
+[svnicp_lio_node-1] Preprocessing Time: 0.00587419
+[svnicp_lio_node-1] [INFO] [1782975809.530442598] [svnicp.SVNICP]: Align Process Time : 0.198158
+[svnicp_lio_node-1] Current Progress: 113.836%
+[svnicp_lio_node-1] Preprocessing Time: 0.00546322
+[svnicp_lio_node-1] [INFO] [1782975809.723953091] [svnicp.SVNICP]: Align Process Time : 0.18687
+[svnicp_lio_node-1] Current Progress: 114.046%
+[svnicp_lio_node-1] Preprocessing Time: 0.00598097
+[svnicp_lio_node-1] [INFO] [1782975809.920169130] [svnicp.SVNICP]: Align Process Time : 0.189076
+[svnicp_lio_node-1] Current Progress: 114.256%
+[svnicp_lio_node-1] Preprocessing Time: 0.0061334
+[svnicp_lio_node-1] [INFO] [1782975810.115060081] [svnicp.SVNICP]: Align Process Time : 0.187493
+[svnicp_lio_node-1] Current Progress: 114.465%
+[svnicp_lio_node-1] Preprocessing Time: 0.00578184
+[svnicp_lio_node-1] [INFO] [1782975810.308537264] [svnicp.SVNICP]: Align Process Time : 0.186532
+[svnicp_lio_node-1] Current Progress: 114.675%
+[svnicp_lio_node-1] Preprocessing Time: 0.00596897
+[svnicp_lio_node-1] [INFO] [1782975810.508355261] [svnicp.SVNICP]: Align Process Time : 0.192618
+[svnicp_lio_node-1] Current Progress: 114.884%
+[svnicp_lio_node-1] Preprocessing Time: 0.00620827
+[svnicp_lio_node-1] [INFO] [1782975810.701872449] [svnicp.SVNICP]: Align Process Time : 0.186112
+[svnicp_lio_node-1] Current Progress: 115.097%
+[svnicp_lio_node-1] Preprocessing Time: 0.00717212
+[svnicp_lio_node-1] [INFO] [1782975810.893829287] [svnicp.SVNICP]: Align Process Time : 0.183629
+[svnicp_lio_node-1] Current Progress: 115.304%
+[svnicp_lio_node-1] Preprocessing Time: 0.00571158
+[svnicp_lio_node-1] [INFO] [1782975811.096954450] [svnicp.SVNICP]: Align Process Time : 0.196199
+[svnicp_lio_node-1] Current Progress: 115.514%
+[svnicp_lio_node-1] Preprocessing Time: 0.0056434
+[svnicp_lio_node-1] [INFO] [1782975811.297035552] [svnicp.SVNICP]: Align Process Time : 0.193214
+[svnicp_lio_node-1] Current Progress: 115.723%
+[svnicp_lio_node-1] Preprocessing Time: 0.00583924
+[svnicp_lio_node-1] [INFO] [1782975811.512983491] [svnicp.SVNICP]: Align Process Time : 0.208932
+[svnicp_lio_node-1] Current Progress: 115.933%
+[svnicp_lio_node-1] Preprocessing Time: 0.00571611
+[svnicp_lio_node-1] [INFO] [1782975811.719014883] [svnicp.SVNICP]: Align Process Time : 0.199049
+[svnicp_lio_node-1] Current Progress: 116.143%
+[svnicp_lio_node-1] Preprocessing Time: 0.00621141
+[svnicp_lio_node-1] [INFO] [1782975811.932130558] [svnicp.SVNICP]: Align Process Time : 0.205753
+[svnicp_lio_node-1] Current Progress: 116.354%
+[svnicp_lio_node-1] Preprocessing Time: 0.00564774
+[svnicp_lio_node-1] [INFO] [1782975812.134044488] [svnicp.SVNICP]: Align Process Time : 0.195094
+[svnicp_lio_node-1] Current Progress: 116.562%
+[svnicp_lio_node-1] Preprocessing Time: 0.00589607
+[svnicp_lio_node-1] [INFO] [1782975812.337827961] [svnicp.SVNICP]: Align Process Time : 0.196657
+[svnicp_lio_node-1] Current Progress: 116.771%
+[svnicp_lio_node-1] Preprocessing Time: 0.00583115
+[svnicp_lio_node-1] [INFO] [1782975812.547093441] [svnicp.SVNICP]: Align Process Time : 0.202244
+[svnicp_lio_node-1] Current Progress: 116.982%
+[svnicp_lio_node-1] Preprocessing Time: 0.00578177
+[svnicp_lio_node-1] [INFO] [1782975812.753013437] [svnicp.SVNICP]: Align Process Time : 0.198952
+[svnicp_lio_node-1] Current Progress: 117.191%
+[svnicp_lio_node-1] Preprocessing Time: 0.00605943
+[svnicp_lio_node-1] [INFO] [1782975812.956570240] [svnicp.SVNICP]: Align Process Time : 0.196262
+[svnicp_lio_node-1] Current Progress: 117.401%
+[svnicp_lio_node-1] Preprocessing Time: 0.00604287
+[svnicp_lio_node-1] [INFO] [1782975813.160601295] [svnicp.SVNICP]: Align Process Time : 0.196625
+[svnicp_lio_node-1] Current Progress: 117.61%
+[svnicp_lio_node-1] Preprocessing Time: 0.00649518
+[svnicp_lio_node-1] [INFO] [1782975813.369228544] [svnicp.SVNICP]: Align Process Time : 0.200948
+[svnicp_lio_node-1] Current Progress: 117.82%
+[svnicp_lio_node-1] Preprocessing Time: 0.00744172
+[svnicp_lio_node-1] [INFO] [1782975813.578382215] [svnicp.SVNICP]: Align Process Time : 0.200481
+[svnicp_lio_node-1] Current Progress: 118.03%
+[svnicp_lio_node-1] Preprocessing Time: 0.00569034
+[svnicp_lio_node-1] [INFO] [1782975813.786042488] [svnicp.SVNICP]: Align Process Time : 0.2007
+[svnicp_lio_node-1] Current Progress: 118.238%
+[svnicp_lio_node-1] Preprocessing Time: 0.00621636
+[svnicp_lio_node-1] [INFO] [1782975813.996887405] [svnicp.SVNICP]: Align Process Time : 0.2034
+[svnicp_lio_node-1] Current Progress: 118.449%
+[svnicp_lio_node-1] Preprocessing Time: 0.00575613
+[svnicp_lio_node-1] [INFO] [1782975814.203067466] [svnicp.SVNICP]: Align Process Time : 0.199163
+[svnicp_lio_node-1] Current Progress: 118.658%
+[svnicp_lio_node-1] Preprocessing Time: 0.00598046
+[svnicp_lio_node-1] [INFO] [1782975814.423012604] [svnicp.SVNICP]: Align Process Time : 0.212726
+[svnicp_lio_node-1] Current Progress: 118.867%
+[svnicp_lio_node-1] Preprocessing Time: 0.00900192
+[svnicp_lio_node-1] [INFO] [1782975814.637207626] [svnicp.SVNICP]: Align Process Time : 0.203992
+[svnicp_lio_node-1] Current Progress: 119.078%
+[svnicp_lio_node-1] Preprocessing Time: 0.00614924
+[svnicp_lio_node-1] [INFO] [1782975814.846827296] [svnicp.SVNICP]: Align Process Time : 0.202272
+[svnicp_lio_node-1] Current Progress: 119.288%
+[svnicp_lio_node-1] Preprocessing Time: 0.0058387
+[svnicp_lio_node-1] [INFO] [1782975815.057220027] [svnicp.SVNICP]: Align Process Time : 0.203319
+[svnicp_lio_node-1] Current Progress: 119.497%
+[svnicp_lio_node-1] Preprocessing Time: 0.00698507
+[svnicp_lio_node-1] [INFO] [1782975815.266517288] [svnicp.SVNICP]: Align Process Time : 0.201083
+[svnicp_lio_node-1] Current Progress: 119.707%
+[svnicp_lio_node-1] Preprocessing Time: 0.00562534
+[svnicp_lio_node-1] [INFO] [1782975815.481640395] [svnicp.SVNICP]: Align Process Time : 0.208344
+[svnicp_lio_node-1] Current Progress: 119.916%
+[svnicp_lio_node-1] Preprocessing Time: 0.00578995
+[svnicp_lio_node-1] [INFO] [1782975815.688595254] [svnicp.SVNICP]: Align Process Time : 0.199949
+[svnicp_lio_node-1] Current Progress: 120.125%
+[svnicp_lio_node-1] Preprocessing Time: 0.00592921
+[svnicp_lio_node-1] [INFO] [1782975815.905456724] [svnicp.SVNICP]: Align Process Time : 0.209664
+[svnicp_lio_node-1] Current Progress: 120.335%
+[svnicp_lio_node-1] Preprocessing Time: 0.00591031
+[svnicp_lio_node-1] [INFO] [1782975816.119246027] [svnicp.SVNICP]: Align Process Time : 0.206676
+[svnicp_lio_node-1] Current Progress: 120.545%
+[svnicp_lio_node-1] Preprocessing Time: 0.0061929
+[svnicp_lio_node-1] [INFO] [1782975816.329525649] [svnicp.SVNICP]: Align Process Time : 0.202851
+[svnicp_lio_node-1] Current Progress: 120.754%
+[svnicp_lio_node-1] Preprocessing Time: 0.00634708
+[svnicp_lio_node-1] [INFO] [1782975816.546224967] [svnicp.SVNICP]: Align Process Time : 0.209071
+[svnicp_lio_node-1] Current Progress: 120.964%
+[svnicp_lio_node-1] Preprocessing Time: 0.00582205
+[svnicp_lio_node-1] [INFO] [1782975816.760776578] [svnicp.SVNICP]: Align Process Time : 0.207496
+[svnicp_lio_node-1] Current Progress: 121.174%
+[svnicp_lio_node-1] Preprocessing Time: 0.00604347
+[svnicp_lio_node-1] [INFO] [1782975816.972516951] [svnicp.SVNICP]: Align Process Time : 0.204418
+[svnicp_lio_node-1] Current Progress: 121.383%
+[svnicp_lio_node-1] Preprocessing Time: 0.00641604
+[svnicp_lio_node-1] [INFO] [1782975817.188119513] [svnicp.SVNICP]: Align Process Time : 0.207923
+[svnicp_lio_node-1] Current Progress: 121.593%
+[svnicp_lio_node-1] Preprocessing Time: 0.00599059
+[svnicp_lio_node-1] [INFO] [1782975817.414521859] [svnicp.SVNICP]: Align Process Time : 0.219171
+[svnicp_lio_node-1] Current Progress: 121.803%
+[svnicp_lio_node-1] Preprocessing Time: 0.00607136
+[svnicp_lio_node-1] [INFO] [1782975817.629578959] [svnicp.SVNICP]: Align Process Time : 0.207786
+[svnicp_lio_node-1] Current Progress: 122.013%
+[svnicp_lio_node-1] Preprocessing Time: 0.00596621
+[svnicp_lio_node-1] [INFO] [1782975817.842971512] [svnicp.SVNICP]: Align Process Time : 0.20623
+[svnicp_lio_node-1] Current Progress: 122.222%
+[svnicp_lio_node-1] Preprocessing Time: 0.00563771
+[svnicp_lio_node-1] [INFO] [1782975818.055010982] [svnicp.SVNICP]: Align Process Time : 0.205183
+[svnicp_lio_node-1] Current Progress: 122.431%
+[svnicp_lio_node-1] Preprocessing Time: 0.00581803
+[svnicp_lio_node-1] [INFO] [1782975818.270830741] [svnicp.SVNICP]: Align Process Time : 0.208761
+[svnicp_lio_node-1] Current Progress: 122.641%
+[svnicp_lio_node-1] Preprocessing Time: 0.00571408
+[svnicp_lio_node-1] [INFO] [1782975818.486919336] [svnicp.SVNICP]: Align Process Time : 0.209203
+[svnicp_lio_node-1] Current Progress: 122.852%
+[svnicp_lio_node-1] Preprocessing Time: 0.00569296
+[svnicp_lio_node-1] [INFO] [1782975818.690887931] [svnicp.SVNICP]: Align Process Time : 0.197112
+[svnicp_lio_node-1] Current Progress: 123.061%
+[svnicp_lio_node-1] Preprocessing Time: 0.0058814
+[svnicp_lio_node-1] [INFO] [1782975818.894920008] [svnicp.SVNICP]: Align Process Time : 0.19693
+[svnicp_lio_node-1] Current Progress: 123.27%
+[svnicp_lio_node-1] Preprocessing Time: 0.00569043
+[svnicp_lio_node-1] [INFO] [1782975819.095281236] [svnicp.SVNICP]: Align Process Time : 0.193495
+[svnicp_lio_node-1] Current Progress: 123.48%
+[svnicp_lio_node-1] Preprocessing Time: 0.0057531
+[svnicp_lio_node-1] [INFO] [1782975819.290450109] [svnicp.SVNICP]: Align Process Time : 0.188224
+[svnicp_lio_node-1] Current Progress: 123.69%
+[svnicp_lio_node-1] Preprocessing Time: 0.00567893
+[svnicp_lio_node-1] [INFO] [1782975819.486764284] [svnicp.SVNICP]: Align Process Time : 0.189482
+[svnicp_lio_node-1] Current Progress: 123.899%
+[svnicp_lio_node-1] Preprocessing Time: 0.00567471
+[svnicp_lio_node-1] [INFO] [1782975819.667476435] [svnicp.SVNICP]: Align Process Time : 0.173831
+[svnicp_lio_node-1] Current Progress: 124.108%
+[svnicp_lio_node-1] Preprocessing Time: 0.0110783
+[svnicp_lio_node-1] [INFO] [1782975819.849718617] [svnicp.SVNICP]: Align Process Time : 0.170025
+[svnicp_lio_node-1] Current Progress: 124.319%
+[svnicp_lio_node-1] Preprocessing Time: 0.00805697
+[svnicp_lio_node-1] [INFO] [1782975820.032440004] [svnicp.SVNICP]: Align Process Time : 0.173452
+[svnicp_lio_node-1] Current Progress: 124.528%
+[svnicp_lio_node-1] Preprocessing Time: 0.00919283
+[svnicp_lio_node-1] [INFO] [1782975820.206483823] [svnicp.SVNICP]: Align Process Time : 0.163693
+[svnicp_lio_node-1] Current Progress: 124.738%
+[svnicp_lio_node-1] Preprocessing Time: 0.00635522
+[svnicp_lio_node-1] [INFO] [1782975820.398209242] [svnicp.SVNICP]: Align Process Time : 0.184209
+[svnicp_lio_node-1] Current Progress: 124.948%
+[svnicp_lio_node-1] Preprocessing Time: 0.0107071
+[svnicp_lio_node-1] [INFO] [1782975820.600474710] [svnicp.SVNICP]: Align Process Time : 0.19032
+[svnicp_lio_node-1] Current Progress: 125.157%
+[svnicp_lio_node-1] Preprocessing Time: 0.00765209
+[svnicp_lio_node-1] [INFO] [1782975820.804176531] [svnicp.SVNICP]: Align Process Time : 0.194903
+[svnicp_lio_node-1] Current Progress: 125.367%
+[svnicp_lio_node-1] Preprocessing Time: 0.00754832
+[svnicp_lio_node-1] [INFO] [1782975821.000549257] [svnicp.SVNICP]: Align Process Time : 0.18757
+[svnicp_lio_node-1] Current Progress: 125.576%
+[svnicp_lio_node-1] Preprocessing Time: 0.00852716
+[svnicp_lio_node-1] [INFO] [1782975821.206880138] [svnicp.SVNICP]: Align Process Time : 0.189712
+[svnicp_lio_node-1] Current Progress: 125.786%
+[svnicp_lio_node-1] Preprocessing Time: 0.00660936
+[svnicp_lio_node-1] [INFO] [1782975821.416075161] [svnicp.SVNICP]: Align Process Time : 0.200987
+[svnicp_lio_node-1] Current Progress: 125.995%
+[svnicp_lio_node-1] Preprocessing Time: 0.0078091
+[svnicp_lio_node-1] [INFO] [1782975821.611952748] [svnicp.SVNICP]: Align Process Time : 0.186542
+[svnicp_lio_node-1] Current Progress: 126.206%
+[svnicp_lio_node-1] Preprocessing Time: 0.00606296
+[svnicp_lio_node-1] [INFO] [1782975821.812371712] [svnicp.SVNICP]: Align Process Time : 0.19276
+[svnicp_lio_node-1] Current Progress: 126.414%
+[svnicp_lio_node-1] Preprocessing Time: 0.00592479
+[svnicp_lio_node-1] [INFO] [1782975822.014522193] [svnicp.SVNICP]: Align Process Time : 0.194696
+[svnicp_lio_node-1] Current Progress: 126.624%
+[svnicp_lio_node-1] Preprocessing Time: 0.00606949
+[svnicp_lio_node-1] [INFO] [1782975822.213611400] [svnicp.SVNICP]: Align Process Time : 0.191461
+[svnicp_lio_node-1] Current Progress: 126.834%
+[svnicp_lio_node-1] Preprocessing Time: 0.00614405
+[svnicp_lio_node-1] [INFO] [1782975822.427164986] [svnicp.SVNICP]: Align Process Time : 0.205848
+[svnicp_lio_node-1] Current Progress: 127.043%
+[svnicp_lio_node-1] Preprocessing Time: 0.00617128
+[svnicp_lio_node-1] [INFO] [1782975822.633522990] [svnicp.SVNICP]: Align Process Time : 0.198621
+[svnicp_lio_node-1] Current Progress: 127.253%
+[svnicp_lio_node-1] Preprocessing Time: 0.00633267
+[svnicp_lio_node-1] [INFO] [1782975822.841981823] [svnicp.SVNICP]: Align Process Time : 0.200542
+[svnicp_lio_node-1] Current Progress: 127.463%
+[svnicp_lio_node-1] Preprocessing Time: 0.00623728
+[svnicp_lio_node-1] [INFO] [1782975823.060116404] [svnicp.SVNICP]: Align Process Time : 0.210327
+[svnicp_lio_node-1] Current Progress: 127.673%
+[svnicp_lio_node-1] Preprocessing Time: 0.00661221
+[svnicp_lio_node-1] [INFO] [1782975823.274342429] [svnicp.SVNICP]: Align Process Time : 0.205976
+[svnicp_lio_node-1] Current Progress: 127.882%
+[svnicp_lio_node-1] Preprocessing Time: 0.00640458
+[svnicp_lio_node-1] [INFO] [1782975823.498352274] [svnicp.SVNICP]: Align Process Time : 0.215993
+[svnicp_lio_node-1] Current Progress: 128.093%
+[svnicp_lio_node-1] Preprocessing Time: 0.00682247
+[svnicp_lio_node-1] [INFO] [1782975823.714322012] [svnicp.SVNICP]: Align Process Time : 0.207462
+[svnicp_lio_node-1] Current Progress: 128.301%
+[svnicp_lio_node-1] Preprocessing Time: 0.00710577
+[svnicp_lio_node-1] [INFO] [1782975823.930477594] [svnicp.SVNICP]: Align Process Time : 0.207435
+[svnicp_lio_node-1] Current Progress: 128.512%
+[svnicp_lio_node-1] Preprocessing Time: 0.00622312
+[svnicp_lio_node-1] [INFO] [1782975824.143621100] [svnicp.SVNICP]: Align Process Time : 0.205373
+[svnicp_lio_node-1] Current Progress: 128.722%
+[svnicp_lio_node-1] Preprocessing Time: 0.00622472
+[svnicp_lio_node-1] [INFO] [1782975824.359629008] [svnicp.SVNICP]: Align Process Time : 0.208187
+[svnicp_lio_node-1] Current Progress: 128.931%
+[svnicp_lio_node-1] Preprocessing Time: 0.0062963
+[svnicp_lio_node-1] [INFO] [1782975824.582238301] [svnicp.SVNICP]: Align Process Time : 0.214755
+[svnicp_lio_node-1] Current Progress: 129.141%
+[svnicp_lio_node-1] Preprocessing Time: 0.00665253
+[svnicp_lio_node-1] [INFO] [1782975824.798043262] [svnicp.SVNICP]: Align Process Time : 0.207529
+[svnicp_lio_node-1] Current Progress: 129.35%
+[svnicp_lio_node-1] [INFO] [1782975824.799473898] [svnicp.SVNICP]: Auto shutdown at progress 129.35%
+[INFO] [svnicp_lio_node-1]: process has finished cleanly [pid 464]

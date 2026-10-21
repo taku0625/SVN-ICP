@@ -145,6 +145,12 @@ namespace svnicp {
     double scan_max_range_{};
 
     double dataset_duration_{};
+    double auto_shutdown_progress_{};
+    int buffer_capacity_{100};
+    int cloud_history_capacity_{1};
+    bool save_tum_trajectory_{};
+    std::string tum_trajectory_path_;
+    std::ofstream tum_trajectory_file_;
     std::vector<double> icp_cov_scales_{1., 1., 1., 1., 1., 1.};
 
     bool use_Segmentation_ = true;
@@ -248,6 +254,8 @@ namespace svnicp {
      * @brief publish the position
      */
     void publish_odometry();
+
+    void write_tum_trajectory(const rclcpp::Time &timestamp, const gtsam::Pose3 &pose);
 
 
     void publish_cloud(const rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr &,

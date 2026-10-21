@@ -175,9 +175,29 @@ namespace svnicp {
 
   std::tuple<torch::Tensor, torch::Tensor> SVGDICP::mini_batch_pair_generator() {
     torch::Tensor idx = torch::tensor({}).to(torch::kCUDA).to(data_type);
-    if (config_.use_minibatch)
+    if (config_.use_minibatch) {
       idx = torch::randint(source_cloud_.size(0), config_.batch_size * config_.iterations).to(torch::kCUDA);
-    else {
+      auto mini_batch = torch::index_select(source_cloud_, 0, idx).to(data_type);
+      const auto N_s = mini_batch.size(0);
+      const auto N_t = target_cloud_.size(0);
+      const auto transformed_source = mini_batch.matmul(R0_.transpose(0, 1)) + t0_.view({1, 3});
+      const auto knn = KNearestNeighborIdx(
+        transformed_source.view({1, N_s, 3}),
+        target_cloud_.view({1, N_t, 3}),
+        torch::tensor({N_s}).to(torch::kCUDA),
+        torch::tensor({N_t}).to(torch::kCUDA),
+        2,
+        K_source_,
+        -1
+      );
+      auto sourceKNN_batch_idx = std::get<0>(knn).to(torch::kCUDA).reshape(
+        {config_.batch_size * config_.iterations * K_source_});
+      auto target_batch = torch::index_select(target_cloud_, 0, sourceKNN_batch_idx).to(data_type);
+      return {
+        mini_batch.reshape({config_.iterations, config_.batch_size, 3}),
+        target_batch.reshape({config_.iterations, config_.batch_size, K_source_, 3})
+      };
+    } else {
       config_.batch_size = source_cloud_.size(0);
       idx = torch::arange(source_cloud_.size(0)).reshape({config_.batch_size, 1})
           .expand({config_.batch_size, config_.iterations}).transpose(0, 1)

@@ -1,0 +1,6 @@
+Starting >>> stein_msgs
+Finished <<< stein_msgs [0.25s]
+Starting >>> svn-icp
+Finished <<< svn-icp [0.37s]
+
+Summary: 2 packages finished [0.70s]

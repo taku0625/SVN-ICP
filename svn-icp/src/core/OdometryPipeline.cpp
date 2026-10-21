@@ -17,6 +17,9 @@
 #include <gtsam/slam/BetweenFactor.h>
 #include "core/OdometryPipeline.h"
 
+#include <filesystem>
+#include <iomanip>
+
 #include "core/ICPUtils.h"
 #include "core/SVGDICP.h"
 #include "core/SVNICP.h"
@@ -132,6 +135,8 @@ namespace svnicp {
     this->get_parameter("SVNICP_parameters.iterations", steinicp_config_.iterations);
     this->declare_parameter("SVNICP_parameters.batch_size", 50);
     this->get_parameter("SVNICP_parameters.batch_size", steinicp_config_.batch_size);
+    this->declare_parameter("SVNICP_parameters.use_minibatch", false);
+    this->get_parameter("SVNICP_parameters.use_minibatch", steinicp_config_.use_minibatch);
     this->declare_parameter("SVNICP_parameters.normalize", true);
     this->get_parameter("SVNICP_parameters.normalize", steinicp_config_.normalize_cloud);
     this->declare_parameter("SVNICP_parameters.lr", 0.02);
@@ -209,8 +214,14 @@ namespace svnicp {
     this->get_parameter("imu_param.vel_rw", vel_random_walk_);
     this->declare_parameter("imu_param.gbstd", std::vector<double>(3));
     this->get_parameter("imu_param.gbstd", bg_std_);
-    this->declare_parameter("imu_param.gastd", std::vector<double>(3));
-    this->get_parameter("imu_param.gastd", ba_std_);
+    this->declare_parameter("imu_param.abstd", std::vector<double>(3));
+    this->get_parameter("imu_param.abstd", ba_std_);
+    this->declare_parameter("imu_param.gastd", std::vector<double>());
+    std::vector<double> legacy_ba_std;
+    this->get_parameter("imu_param.gastd", legacy_ba_std);
+    if (legacy_ba_std.size() == 3) {
+      ba_std_ = legacy_ba_std;
+    }
     std::copy(rot_random_walk_.begin(), rot_random_walk_.end(), imu_noise_.rot_rw.begin());
     std::copy(vel_random_walk_.begin(), vel_random_walk_.end(), imu_noise_.vel_rw.begin());
     std::copy(bg_std_.begin(), bg_std_.end(), imu_noise_.bg_std.begin());
@@ -252,7 +263,11 @@ namespace svnicp {
     this->declare_parameter("lio_param.extrinsic_t", std::vector<double>(3));
     this->get_parameter("lio_param.extrinsic_t", extrinsic_t);
     std::copy(extrinsic_t.begin(), extrinsic_t.end(), lio_param_.t_lidar_imu.begin());
-    this->declare_parameter("lio_param.extrinsic_R", std::vector<double>(9));
+    this->declare_parameter("lio_param.extrinsic_R", std::vector<double>{
+      1.0, 0.0, 0.0,
+      0.0, 1.0, 0.0,
+      0.0, 0.0, 1.0
+    });
     this->get_parameter("lio_param.extrinsic_R", extrinsic_R);
     memcpy(tmp.data(), &extrinsic_R[0], 9 * sizeof(double));
     lio_param_.R_lidar_imu = tmp.transpose();
@@ -261,6 +276,45 @@ namespace svnicp {
 
     this->declare_parameter("dataset_duration", 0.);
     this->get_parameter("dataset_duration", dataset_duration_);
+    this->declare_parameter("auto_shutdown_progress", 0.);
+    this->get_parameter("auto_shutdown_progress", auto_shutdown_progress_);
+    this->declare_parameter("buffer_capacity", 100);
+    this->get_parameter("buffer_capacity", buffer_capacity_);
+    if (buffer_capacity_ < 1) {
+      RCLCPP_WARN_STREAM(this->get_logger(), "buffer_capacity must be >= 1. Using 1 instead of " << buffer_capacity_);
+      buffer_capacity_ = 1;
+    }
+    this->declare_parameter("cloud_history_capacity", 1);
+    this->get_parameter("cloud_history_capacity", cloud_history_capacity_);
+    if (cloud_history_capacity_ < 1) {
+      RCLCPP_WARN_STREAM(this->get_logger(),
+                         "cloud_history_capacity must be >= 1. Using 1 instead of " << cloud_history_capacity_);
+      cloud_history_capacity_ = 1;
+    }
+    this->declare_parameter("save_tum_trajectory", false);
+    this->get_parameter("save_tum_trajectory", save_tum_trajectory_);
+    this->declare_parameter("tum_trajectory_path", std::string());
+    this->get_parameter("tum_trajectory_path", tum_trajectory_path_);
+
+    if (save_tum_trajectory_) {
+      if (tum_trajectory_path_.empty()) {
+        RCLCPP_WARN(this->get_logger(), "TUM trajectory saving is enabled but tum_trajectory_path is empty");
+        save_tum_trajectory_ = false;
+      } else {
+        const std::filesystem::path output_path(tum_trajectory_path_);
+        if (output_path.has_parent_path()) {
+          std::filesystem::create_directories(output_path.parent_path());
+        }
+        tum_trajectory_file_.open(tum_trajectory_path_, std::ios::out | std::ios::trunc);
+        if (!tum_trajectory_file_) {
+          RCLCPP_WARN_STREAM(this->get_logger(), "Failed to open TUM trajectory file: " << tum_trajectory_path_);
+          save_tum_trajectory_ = false;
+        } else {
+          tum_trajectory_file_ << "# timestamp tx ty tz qx qy qz qw\n";
+          RCLCPP_INFO_STREAM(this->get_logger(), "Saving TUM trajectory to " << tum_trajectory_path_);
+        }
+      }
+    }
 
 
     RCLCPP_INFO_STREAM(this->get_logger(), "[SteinICP]: SteinICP parameter loaded\n");
@@ -290,14 +344,14 @@ namespace svnicp {
     target_pcl_.reset(new pcl::PointCloud<Point_t>());
     total_map_.reset(new pcl::PointCloud<Point_t>());
 
-    cloud_msg_buffer_.resize_buffer(10000);
-    imu_measurement_buffer_.resize_buffer(10000);
-    odom_buffer_.resize_buffer(10000);
-    poses_buffer.resize_buffer(10000);
-    bodystate_buffer_.resize_buffer(10000);
-    predict_pose_buffer_.resize_buffer(10000);
-    stein_particle_weight_buffer_.resize_buffer(10000);
-    cov_matrix_buffer_.resize_buffer(10000);
+    cloud_msg_buffer_.resize_buffer(buffer_capacity_);
+    imu_measurement_buffer_.resize_buffer(buffer_capacity_);
+    odom_buffer_.resize_buffer(buffer_capacity_);
+    poses_buffer.resize_buffer(buffer_capacity_);
+    bodystate_buffer_.resize_buffer(buffer_capacity_);
+    predict_pose_buffer_.resize_buffer(buffer_capacity_);
+    stein_particle_weight_buffer_.resize_buffer(buffer_capacity_);
+    cov_matrix_buffer_.resize_buffer(buffer_capacity_);
     body_state_.state = gtsam::NavState(gtsam::Rot3(), gtsam::Vector3::Zero(), gtsam::Vector3::Zero());
     cloud_segmentation_ = std::make_shared<ImageProjection>();
     //        poses_buffer.resize(1000);
@@ -635,11 +689,16 @@ namespace svnicp {
       stein_particle_weight_buffer_.update_buffer({stein_particles, stein_weights}, lidar_time);
       bodystate_buffer_.update_buffer(body_state_, lidar_time);
       timestamp_odom_ = lidar_time;
-      auto cloud_pub = this->crop_pointcloud(deskewed_cloud);
-      pcl::transformPointCloud(cloud_pub, cloud_pub, pose3_current.matrix());
-      raw_cloud_buffer_.emplace_back(lidar_time, cloud_pub);
-      source_cloud_buffer_.emplace_back(lidar_time, *source_cloud_global);
-      target_cloud_buffer_.emplace_back(lidar_time, *target_cloud_lidar_frame);
+      if (pub_cloud_) {
+        auto cloud_pub = this->crop_pointcloud(deskewed_cloud);
+        pcl::transformPointCloud(cloud_pub, cloud_pub, pose3_current.matrix());
+        raw_cloud_buffer_.emplace_back(lidar_time, cloud_pub);
+        source_cloud_buffer_.emplace_back(lidar_time, *source_cloud_global);
+        target_cloud_buffer_.emplace_back(lidar_time, *target_cloud_lidar_frame);
+        while (static_cast<int>(raw_cloud_buffer_.size()) > cloud_history_capacity_) raw_cloud_buffer_.erase(raw_cloud_buffer_.begin());
+        while (static_cast<int>(source_cloud_buffer_.size()) > cloud_history_capacity_) source_cloud_buffer_.erase(source_cloud_buffer_.begin());
+        while (static_cast<int>(target_cloud_buffer_.size()) > cloud_history_capacity_) target_cloud_buffer_.erase(target_cloud_buffer_.begin());
+      }
       steinicp_runtime_ = align_duration.count();
       preprocessing_runtime_ = preprocessing_duration.count();
       cov_matrix_buffer_.update_buffer(cov_mat_diag, lidar_time);
@@ -651,8 +710,12 @@ namespace svnicp {
         const auto current_time = rclcpp::Time(source_msg->header.stamp.sec, source_msg->header.stamp.nanosec,
                                                RCL_ROS_TIME);
         const auto duration = current_time - first_time;
-        std::cout << "Current Progress: " << double(duration.nanoseconds()) / dataset_duration_ * 100. << "%" <<
-            std::endl;
+        const auto progress = double(duration.nanoseconds()) / dataset_duration_ * 100.;
+        std::cout << "Current Progress: " << progress << "%" << std::endl;
+        if (auto_shutdown_progress_ > 0. && progress >= auto_shutdown_progress_) {
+          RCLCPP_INFO_STREAM(this->get_logger(), "Auto shutdown at progress " << progress << "%");
+          rclcpp::shutdown();
+        }
       }
     }
   }
@@ -861,6 +924,7 @@ namespace svnicp {
   void OdometryPipeline::publish_odometry() {
     const auto last_pose = poses_buffer.get_last_buffer();
     auto timestamp = poses_buffer.get_last_time();
+    this->write_tum_trajectory(timestamp, last_pose);
 
     auto pose_msg = geometry_msgs::msg::PoseStamped();
     pose_msg.header.frame_id = "odom_svnicp";
@@ -917,6 +981,22 @@ namespace svnicp {
     transformStamped_msg.transform.rotation.z = pose_msg.pose.orientation.z;
     transformStamped_msg.transform.rotation.w = pose_msg.pose.orientation.w;
     tf_broadcaster_->sendTransform(transformStamped_msg);
+  }
+
+  void OdometryPipeline::write_tum_trajectory(const rclcpp::Time &timestamp, const gtsam::Pose3 &pose) {
+    if (!save_tum_trajectory_ || !tum_trajectory_file_) return;
+
+    const auto quaternion = pose.rotation().toQuaternion();
+    tum_trajectory_file_ << std::fixed << std::setprecision(9)
+                         << timestamp.seconds() << " "
+                         << pose.x() << " "
+                         << pose.y() << " "
+                         << pose.z() << " "
+                         << quaternion.x() << " "
+                         << quaternion.y() << " "
+                         << quaternion.z() << " "
+                         << quaternion.w() << "\n";
+    tum_trajectory_file_.flush();
   }
 
 

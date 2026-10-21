@@ -81,16 +81,12 @@ namespace svnicp::buffer {
         buffer.push_back(new_buffer);
         counter++;
         time_buffer.push_back(t_msg);
-        if (t_now.seconds() != 0) {
-          duration_buffer.push_back((t_now - t_msg).seconds());
-        }
+        duration_buffer.push_back(t_now.seconds() != 0 ? (t_now - t_msg).seconds() : 0.0);
         mutex_.unlock();
       } else {
         buffer_tmp.push_back(new_buffer);
-        time_buffer_tmp.push_back(t_now);
-        if (t_now.seconds() != 0) {
-          duration_buffer_tmp.push_back((t_now - t_msg).seconds());
-        }
+        time_buffer_tmp.push_back(t_msg);
+        duration_buffer_tmp.push_back(t_now.seconds() != 0 ? (t_now - t_msg).seconds() : 0.0);
       }
     }
 

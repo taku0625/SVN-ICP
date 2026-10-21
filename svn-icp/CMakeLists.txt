@@ -1,12 +1,17 @@
-cmake_minimum_required(VERSION 3.15)
-project(svn-icp)
+cmake_minimum_required(VERSION 3.18)
+project(svn-icp LANGUAGES CXX CUDA)
 
 if (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     add_compile_options(-Wall -Wextra -Wpedantic -std=c++17)
 endif ()
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+set(CMAKE_CUDA_ARCHITECTURES "75;80;86;89;90" CACHE STRING "CUDA architectures to build for")
+
 #find third party dependencies
-set(CMAKE_PREFIX_PATH "/home/haoming/Desktop/libtorch/share/cmake/Torch")
 find_package(Torch REQUIRED)
 find_package(PCL REQUIRED)
 find_package(PythonLibs REQUIRED)
@@ -17,6 +22,8 @@ find_package(GTSAMCMakeTools)
 find_package(Eigen3 REQUIRED)
 find_package(TBB REQUIRED)
 find_package(tsl-robin-map REQUIRED)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 
 # find ROS2 dependencies
 find_package(ament_cmake REQUIRED)
@@ -99,6 +106,8 @@ add_library(odom SHARED
 
 target_link_libraries(odom
         svnicp
+        ${GTSAM_LIBRARIES}
+        gtsam_unstable
         ${TBB_LIBRARIES}
         ${tsl-robin-map_LIBRARIES}
         ${OPENCV_LIBRARY_DIRS}
@@ -125,6 +134,19 @@ add_executable(svnicp_lio_node
 
 target_link_libraries(svnicp_lio_node
         odom
+)
+
+ament_target_dependencies(svnicp_lio_node
+        "rclcpp"
+        "sensor_msgs"
+        "std_msgs"
+        "pcl_msgs"
+        "PCL"
+        "pcl_conversions"
+        "geometry_msgs"
+        "nav_msgs"
+        "stein_msgs"
+        "tf2_ros"
 )
 
 install(TARGETS svnicp_lio_node
