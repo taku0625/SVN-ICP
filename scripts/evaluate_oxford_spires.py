@@ -4,6 +4,7 @@
 ROS imports are deferred so discovery and metric tests also run without ROS.
 """
 import argparse
+import contextlib
 import copy
 import csv
 import json
@@ -180,13 +181,19 @@ def cloud_bounds(bag, topic):
     return first, last, count, last_timestamp_ns
 
 
+def node_exit_error(phase, returncode):
+    # ros2 run forwards a child's -9 through sys.exit(), which becomes 247.
+    detail = " (SIGKILL; check the host kernel log for out-of-memory)" if returncode in {-9, 137, 247} else ""
+    return RuntimeError(f"Node exited {phase}: {returncode}{detail}")
+
+
 def wait_for_processing(node, progress_path, last_timestamp_ns, timeout):
     """Wait for consumed input, independent of which scans produced odometry."""
     deadline = time.monotonic() + timeout
     consumed = -1
     while True:
         if node.poll() is not None:
-            raise RuntimeError(f"Node exited before completion: {node.returncode}")
+            raise node_exit_error("before completion", node.returncode)
         try:
             progress = json.loads(progress_path.read_text())
         except (FileNotFoundError, json.JSONDecodeError):
@@ -204,16 +211,20 @@ def wait_for_processing(node, progress_path, last_timestamp_ns, timeout):
 def stop(process):
     if process is None or process.poll() is not None:
         return
-    os.killpg(process.pid, signal.SIGINT)
+    with contextlib.suppress(ProcessLookupError):
+        os.killpg(process.pid, signal.SIGINT)
     try:
         process.wait(timeout=15)
     except subprocess.TimeoutExpired:
-        os.killpg(process.pid, signal.SIGKILL)
+        with contextlib.suppress(ProcessLookupError):
+            os.killpg(process.pid, signal.SIGKILL)
         process.wait()
 
 
 def run_sequence(bag, topic, config, output, args):
     import rclpy
+    from rclpy.context import Context
+    from rclpy.signals import SignalHandlerOptions
 
     first, last, count, last_timestamp_ns = cloud_bounds(bag, topic)
     trajectory = output / "trajectory.tum"
@@ -230,44 +241,43 @@ def run_sequence(bag, topic, config, output, args):
     qos = output / "qos.yaml"
     qos.write_text(yaml.safe_dump({topic: {"reliability": "reliable", "durability": "volatile",
                                          "history": "keep_last", "depth": 10}}))
-    node = player = None
-    monitor = None
-    rclpy.init()
-    try:
-        monitor = rclpy.create_node("oxford_spires_batch_monitor")
+    context = Context()
+    # Keep Ctrl+C as KeyboardInterrupt and isolate shutdown between sequences.
+    rclpy.init(context=context, signal_handler_options=SignalHandlerOptions.NO)
+    with contextlib.ExitStack() as cleanup:
+        cleanup.callback(context.try_shutdown)
+        monitor = rclpy.create_node("oxford_spires_batch_monitor", context=context)
+        cleanup.callback(monitor.destroy_node)
         with (output / "svnicp.log").open("w") as node_log, (output / "playback.log").open("w") as player_log:
             node = subprocess.Popen([
                 "ros2", "run", "svn-icp", "svnicp_lio_node", "--ros-args",
                 "-r", "__node:=SVNICP", "-r", "__ns:=/svnicp", "--params-file", str(params_path)
             ], stdout=node_log, stderr=subprocess.STDOUT, start_new_session=True)
+            cleanup.callback(stop, node)
             deadline = time.monotonic() + args.startup_timeout
             while monitor.count_subscribers(topic) == 0:
                 if node.poll() is not None:
-                    raise RuntimeError(f"Node exited during startup: {node.returncode}")
+                    raise node_exit_error("during startup", node.returncode)
                 if time.monotonic() > deadline:
                     raise TimeoutError("Node did not subscribe before startup timeout")
-                rclpy.spin_once(monitor, timeout_sec=0.2)
+                # DDS graph discovery does not need a default-context executor.
+                time.sleep(0.2)
             player = subprocess.Popen([
                 "ros2", "bag", "play", str(bag), "--rate", str(args.play_rate),
                 "--read-ahead-queue-size", str(args.read_ahead_queue_size),
                 "--qos-profile-overrides-path", str(qos), "--topics", topic
             ], stdout=player_log, stderr=subprocess.STDOUT, start_new_session=True)
+            cleanup.callback(stop, player)
             deadline = time.monotonic() + args.sequence_timeout
             while player.poll() is None:
                 if node.poll() is not None:
-                    raise RuntimeError(f"Node exited during playback: {node.returncode}")
+                    raise node_exit_error("during playback", node.returncode)
                 if time.monotonic() > deadline:
                     raise TimeoutError("Playback exceeded --sequence-timeout")
                 time.sleep(0.5)
             if player.returncode != 0:
                 raise RuntimeError(f"Bag playback failed: {player.returncode}")
             progress = wait_for_processing(node, progress_path, last_timestamp_ns, args.drain_timeout)
-    finally:
-        stop(player)
-        stop(node)
-        if monitor is not None:
-            monitor.destroy_node()
-        rclpy.shutdown()
     result = {"lidar_frames": count, "lidar_start": first, "lidar_end": last,
               "consumed_lidar_frames": progress["consumed_lidar_frames"]}
     try:
@@ -323,6 +333,7 @@ def main(argv=None):
     if not args.dry_run and (args.output_dir / "summary.json").exists():
         parser.error("Output already contains summary.json; choose a new --output-dir")
     rows = []
+    interrupted = False
     for sequence in sequences:
         row = {"sequence": sequence.name, "status": "failed", "error": ""}
         try:
@@ -344,6 +355,9 @@ def main(argv=None):
                 except Exception as error:  # noqa: BLE001
                     row.update(ate_rmse_m=None, ate_mean_m=None, ate_median_m=None,
                                ate_max_m=None, evaluation_warning=str(error))
+        except KeyboardInterrupt:
+            row.update(status="interrupted", error="Interrupted by user")
+            interrupted = True
         except Exception as error:  # noqa: BLE001
             row["error"] = str(error)
         rows.append(row)
@@ -356,6 +370,8 @@ def main(argv=None):
             writer = csv.DictWriter(stream, fieldnames=columns)
             writer.writeheader()
             writer.writerows(rows)
+        if interrupted:
+            return 130
     return int(any(row["status"] == "failed" for row in rows))
 
 

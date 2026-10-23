@@ -31,6 +31,7 @@
            voxel_size: 0.2
            map_voxel_max_points: 20
            map_voxel_size: 0.3
+           map_max_voxels: 100000  # Keep nearest voxels; 0 disables the count limit.
 
            USE_Segmentation: false
 

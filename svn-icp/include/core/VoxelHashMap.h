@@ -21,6 +21,7 @@
 #include <pcl/common/transforms.h>
 
 #include "data/DataTypes.h"
+#include "core/VoxelMapUtils.h"
 
 
 namespace svnicp
@@ -34,6 +35,7 @@ namespace svnicp
         double voxel_size_ = 1.0;
         double max_range_ = 80;
         int max_pointscount_ = 20;
+        std::size_t max_voxels_ = 0;  // Zero preserves the unlimited legacy map.
 
         VoxelHashMap() = default;
 
@@ -44,8 +46,7 @@ namespace svnicp
 
         struct VoxelHash{
             size_t operator()(const VoxelIdx &voxel) const {
-                const auto vec = reinterpret_cast<const uint32_t *>(voxel.data());
-                return ((1 << 20) - 1) & (vec[0] * 73856093 ^ vec[1] * 19349669 ^ vec[2] * 83492791);
+                return hash_voxel_index(voxel[0], voxel[1], voxel[2]);
             }
 
         };

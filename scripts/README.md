@@ -53,6 +53,9 @@ Oxford Spires のツール用リポジトリにデータがある場合は、例
 既存の評価結果は上書きしません。再評価には新しい `OUTPUT_DIR` を指定してください。
 事前確認の結果は `validation.csv` / `validation.json` に保存し、推定成功とは区別します。
 シーケンスが1件でも失敗した場合、全件処理後の終了コードは1です。
+Ctrl+C で中断した場合は、そのシーケンスを `status: interrupted` として保存し、
+残りのシーケンスを開始せず終了コード130で終了します。ROS の終了済みコンテキストを再終了して
+元のエラーや中断理由を上書きしないよう、シーケンスごとにコンテキストを分離しています。
 
 PointCloud2 トピックが1件なら metadata から自動選択します。複数ある場合は `--lidar-topic` が必要です。
 推定前に選択した LiDAR ストリームを読み、header 時刻の範囲・XYZ フィールドを確認します。
@@ -76,11 +79,24 @@ bag の再生エラー・ノード異常終了・処理停止によるタイム�
 
 `svn-icp/config/oxford_spires.yaml` は既存 niwa 設定に基づく **LiDAR-only ICP のベースライン** です。
 Oxford Spires 用の最適化済みパラメータではありません。
+`voxel_size: 0.2` と `map_voxel_size: 0.3` は維持し、
+`SVNICP_parameters.map_max_voxels: 100000` で保持するマップ voxel 数を制限しています。
+上限を超えると現在位置から遠い voxel を削除し、推定は続行します。
+`map_voxel_max_points: 20` の場合、保持するマップ点は最大200万点です。
+この上限はプロセス全体のメモリ上限ではなく、入力バッファや一時点群には別途メモリを使います。
+上限値は設定ファイルで変更でき、`0` は個数制限なしです。他の設定ファイルで省略した場合も `0` です。
+`map_range` による距離制限も併用します。処理中のログにマップ voxel 数と登録に使う点数を出力します。
 PCD からの変換で点ごとの時刻が保持されない場合を考慮し、deskew は無効にしています。
 GT と LiDAR の時刻系・センサ原点が一致していることを確認してください。
 GT が別センサの軌跡の場合は校正に基づく変換が必要です。一定の世界座標整列だけではレバーアームの差を解消できません。
 別設定を使う場合は `--config /root/svnicp_ws/src/SVN-ICP/svn-icp/config/your_config.yaml` のように
 コンテナから参照できるパスを指定します。IMU 融合の KF モードは校正未設定のため受け付けません。
+
+`Node exited during playback: 247` と `svnicp.log` の `[ros2run]: Killed` は、
+ノードが SIGKILL で終了したことを示します。ホストの `journalctl -k` で OOM の有無を確認してください。
+旧コードの voxel ハッシュは20ビットに切り詰めており、大きなマップでハッシュ表だけが
+過剰に拡張する問題がありました。ハッシュの切り詰めと、削除で無効になるイテレーターの利用を修正しています。
+点群の参照範囲も、過去の点の距離の二乗ではなく、現在の有効点の距離から計算します。
 
 ROS/GPU がない環境でも、Python に NumPy と PyYAML があれば事前確認とテストが可能です。
 
@@ -89,3 +105,7 @@ python3 scripts/evaluate_oxford_spires.py --dataset-dir /path/to/oxford_spires \
   --output-dir /tmp/oxford-validation --dry-run
 python3 -m unittest discover -s scripts/tests -v
 ```
+
+C++ ユーティリティのテストには `g++` を使います。`robin-map-dev` のヘッダーも利用可能な場合は、
+実際の `tsl::robin_map` に120万 voxel を挿入するメモリ拡張の回帰テストも実行します。
+ROS ノード全体のビルドと実データ・GPUでの動作確認は、別途上記の Docker 実行で行ってください。

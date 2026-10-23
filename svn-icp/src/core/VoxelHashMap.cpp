@@ -91,13 +91,9 @@ namespace svnicp {
   }
 
   void VoxelHashMap::RemoveFarPointCloud(const Eigen::Vector3d &current_position) {
-    for (const auto &[voxel_idx, voxel_cloud]: map_) {
-      const auto pt = voxel_cloud.front();
-      if (const auto distance_square = (pt.getVector3fMap().cast<double>() - current_position).squaredNorm();
-        distance_square > max_range_ * max_range_) {
-        map_.erase(voxel_idx);
-      }
-    }
+    prune_local_map(map_, [&](const pcl::PointCloud<Point_t> &cloud) {
+      return (cloud.front().getVector3fMap().cast<double>() - current_position).squaredNorm();
+    }, max_range_ * max_range_, max_voxels_);
   }
 
   pcl::PointCloud<Point_t> VoxelHashMap::MergePoints(const pcl::PointCloud<Point_t> &voxel_cloud) {

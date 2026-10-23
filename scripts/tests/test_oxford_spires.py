@@ -185,8 +185,9 @@ class OxfordTests(unittest.TestCase):
     def test_process_lifecycle_and_playback_failure(self):
         # Real child processes exercise command construction, output, and cleanup;
         # only ROS discovery and the bag reader are replaced by fixture metadata.
-        for playback_exit, short in ((0, False), (0, True), (7, False)):
-            with self.subTest(playback_exit=playback_exit, short=short), tempfile.TemporaryDirectory() as folder:
+        for playback_exit, short, node_exit in ((0, False, 0), (0, True, 0), (7, False, 0), (0, False, 247)):
+            with self.subTest(playback_exit=playback_exit, short=short, node_exit=node_exit), \
+                 tempfile.TemporaryDirectory() as folder:
                 root = Path(folder)
                 executable = root / "ros2"
                 executable.write_text("""#!/usr/bin/env python3
@@ -199,6 +200,8 @@ if sys.argv[1] == 'run':
     pathlib.Path(params['batch_progress_path']).write_text(
         '{"last_processed_timestamp_ns": 102000000000, "consumed_lidar_frames": 3}')
     (output.parent / 'node.pid').write_text(str(os.getpid()))
+    if os.environ['FIXTURE_NODE_EXIT'] != '0':
+        raise SystemExit(int(os.environ['FIXTURE_NODE_EXIT']))
     while True: time.sleep(1)
 else:
     raise SystemExit(int(os.environ['FIXTURE_PLAYBACK_EXIT']))
@@ -207,19 +210,26 @@ else:
                 monitor = types.SimpleNamespace(
                     count_subscribers=lambda topic, folder=root: int((folder / "node.pid").exists()),
                     destroy_node=lambda: None)
-                fake_ros = types.SimpleNamespace(init=lambda: None, shutdown=lambda: None,
-                                                create_node=lambda name, node=monitor: node,
-                                                spin_once=lambda node, timeout_sec: None)
+                context = types.SimpleNamespace(try_shutdown=lambda: None)
+                fake_ros = types.SimpleNamespace(init=lambda **kwargs: None,
+                                                create_node=lambda name, node=monitor, **kwargs: node)
                 args = types.SimpleNamespace(startup_timeout=5, play_rate=0.05,
                                              read_ahead_queue_size=10, sequence_timeout=5,
                                              drain_timeout=5, end_tolerance=0.2)
                 config = {"/svnicp/SVNICP": {"ros__parameters": {"lidar_param": {"topic": "/old"}}}}
-                with patch.dict(sys.modules, {"rclpy": fake_ros}), \
+                with patch.dict(sys.modules, {"rclpy": fake_ros,
+                                              "rclpy.context": types.SimpleNamespace(Context=lambda ctx=context: ctx),
+                                              "rclpy.signals": types.SimpleNamespace(
+                                                  SignalHandlerOptions=types.SimpleNamespace(NO=0))}), \
                      patch.dict(os.environ, {"PATH": str(root) + os.pathsep + os.environ["PATH"],
                                              "FIXTURE_PLAYBACK_EXIT": str(playback_exit),
+                                             "FIXTURE_NODE_EXIT": str(node_exit),
                                              "FIXTURE_SHORT_TRAJECTORY": str(int(short))}), \
                      patch.object(oxford, "cloud_bounds", return_value=(100.0, 102.0, 3, 102000000000)):
-                    if playback_exit:
+                    if node_exit:
+                        with self.assertRaisesRegex(RuntimeError, "247.*SIGKILL.*out-of-memory"):
+                            oxford.run_sequence(root, "/points", config, root, args)
+                    elif playback_exit:
                         with self.assertRaisesRegex(RuntimeError, "Bag playback failed: 7"):
                             oxford.run_sequence(root, "/points", config, root, args)
                     else:
@@ -233,6 +243,54 @@ else:
                 self.assertEqual(config["/svnicp/SVNICP"]["ros__parameters"]["lidar_param"]["topic"], "/old")
                 with self.assertRaises(ProcessLookupError):
                     os.kill(int((root / "node.pid").read_text()), 0)
+
+    def test_shutdown_does_not_replace_original_failure_or_interrupt(self):
+        for failure in (RuntimeError("Node exited during playback: 247"), KeyboardInterrupt()):
+            with self.subTest(failure=type(failure).__name__), tempfile.TemporaryDirectory() as folder:
+                class Context:
+                    valid = True
+
+                    def try_shutdown(self):
+                        self.valid = False
+
+                context = Context()
+
+                def subscribe(topic, ctx=context, error=failure):
+                    ctx.try_shutdown()  # Mimic ROS already having shut down.
+                    raise error
+
+                monitor = types.SimpleNamespace(count_subscribers=subscribe, destroy_node=lambda: None)
+                fake_ros = types.SimpleNamespace(init=lambda **kwargs: None,
+                                                create_node=lambda *args, node=monitor, **kwargs: node)
+                config = {"/svnicp/SVNICP": {"ros__parameters": {"lidar_param": {}}}}
+                args = types.SimpleNamespace(startup_timeout=5)
+                with patch.dict(sys.modules, {"rclpy": fake_ros,
+                                              "rclpy.context": types.SimpleNamespace(Context=lambda ctx=context: ctx),
+                                              "rclpy.signals": types.SimpleNamespace(
+                                                  SignalHandlerOptions=types.SimpleNamespace(NO=0))}), \
+                     patch.object(oxford, "cloud_bounds", return_value=(100, 102, 3, 102000000000)), \
+                     patch.object(oxford.subprocess, "Popen", return_value=object()), \
+                     patch.object(oxford, "stop") as stop, \
+                     self.assertRaises(type(failure)) as caught:
+                    oxford.run_sequence(Path(folder), "/points", config, Path(folder), args)
+                self.assertIs(caught.exception, failure)
+                self.assertFalse(context.valid)
+                self.assertEqual(stop.call_count, 1)
+
+    def test_user_interrupt_is_saved_and_stops_remaining_sequences(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            sequence(root / "data")
+            sequence(root / "data", "2024-03-12-keble-college-03")
+            output = root / "results"
+            with patch.object(oxford, "run_sequence", side_effect=KeyboardInterrupt()) as run:
+                result = oxford.main(["--dataset-dir", str(root / "data"), "--output-dir", str(output)])
+            self.assertEqual(result, 130)
+            self.assertEqual(run.call_count, 1)
+            rows = json.loads((output / "summary.json").read_text())
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["status"], "interrupted")
+            self.assertEqual(rows[0]["error"], "Interrupted by user")
 
     def test_rigid_alignment_removes_rotation_and_translation(self):
         gt = poses([[0, 0, 0], [1, 0, 0], [1, 1, 1], [0, 2, 0]])

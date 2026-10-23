@@ -175,6 +175,10 @@ namespace svnicp {
 
     this->declare_parameter("SVNICP_parameters.map_range", 100.);
     this->get_parameter("SVNICP_parameters.map_range", local_map_.max_range_);
+    this->declare_parameter("SVNICP_parameters.map_max_voxels", 0);
+    const auto map_max_voxels = this->get_parameter("SVNICP_parameters.map_max_voxels").as_int();
+    if (map_max_voxels < 0) throw std::invalid_argument("map_max_voxels must be >= 0");
+    local_map_.max_voxels_ = static_cast<std::size_t>(map_max_voxels);
 
     this->declare_parameter("SVNICP_parameters.map_voxel_size", 1.0);
     this->get_parameter("SVNICP_parameters.map_voxel_size", local_map_.voxel_size_);
@@ -643,6 +647,9 @@ namespace svnicp {
         if (target_pcl_->empty()) {
           *target_pcl_ = local_map_.GetMap();
         }
+        RCLCPP_INFO_STREAM_THROTTLE(this->get_logger(), *this->get_clock(), 10000,
+          "Local map: " << local_map_.Size() << " voxels (limit " << local_map_.max_voxels_
+          << "), registration points: " << source_pcl_->size() << " source, " << target_pcl_->size() << " target");
         target_tr_ = svnicp::vector2tensor(svnicp::pointcloud2vector(target_pcl_), torch::kCUDA);
         steinicp_odom_->add_cloud(source_tr_, target_tr_, init_pose_.clone());
       } else {
@@ -769,14 +776,17 @@ namespace svnicp {
   pcl::PointCloud<Point_t> OdometryPipeline::crop_pointcloud(
     const pcl::PointCloud<Point_t>::Ptr &pointcloud) {
     pcl::PointCloud<Point_t> cropped_cloud;
+    double scan_max_squared_range = 0.;
     std::copy_if(pointcloud->points.begin(),
                  pointcloud->points.end(),
                  std::back_inserter(cropped_cloud.points),
                  [&](const auto &pt) {
                    auto norm = pt.x * pt.x + pt.y * pt.y + pt.z * pt.z;
-                   if (norm > scan_max_range_) scan_max_range_ = norm;
-                   return norm < max_range_ * max_range_ && norm > min_range_ * min_range_;
+                   if (!(norm < max_range_ * max_range_ && norm > min_range_ * min_range_)) return false;
+                   scan_max_squared_range = std::max(scan_max_squared_range, static_cast<double>(norm));
+                   return true;
                  });
+    scan_max_range_ = std::sqrt(scan_max_squared_range);
     return cropped_cloud;
   }
 
