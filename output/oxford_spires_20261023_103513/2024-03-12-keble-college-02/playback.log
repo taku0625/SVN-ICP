@@ -1,0 +1,8 @@
+[INFO] [1792719404.519878932] [rosbag2_player]: Set rate to 0.05
+[INFO] [1792719404.525111394] [rosbag2_player]: Overriding QoS profile for topic /hesai/pandar
+[INFO] [1792719404.532506333] [rosbag2_player]: Adding keyboard callbacks.
+[INFO] [1792719404.532547946] [rosbag2_player]: Press SPACE for Pause/Resume
+[INFO] [1792719404.532554928] [rosbag2_player]: Press CURSOR_RIGHT for Play Next Message
+[INFO] [1792719404.532561064] [rosbag2_player]: Press CURSOR_UP for Increase Rate 10%
+[INFO] [1792719404.532566196] [rosbag2_player]: Press CURSOR_DOWN for Decrease Rate 10%
+[INFO] [1792723532.132238874] [rclcpp]: signal_handler(SIGINT/SIGTERM)

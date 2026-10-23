@@ -1,0 +1,3 @@
+error,lidar_topic,sequence,status
+Node exited during playback: 247,/hesai/pandar,2024-03-12-keble-college-02,failed
+"failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241",/hesai/pandar,2024-03-12-keble-college-03,failed

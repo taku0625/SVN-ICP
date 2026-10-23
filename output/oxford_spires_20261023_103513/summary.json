@@ -1,0 +1,14 @@
+[
+  {
+    "sequence": "2024-03-12-keble-college-02",
+    "status": "failed",
+    "error": "Node exited during playback: 247",
+    "lidar_topic": "/hesai/pandar"
+  },
+  {
+    "sequence": "2024-03-12-keble-college-03",
+    "status": "failed",
+    "error": "failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241",
+    "lidar_topic": "/hesai/pandar"
+  }
+]
