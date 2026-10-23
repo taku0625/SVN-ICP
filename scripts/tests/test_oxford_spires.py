@@ -1,12 +1,12 @@
 import importlib.util
 import json
 import os
-from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import types
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 import numpy as np
@@ -47,6 +47,88 @@ def sequence(root, name="2024-03-12-keble-college-02", extra_topic=False):
 
 
 class OxfordTests(unittest.TestCase):
+    def test_cloud_bounds_keeps_exact_nanoseconds_and_accepts_single_frame(self):
+        stamp = types.SimpleNamespace(sec=1710256319, nanosec=814613001)
+        cloud = types.SimpleNamespace(header=types.SimpleNamespace(stamp=stamp),
+                                      fields=[types.SimpleNamespace(name=name) for name in ("x", "y", "z")])
+
+        class Reader:
+            def __init__(self):
+                self.messages = [cloud]
+
+            def open(self, *args):
+                pass
+
+            def set_filter(self, *args):
+                pass
+
+            def has_next(self):
+                return bool(self.messages)
+
+            def read_next(self):
+                return "/points", self.messages.pop(0), 0
+
+        reader = types.SimpleNamespace(SequentialReader=Reader, StorageOptions=lambda **kwargs: None,
+                                       ConverterOptions=lambda *args: None, StorageFilter=lambda **kwargs: None)
+        serialization = types.SimpleNamespace(deserialize_message=lambda data, cls: data)
+        messages = types.SimpleNamespace(PointCloud2=object)
+        with patch.dict(sys.modules, {"rosbag2_py": reader, "rclpy.serialization": serialization,
+                                      "sensor_msgs.msg": messages}):
+            first, last, count, exact = oxford.cloud_bounds(Path("fixture"), "/points")
+        self.assertEqual(count, 1)
+        self.assertEqual(first, last)
+        self.assertEqual(exact, 1710256319814613001)
+
+    def test_processing_wait_uses_consumption_not_trajectory_coverage(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "progress.json"
+            end = 1710256319814613001
+            clock = [0.0]
+            updates = iter([(1, end - 1), (2, end)])
+            path.write_text(json.dumps({"consumed_lidar_frames": 0,
+                                        "last_processed_timestamp_ns": 0}))
+
+            def advance(duration):
+                clock[0] += duration
+                count, stamp = next(updates)
+                path.write_text(json.dumps({"consumed_lidar_frames": count,
+                                            "last_processed_timestamp_ns": stamp}))
+
+            node = types.SimpleNamespace(poll=lambda: None)
+            with patch.object(oxford.time, "monotonic", side_effect=lambda: clock[0]), \
+                 patch.object(oxford.time, "sleep", side_effect=advance):
+                result = oxford.wait_for_processing(node, path, end, 0.75)
+            self.assertEqual(result["last_processed_timestamp_ns"], end)
+            self.assertEqual(result["consumed_lidar_frames"], 2)
+            self.assertGreater(clock[0], 0.75)
+
+    def test_processing_stall_remains_an_execution_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            clock = [0.0]
+
+            def advance(duration):
+                clock[0] += duration
+
+            node = types.SimpleNamespace(poll=lambda: None)
+            with patch.object(oxford.time, "monotonic", side_effect=lambda: clock[0]), \
+                 patch.object(oxford.time, "sleep", side_effect=advance), \
+                 self.assertRaisesRegex(TimeoutError, "No LiDAR processing progress"):
+                oxford.wait_for_processing(node, Path(directory) / "missing.json", 100, 0.5)
+
+    def test_initial_zero_timestamp_is_not_processing_completion(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "progress.json"
+            path.write_text('{"last_processed_timestamp_ns": 0, "consumed_lidar_frames": 0}')
+            node = types.SimpleNamespace(poll=lambda: None)
+
+            def complete(duration):
+                path.write_text('{"last_processed_timestamp_ns": 0, "consumed_lidar_frames": 1}')
+
+            with patch.object(oxford.time, "sleep", side_effect=complete) as sleep:
+                result = oxford.wait_for_processing(node, path, 0, 5)
+            sleep.assert_called_once()
+            self.assertEqual(result["consumed_lidar_frames"], 1)
+
     def test_nested_discovery_and_single_sequence_root(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
@@ -103,8 +185,8 @@ class OxfordTests(unittest.TestCase):
     def test_process_lifecycle_and_playback_failure(self):
         # Real child processes exercise command construction, output, and cleanup;
         # only ROS discovery and the bag reader are replaced by fixture metadata.
-        for playback_exit in (0, 7):
-            with self.subTest(playback_exit=playback_exit), tempfile.TemporaryDirectory() as folder:
+        for playback_exit, short in ((0, False), (0, True), (7, False)):
+            with self.subTest(playback_exit=playback_exit, short=short), tempfile.TemporaryDirectory() as folder:
                 root = Path(folder)
                 executable = root / "ros2"
                 executable.write_text("""#!/usr/bin/env python3
@@ -112,7 +194,10 @@ import os, pathlib, sys, time, yaml
 if sys.argv[1] == 'run':
     params = yaml.safe_load(pathlib.Path(sys.argv[-1]).read_text())['/svnicp/SVNICP']['ros__parameters']
     output = pathlib.Path(params['tum_trajectory_path'])
-    output.write_text('100 0 0 0 0 0 0 1\\n101 1 0 0 0 0 0 1\\n102 1 1 0 0 0 0 1\\n')
+    start, step = (101.0, 0.1) if os.environ['FIXTURE_SHORT_TRAJECTORY'] == '1' else (100.0, 1.0)
+    output.write_text(''.join(f'{start + i * step} {i} 0 0 0 0 0 1\\n' for i in range(3)))
+    pathlib.Path(params['batch_progress_path']).write_text(
+        '{"last_processed_timestamp_ns": 102000000000, "consumed_lidar_frames": 3}')
     (output.parent / 'node.pid').write_text(str(os.getpid()))
     while True: time.sleep(1)
 else:
@@ -120,10 +205,10 @@ else:
 """)
                 executable.chmod(0o755)
                 monitor = types.SimpleNamespace(
-                    count_subscribers=lambda topic: int((root / "node.pid").exists()),
+                    count_subscribers=lambda topic, folder=root: int((folder / "node.pid").exists()),
                     destroy_node=lambda: None)
                 fake_ros = types.SimpleNamespace(init=lambda: None, shutdown=lambda: None,
-                                                create_node=lambda name: monitor,
+                                                create_node=lambda name, node=monitor: node,
                                                 spin_once=lambda node, timeout_sec: None)
                 args = types.SimpleNamespace(startup_timeout=5, play_rate=0.05,
                                              read_ahead_queue_size=10, sequence_timeout=5,
@@ -131,15 +216,17 @@ else:
                 config = {"/svnicp/SVNICP": {"ros__parameters": {"lidar_param": {"topic": "/old"}}}}
                 with patch.dict(sys.modules, {"rclpy": fake_ros}), \
                      patch.dict(os.environ, {"PATH": str(root) + os.pathsep + os.environ["PATH"],
-                                             "FIXTURE_PLAYBACK_EXIT": str(playback_exit)}), \
-                     patch.object(oxford, "cloud_bounds", return_value=(100.0, 102.0, 3)):
+                                             "FIXTURE_PLAYBACK_EXIT": str(playback_exit),
+                                             "FIXTURE_SHORT_TRAJECTORY": str(int(short))}), \
+                     patch.object(oxford, "cloud_bounds", return_value=(100.0, 102.0, 3, 102000000000)):
                     if playback_exit:
                         with self.assertRaisesRegex(RuntimeError, "Bag playback failed: 7"):
                             oxford.run_sequence(root, "/points", config, root, args)
                     else:
                         result = oxford.run_sequence(root, "/points", config, root, args)
                         self.assertEqual(result["lidar_frames"], 3)
-                        self.assertEqual(result["estimated_end"], 102.0)
+                        self.assertEqual(result["estimated_end"], 101.2 if short else 102.0)
+                        self.assertEqual(result["consumed_lidar_frames"], 3)
                 params = yaml.safe_load((root / "parameters.yaml").read_text())["/svnicp/SVNICP"]["ros__parameters"]
                 self.assertEqual(params["lidar_param"]["topic"], "/points")
                 self.assertEqual(params["auto_shutdown_progress"], 0.0)
@@ -244,6 +331,58 @@ else:
             with self.assertRaises(SystemExit):
                 oxford.main(["--dataset-dir", str(root), "--output-dir", str(output)])
             self.assertEqual(summary.read_text(), "keep me")
+
+    def test_low_association_ratio_is_not_a_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            sequence(root / "data")
+            estimate = np.repeat(poses([[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0]]), 2, axis=0)
+            estimate[1::2, 0] += 0.01
+
+            def run(bag, topic, config, output, args):
+                np.savetxt(output / "trajectory.tum", estimate)
+                return {"lidar_frames": 8, "consumed_lidar_frames": 8}
+
+            output = root / "results"
+            with patch.object(oxford, "run_sequence", side_effect=run):
+                result = oxford.main(["--dataset-dir", str(root / "data"), "--output-dir", str(output),
+                                      "--min-association-ratio", "0.99", "--end-tolerance", "0.01"])
+            self.assertEqual(result, 0)
+            row = json.loads((output / "summary.json").read_text())[0]
+            self.assertEqual(row["status"], "completed")
+            self.assertEqual(row["association_ratio"], 0.5)
+            self.assertEqual(row["error"], "")
+
+    def test_unscorable_gt_does_not_prevent_estimation(self):
+        for problem in ("missing", "invalid", "offset"):
+            with self.subTest(problem=problem), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                first = sequence(root / "data")
+                sequence(root / "data", "2024-03-12-keble-college-03")
+                gt = first / "processed/trajectory/gt-tum.txt"
+                if problem == "missing":
+                    gt.unlink()
+                elif problem == "offset":
+                    values = np.loadtxt(gt)
+                    values[:, 0] += 5.0
+                    np.savetxt(gt, values)
+                else:
+                    gt.write_text("invalid ground truth")
+
+                def run(bag, topic, config, output, args):
+                    np.savetxt(output / "trajectory.tum", poses([[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0]]))
+                    return {"lidar_frames": 4, "consumed_lidar_frames": 4}
+
+                output = root / "results"
+                with patch.object(oxford, "run_sequence", side_effect=run) as runner:
+                    result = oxford.main(["--dataset-dir", str(root / "data"), "--output-dir", str(output)])
+                self.assertEqual(result, 0)
+                self.assertEqual(runner.call_count, 2)
+                rows = json.loads((output / "summary.json").read_text())
+                self.assertEqual([row["status"] for row in rows], ["completed", "completed"])
+                self.assertIn("evaluation_warning", rows[0])
+                self.assertIsNone(rows[0]["ate_rmse_m"])
+                self.assertEqual(rows[1]["ate_rmse_m"], 0.0)
 
     def test_bad_tum_is_rejected(self):
         with tempfile.TemporaryDirectory() as folder:

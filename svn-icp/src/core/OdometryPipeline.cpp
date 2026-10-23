@@ -19,6 +19,7 @@
 
 #include <filesystem>
 #include <iomanip>
+#include <optional>
 
 #include "core/ICPUtils.h"
 #include "core/SVGDICP.h"
@@ -295,6 +296,8 @@ namespace svnicp {
     this->get_parameter("save_tum_trajectory", save_tum_trajectory_);
     this->declare_parameter("tum_trajectory_path", std::string());
     this->get_parameter("tum_trajectory_path", tum_trajectory_path_);
+    this->declare_parameter("batch_progress_path", std::string());
+    batch_progress_.configure(this->get_parameter("batch_progress_path").as_string());
 
     if (save_tum_trajectory_) {
       if (tum_trajectory_path_.empty()) {
@@ -523,8 +526,14 @@ namespace svnicp {
     bool synced = false;
     static auto first_time = rclcpp::Time();
     static bool first_time_set = false;
+    std::optional<rclcpp::Time> completed_cloud_time;
 
     while (rclcpp::ok()) {
+      // Acknowledge the previous scan after its processing or skip has finished.
+      if (completed_cloud_time) {
+        batch_progress_.complete(completed_cloud_time->nanoseconds());
+        completed_cloud_time.reset();
+      }
       // sync IMU and LiDAR
       if (imu_measurement_buffer_.size() != 0 && estimator_ == KF) {
         if (imu_interpolation) {
@@ -574,6 +583,7 @@ namespace svnicp {
             continue;
           }
           const auto [origin_msg, timestamp] = cloud_msg_buffer_.get_first_buffer_time_pair_and_pop();
+          completed_cloud_time = timestamp;
           //                    auto dummy  = imu_measurement_buffer_.get_first_buffer_time_pair_and_pop();
           std::cout << "time diff " << timestamp.seconds() - imu_time.seconds() << std::endl;
           source_msg = origin_msg;
@@ -584,6 +594,7 @@ namespace svnicp {
         } else continue;
       } else if (estimator_ == ICP && cloud_msg_buffer_.size() != 0) {
         const auto [origin_msg, timestamp] = cloud_msg_buffer_.get_first_buffer_time_pair_and_pop();
+        completed_cloud_time = timestamp;
         //                    auto dummy  = imu_measurement_buffer_.get_first_buffer_time_pair_and_pop();
         source_msg = origin_msg;
         lidar_time = timestamp;
@@ -717,6 +728,9 @@ namespace svnicp {
           rclcpp::shutdown();
         }
       }
+    }
+    if (completed_cloud_time) {
+      batch_progress_.complete(completed_cloud_time->nanoseconds());
     }
   }
 

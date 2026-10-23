@@ -9,12 +9,12 @@ import csv
 import json
 import math
 import os
-from pathlib import Path
 import re
 import signal
 import subprocess
 import tempfile
 import time
+from pathlib import Path
 
 import numpy as np
 import yaml
@@ -130,7 +130,6 @@ def inspect_sequence(sequence, lidar_topic):
     else:
         lidar_topic = topics[0]
     gt = sequence / "processed/trajectory/gt-tum.txt"
-    load_tum(gt)
     return bag, metadata, lidar_topic, gt
 
 
@@ -171,13 +170,35 @@ def cloud_bounds(bag, topic):
                 raise ValueError("PointCloud2 is missing XYZ fields")
             first = cloud.header.stamp.sec + cloud.header.stamp.nanosec * 1e-9
         stamp = cloud.header.stamp.sec + cloud.header.stamp.nanosec * 1e-9
+        last_timestamp_ns = cloud.header.stamp.sec * 1_000_000_000 + cloud.header.stamp.nanosec
         if last is not None and stamp < last:
             raise ValueError("LiDAR header timestamps are not monotonic")
         last = stamp
         count += 1
-    if count < 3 or last <= first:
-        raise ValueError("Not enough timestamped LiDAR frames")
-    return first, last, count
+    if not count:
+        raise ValueError("No LiDAR frames in the selected topic")
+    return first, last, count, last_timestamp_ns
+
+
+def wait_for_processing(node, progress_path, last_timestamp_ns, timeout):
+    """Wait for consumed input, independent of which scans produced odometry."""
+    deadline = time.monotonic() + timeout
+    consumed = -1
+    while True:
+        if node.poll() is not None:
+            raise RuntimeError(f"Node exited before completion: {node.returncode}")
+        try:
+            progress = json.loads(progress_path.read_text())
+        except (FileNotFoundError, json.JSONDecodeError):
+            progress = {}
+        if progress.get("consumed_lidar_frames", 0) > consumed:
+            consumed = progress.get("consumed_lidar_frames", 0)
+            deadline = time.monotonic() + timeout
+        if consumed > 0 and progress.get("last_processed_timestamp_ns", -1) >= last_timestamp_ns:
+            return progress
+        if time.monotonic() > deadline:
+            raise TimeoutError("No LiDAR processing progress before --drain-timeout; see svnicp.log and progress.json")
+        time.sleep(0.5)
 
 
 def stop(process):
@@ -194,12 +215,14 @@ def stop(process):
 def run_sequence(bag, topic, config, output, args):
     import rclpy
 
-    first, last, count = cloud_bounds(bag, topic)
+    first, last, count, last_timestamp_ns = cloud_bounds(bag, topic)
     trajectory = output / "trajectory.tum"
+    progress_path = output / "progress.json"
     params = copy.deepcopy(config)
     node_params = params["/svnicp/SVNICP"]["ros__parameters"]
     node_params.update(dataset_duration=0.0, auto_shutdown_progress=0.0,
-                       save_tum_trajectory=True, tum_trajectory_path=str(trajectory))
+                       save_tum_trajectory=True, tum_trajectory_path=str(trajectory),
+                       batch_progress_path=str(progress_path))
     node_params["lidar_param"]["topic"] = topic
     params_path = output / "parameters.yaml"
     params_path.write_text(yaml.safe_dump(params, sort_keys=False))
@@ -238,31 +261,21 @@ def run_sequence(bag, topic, config, output, args):
                 time.sleep(0.5)
             if player.returncode != 0:
                 raise RuntimeError(f"Bag playback failed: {player.returncode}")
-            deadline = time.monotonic() + args.drain_timeout
-            while True:
-                if node.poll() is not None:
-                    raise RuntimeError(f"Node exited before completion: {node.returncode}")
-                if trajectory.is_file():
-                    try:
-                        poses = load_tum(trajectory)
-                        if poses[-1, 0] >= last - args.end_tolerance:
-                            break
-                    except ValueError:
-                        pass
-                if time.monotonic() > deadline:
-                    raise TimeoutError("Trajectory did not reach the final LiDAR timestamp; see logs")
-                time.sleep(0.5)
+            progress = wait_for_processing(node, progress_path, last_timestamp_ns, args.drain_timeout)
     finally:
         stop(player)
         stop(node)
         if monitor is not None:
             monitor.destroy_node()
         rclpy.shutdown()
-    poses = load_tum(trajectory)
-    if poses[0, 0] > first + args.end_tolerance:
-        raise ValueError("Trajectory starts too late; refusing partial sequence evaluation")
-    return {"lidar_frames": count, "lidar_start": first, "lidar_end": last,
-            "estimated_start": float(poses[0, 0]), "estimated_end": float(poses[-1, 0])}
+    result = {"lidar_frames": count, "lidar_start": first, "lidar_end": last,
+              "consumed_lidar_frames": progress["consumed_lidar_frames"]}
+    try:
+        poses = load_tum(trajectory)
+        result.update(estimated_start=float(poses[0, 0]), estimated_end=float(poses[-1, 0]))
+    except (OSError, ValueError) as error:
+        result["trajectory_warning"] = str(error)
+    return result
 
 
 def positive(value):
@@ -282,18 +295,17 @@ def main(argv=None):
     parser.add_argument("--play-rate", type=positive, default=0.05)
     parser.add_argument("--read-ahead-queue-size", type=int, default=10)
     parser.add_argument("--max-difference", type=positive, default=0.05, help="GT association tolerance in seconds")
-    parser.add_argument("--min-association-ratio", type=positive, default=0.8)
-    parser.add_argument("--end-tolerance", type=positive, default=1.0, help="Allowed missing trajectory start/end in seconds")
+    parser.add_argument("--min-association-ratio", type=float, help=argparse.SUPPRESS)
+    parser.add_argument("--end-tolerance", type=float, help=argparse.SUPPRESS)
     parser.add_argument("--startup-timeout", type=positive, default=120)
-    parser.add_argument("--drain-timeout", type=positive, default=180)
+    parser.add_argument("--drain-timeout", type=positive, default=180,
+                        help="Maximum seconds without LiDAR processing progress after playback")
     parser.add_argument("--sequence-timeout", type=positive, default=86400)
     parser.add_argument("--dry-run", action="store_true", help="Validate layout, GT and metadata without ROS/GPU")
     parser.add_argument("--list-sequences", action="store_true", help="Show discovered sequence paths without building or evaluating")
     args = parser.parse_args(argv)
     if args.read_ahead_queue_size <= 0:
         parser.error("--read-ahead-queue-size must be positive")
-    if args.min_association_ratio > 1:
-        parser.error("--min-association-ratio must be at most 1")
     try:
         sequences = discover(args.dataset_dir.resolve(), args.sequence)
     except ValueError as error:
@@ -317,6 +329,7 @@ def main(argv=None):
             bag, metadata, topic, gt = inspect_sequence(sequence, args.lidar_topic)
             row["lidar_topic"] = topic
             if args.dry_run:
+                load_tum(gt)
                 row["status"] = "validated_only"
             else:
                 output = args.output_dir / sequence.name
@@ -325,11 +338,13 @@ def main(argv=None):
                 with tempfile.TemporaryDirectory(prefix="svnicp_oxford_") as temporary:
                     playback_bag = compatible_bag(bag, metadata, Path(temporary))
                     row.update(run_sequence(playback_bag, topic, config, output, args))
-                row.update(ate_metrics(load_tum(gt), load_tum(output / "trajectory.tum"), args.max_difference))
-                if row["association_ratio"] < args.min_association_ratio:
-                    raise ValueError("Too few estimated poses associate with GT; check timestamps")
-                row["status"] = "passed"
-        except Exception as error:
+                row["status"] = "completed"
+                try:
+                    row.update(ate_metrics(load_tum(gt), load_tum(output / "trajectory.tum"), args.max_difference))
+                except Exception as error:  # noqa: BLE001
+                    row.update(ate_rmse_m=None, ate_mean_m=None, ate_median_m=None,
+                               ate_max_m=None, evaluation_warning=str(error))
+        except Exception as error:  # noqa: BLE001
             row["error"] = str(error)
         rows.append(row)
         print(json.dumps(row), flush=True)

@@ -24,6 +24,7 @@
 #include <atomic>
 #include <thread>
 #include <fstream>
+#include "core/BatchProgress.h"
 
 
 //third party
@@ -151,6 +152,7 @@ namespace svnicp {
     bool save_tum_trajectory_{};
     std::string tum_trajectory_path_;
     std::ofstream tum_trajectory_file_;
+    BatchProgress batch_progress_;
     std::vector<double> icp_cov_scales_{1., 1., 1., 1., 1., 1.};
 
     bool use_Segmentation_ = true;
