@@ -106,6 +106,9 @@ python3 scripts/evaluate_oxford_spires.py --dataset-dir /path/to/oxford_spires \
 python3 -m unittest discover -s scripts/tests -v
 ```
 
+Singularity 変換のテストには `spython` も必要です。
+`python3 -m pip install -r docker/requirements-singularity.txt` でインストールできます。
+
 C++ ユーティリティのテストには `g++` を使います。`robin-map-dev` のヘッダーも利用可能な場合は、
 実際の `tsl::robin_map` に120万 voxel を挿入するメモリ拡張の回帰テストも実行します。
 ROS ノード全体のビルドと実データ・GPUでの動作確認は、別途上記の Docker 実行で行ってください。
