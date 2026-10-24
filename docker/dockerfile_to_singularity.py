@@ -13,7 +13,7 @@ try:
     from spython.main.parse.parsers import DockerParser
     from spython.main.parse.writers import SingularityWriter
 except ImportError as error:
-    raise SystemExit("Install spython: python3 -m pip install -r docker/requirements-singularity.txt") from error
+    raise SystemExit("Prepare spython with: uv sync --project docker --locked; run via docker/build_singularity.sh") from error
 
 
 VARIABLE = re.compile(r"\$\{([A-Za-z_][A-Za-z0-9_]*)\}|\$([A-Za-z_][A-Za-z0-9_]*)")

@@ -17,7 +17,7 @@ usage() {
 Usage: bash docker/build_singularity.sh [options] [-- SINGULARITY_BUILD_OPTIONS...]
 
 Convert Dockerfile with spython and build SIF. Docker is not required.
-Install Python dependencies: python3 -m pip install -r docker/requirements-singularity.txt
+Python dependencies are managed by uv using docker/pyproject.toml and uv.lock.
 
   --output FILE         SIF destination (default: images/svnicp-humble-cuda124.sif)
   --definition FILE     Generated definition (default: SIF path with .def extension)
@@ -29,7 +29,8 @@ Install Python dependencies: python3 -m pip install -r docker/requirements-singu
   -h, --help            Show this help
 
 Existing output files are never overwritten. The generated definition is kept
-for review even if SIF building fails. SPYTHON_PYTHON selects the Python executable.
+for review even if SIF building fails. By default, uv prepares the Python environment.
+SPYTHON_PYTHON optionally selects an already prepared Python executable instead.
 USAGE
 }
 
@@ -71,8 +72,15 @@ elif [[ ${#runtime_args[@]} -gt 0 || -n "$runtime" ]]; then
   die "Runtime options have no effect with --definition-only"
 fi
 
-"${SPYTHON_PYTHON:-python3}" "${SCRIPT_DIR}/dockerfile_to_singularity.py" \
-  "$dockerfile" "$definition" "${build_args[@]}"
+if [[ -n "${SPYTHON_PYTHON:-}" ]]; then
+  "$SPYTHON_PYTHON" "${SCRIPT_DIR}/dockerfile_to_singularity.py" \
+    "$dockerfile" "$definition" "${build_args[@]}"
+else
+  command -v uv >/dev/null 2>&1 || die "Install uv, then rerun this script"
+  uv run --project "$SCRIPT_DIR" --locked --no-dev \
+    python "${SCRIPT_DIR}/dockerfile_to_singularity.py" \
+    "$dockerfile" "$definition" "${build_args[@]}"
+fi
 echo "Created definition: $definition"
 [[ "$definition_only" = 0 ]] || exit 0
 

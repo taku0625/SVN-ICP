@@ -6,13 +6,18 @@ SingularityCE / Apptainer で `.sif` をビルドします。Docker は不要で
 
 ## インストールとビルド
 
-Python の仮想環境等で、変換用パッケージをインストールしてください。
+`uv` と Python 3.10 以降を使用します。依存関係は `docker/pyproject.toml` と
+`docker/uv.lock` で管理し、仮想環境は `docker/.venv` に作成します。
 SIF のビルドには別途 `singularity` または `apptainer` が必要です。
 
 ```bash
-python3 -m pip install -r docker/requirements-singularity.txt
+uv sync --project docker --locked
 bash docker/build_singularity.sh --fakeroot
 ```
+
+ビルドスクリプトも内部で `uv run --locked` を実行するため、仮想環境の activate は不要です。
+上の `uv sync` を省略してスクリプトから環境を作成することもできます。
+依存関係の取得が済んでいれば、定義ファイルの変換にはネットワーク接続は不要です。
 
 既定の生成先は次の2ファイルです。
 
@@ -64,7 +69,8 @@ bash docker/build_singularity.sh \
 `build` オプションに渡します（Docker のビルドオプションではありません）。
 `--runtime` には実行ファイルの絶対パスも指定できます。
 省略時は `singularity`、次いで `apptainer` を探します。
-`SPYTHON_PYTHON=/path/to/venv/bin/python` で spython をインストールした Python を選べます。
+通常は uv が管理する Python を使用します。
+既存の環境を明示的に使う場合だけ、`SPYTHON_PYTHON=/path/to/venv/bin/python` で上書きできます。
 
 既存の定義ファイル・SIF は上書きしません。再作成する場合は新しい出力先を指定してください。
 SIF のビルドに失敗した場合も `.def` は確認・再試行用に残します。
@@ -109,3 +115,13 @@ singularity exec --nv \
 `singularity` は `apptainer` に置き換えられます。
 `exec` では ROS の初期化用に明示的に `/ros_entrypoint.sh` を指定します。
 ソースは bind し、ビルド成果物・ログ・結果は書き込み可能な別ワークスペースに保存してください。
+
+## テスト
+
+```bash
+uv run --project docker --locked --group test \
+  python -m unittest discover -s scripts/tests -v
+```
+
+`test` グループで評価スクリプト用の NumPy と PyYAML も導入します。
+C++ ユーティリティのテストにはホストの `g++` と、追加のメモリ回帰テストには robin-map のヘッダーが必要です。

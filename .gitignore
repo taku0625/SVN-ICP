@@ -39,3 +39,4 @@ __pycache__/
 output/oxford_spires/
 images/
 *.sif
+.venv/

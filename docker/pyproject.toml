@@ -1,0 +1,12 @@
+[project]
+name = "svnicp-container-tools"
+version = "0.1.0"
+description = "Convert the SVN-ICP Dockerfile with spython"
+requires-python = ">=3.10"
+dependencies = ["spython==0.3.14"]
+
+[dependency-groups]
+test = ["numpy>=1.24,<3", "PyYAML>=6,<7"]
+
+[tool.uv]
+package = false

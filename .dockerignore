@@ -6,3 +6,4 @@ log
 *.pyc
 images
 *.sif
+**/.venv

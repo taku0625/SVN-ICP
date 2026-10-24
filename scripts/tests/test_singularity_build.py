@@ -95,6 +95,13 @@ elif args[0] == "inspect":
         self.assertEqual(json.loads(values), ["jazzy", "80;90", "/opt/libtorch/share/cmake/Torch",
                                              "/opt/libtorch/share/cmake/Torch", "/opt/libtorch/lib:/inherited"])
 
+    def test_default_uv_environment_converts_from_outside_the_repository(self):
+        self.env.pop("SPYTHON_PYTHON", None)
+        result = self.run_build("--definition-only", "--definition", str(self.root / "uv recipe.def"))
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("export ROS_DISTRO=humble", (self.root / "uv recipe.def").read_text())
+        self.assertEqual(self.commands(), [])
+
     def test_generated_post_exports_arguments_and_preserves_shell_and_run_boundaries(self):
         source = self.fixture('FROM ubuntu:22.04\nSHELL ["/bin/bash", "-c"]\n'
                               'ARG ARCH=75;80;90\nENV ARCHES=${ARCH}\n'
