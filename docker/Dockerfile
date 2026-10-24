@@ -6,6 +6,7 @@ ARG ROS_DISTRO=humble
 ARG TORCH_VERSION=2.5.1
 ARG TORCH_CUDA=cu124
 ARG GTSAM_VERSION=4.2.0
+ARG UV_VERSION=0.12.23
 ARG CMAKE_CUDA_ARCHITECTURES=75;80;86;89;90
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -33,6 +34,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
     && add-apt-repository universe \
     && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m pip install --no-cache-dir "uv==${UV_VERSION}" \
+    && /usr/local/bin/uv --version
 
 RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key \
     -o /usr/share/keyrings/ros-archive-keyring.gpg \

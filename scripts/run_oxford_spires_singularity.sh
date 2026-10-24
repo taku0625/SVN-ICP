@@ -56,7 +56,7 @@ done
 [[ "$BUILD_JOBS" =~ ^[1-9][0-9]*$ ]] || die "BUILD_JOBS must be a positive integer"
 [[ "$build_only" = 0 || ( "$skip_build" = 0 && "$inspection" = 0 ) ]] ||
   die "--build-only cannot be combined with --skip-build or inspection options"
-command -v uv >/dev/null 2>&1 || die "uv is required"
+UV_COMMAND="$(bash "${SCRIPT_DIR}/ensure_uv.sh")"
 command -v "$IMAGE_PYTHON" >/dev/null 2>&1 || die "Image Python not found: $IMAGE_PYTHON"
 IMAGE_PYTHON="$(command -v "$IMAGE_PYTHON")"
 
@@ -73,11 +73,11 @@ fi
 export UV_PROJECT_ENVIRONMENT="${SVNICP_EVAL_ENV:-/work/uv-evaluation}"
 export UV_CACHE_DIR="${UV_CACHE_DIR:-/work/uv-cache}"
 if [[ ! -e "$UV_PROJECT_ENVIRONMENT" ]]; then
-  uv venv --python "$IMAGE_PYTHON" --system-site-packages "$UV_PROJECT_ENVIRONMENT"
+  "$UV_COMMAND" venv --python "$IMAGE_PYTHON" --system-site-packages "$UV_PROJECT_ENVIRONMENT"
 fi
 grep -Eq '^include-system-site-packages = true[[:space:]]*$' "$UV_PROJECT_ENVIRONMENT/pyvenv.cfg" ||
   die "Evaluation environment must use --system-site-packages; choose a new SVNICP_EVAL_ENV"
-uv sync --project "${REPO_ROOT}/docker" --locked --no-dev --group evaluation --python "$IMAGE_PYTHON"
+"$UV_COMMAND" sync --project "${REPO_ROOT}/docker" --locked --no-dev --group evaluation --python "$IMAGE_PYTHON"
 grep -Eq '^include-system-site-packages = true[[:space:]]*$' "$UV_PROJECT_ENVIRONMENT/pyvenv.cfg" ||
   die "Python changed; create a fresh system-site-packages environment with SVNICP_EVAL_ENV"
 evaluation_python="${UV_PROJECT_ENVIRONMENT}/bin/python"

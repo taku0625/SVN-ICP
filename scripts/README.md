@@ -70,6 +70,10 @@ Oxford Spires のルート、その親ディレクトリを指定できます。
 ROS の拡張モジュールとの ABI 互換性のため評価用 NumPy は 1.26.4 に固定しています。
 `docker/uv.lock` の `evaluation` グループを使用し、`test` グループとは別の環境にします。
 ソースやデータへの書き込み、SIF 内部へのインストールは不要です。
+`uv` はイメージ内と通常のユーザーインストール先から探します。
+既存の SIF に見つからない場合は、公式 Linux 配布物の SHA-256 を検証して
+`/work/tools/uv-0.12.23/uv` に自動導入し、以後再利用します。
+使用する実行ファイルは `SVNICP_UV`、自動導入先は `SVNICP_UV_DIR` で指定できます。
 
 ビルド成果物は `/work/svnicp_ws/{build,install,log}` に保存します。
 `stein_msgs` と `svn-icp` だけをパッケージ単位で逐次ビルドし、コンパイルの並列度は

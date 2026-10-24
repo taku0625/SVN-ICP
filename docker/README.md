@@ -144,6 +144,46 @@ GPU の割り当てはスケジューラの環境を継承します。
 `/work/results/<シーケンス名>_<日時>_<PID>` に保存します。
 `--dry-run` や `--skip-build` 等も指定できます。
 
+### uv を同梱した SIF へ再ビルドする
+
+Dockerfile は `uv==0.12.23` を導入し、ビルド中に `/usr/local/bin/uv --version` を確認します。
+以前作成した SIF を更新する場合は、新しい出力先を指定して再ビルドしてください。
+
+```bash
+git pull --ff-only
+bash docker/build_singularity.sh --fakeroot \
+  --output images/svnicp-humble-cuda124-uv.sif
+
+singularity exec images/svnicp-humble-cuda124-uv.sif /usr/local/bin/uv --version
+
+bash docker/start_singularity.sh \
+  --image images/svnicp-humble-cuda124-uv.sif \
+  -- bash scripts/my_startup.sh
+```
+
+`--output` で指定した SIF と、同名の `.def` が既にある場合は別の出力先を指定してください。
+
+### 既存 SIF を使う場合の uv 自動準備
+
+既存 SIF で評価を実行する場合も、ランナーが `uv` を自動的に探します。
+見つからなければ公式の portable バイナリを SHA-256 検証後に
+`/work/tools/uv-0.12.23/uv` へ導入して再利用します。ホスト側では通常
+`~/svnicp-work/tools/uv-0.12.23/uv` に保存されます。
+
+```bash
+# ホストで更新後、同じ起動コマンドで実行。
+git pull --ff-only
+bash docker/start_singularity.sh -- bash scripts/my_startup.sh
+
+# 計算ノードでの初回ダウンロードを避ける場合は、ホストで事前に準備できます。
+SVNICP_UV_DIR="$HOME/svnicp-work/tools/uv-0.12.23" \
+  bash scripts/ensure_uv.sh --install
+```
+
+`SVNICP_UV=/path/to/uv` で利用可能な実行ファイルを指定できます。
+自動導入先は `SVNICP_UV_DIR` で変更できます。ホストで事前準備する場合は、
+`--work-dir` で指定する作業領域の `tools/uv-0.12.23` に保存してください。
+
 ## 作成した SIF の確認と GPU 実行
 
 この SIF は CUDA 12.4、LibTorch、ROS 2 Humble、GTSAM 等の**依存環境**です。
