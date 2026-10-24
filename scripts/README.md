@@ -1,5 +1,71 @@
 # Oxford Spires 全シーケンス評価
 
+## Singularity コンテナ内で実行
+
+[Singularity の起動手順](../docker/README.md#作成した-sif-の確認と-gpu-実行)に従い、
+ソースを `/workspace/SVN-ICP:ro`、`~/dataset` を `/dataset:ro`、
+書き込み可能な作業領域を `/work:rw` に bind して、以下を **`Singularity>` 内で** 実行します。
+
+```bash
+cd /workspace/SVN-ICP
+
+# /dataset を再帰探索し、シーケンス名と実際のパスを確認。
+bash scripts/run_oxford_spires_singularity.sh --dataset-dir /dataset --list-sequences
+
+# 以降のパスは実際の配置に合わせて変更。
+# bag・metadata・GT を検証。ROS ノードのビルドや GPU 推定は実行しない。
+bash scripts/run_oxford_spires_singularity.sh \
+  --dataset-dir /dataset/oxford_spires_dataset/data/sequences --dry-run
+
+# 全シーケンスを逐次評価。最初にノードをビルドし、以降は増分ビルド。
+bash scripts/run_oxford_spires_singularity.sh \
+  --dataset-dir /dataset/oxford_spires_dataset/data/sequences \
+  --output-dir /work/results/oxford-run01 --play-rate 0.05
+
+# 対象を絞る場合。出力先には新しいディレクトリを指定する。
+bash scripts/run_oxford_spires_singularity.sh \
+  --dataset-dir /dataset/oxford_spires_dataset/data/sequences \
+  --output-dir /work/results/oxford-run02 \
+  --sequence 2024-03-12-keble-college-02 --play-rate 0.05
+```
+
+データが別の場所にある場合は `--dataset-dir` を変更してください。単一シーケンス、
+Oxford Spires のルート、その親ディレクトリを指定できます。
+`--output-dir` 省略時は `/work/results/oxford_spires_<日時>_<PID>` に新しい結果を保存します。
+ホストの `~/svnicp-work` を `/work` に bind した場合、結果はホストの
+`~/svnicp-work/results/` 配下に残ります。
+
+ランナーは `--system-site-packages` 付きの評価用 uv 環境を `/work/uv-evaluation` に作成し、
+イメージ内の Python と ROS パッケージを利用します。ROS Humble では Python 3.10 を使用し、
+ROS の拡張モジュールとの ABI 互換性のため評価用 NumPy は 1.26.4 に固定しています。
+`docker/uv.lock` の `evaluation` グループを使用し、`test` グループとは別の環境にします。
+ソースやデータへの書き込み、SIF 内部へのインストールは不要です。
+
+ビルド成果物は `/work/svnicp_ws/{build,install,log}` に保存します。
+`stein_msgs` と `svn-icp` だけをパッケージ単位で逐次ビルドし、コンパイルの並列度は
+既定2です。ノード用ビルドでは `BUILD_TESTING=OFF` とし、既存テストは後述のコマンドで別途実行します。
+ビルド後はこの install を読み込み、ノード実行ファイルと共有ライブラリの解決を確認してから評価します。
+
+```bash
+# データ評価をせず、ノードのビルドとインストール確認だけ実行。
+bash scripts/run_oxford_spires_singularity.sh --build-only
+
+# ビルド済みの install を再利用。
+bash scripts/run_oxford_spires_singularity.sh \
+  --skip-build --dataset-dir /dataset/oxford_spires_dataset/data/sequences \
+  --output-dir /work/results/oxford-run03
+
+# H100/H200 等の compute capability 9.0 向けに絞る例。
+BUILD_JOBS=2 CMAKE_CUDA_ARCHITECTURES=90 \
+  bash scripts/run_oxford_spires_singularity.sh --build-only
+```
+
+`SVNICP_WORKSPACE` でビルド先、`SVNICP_EVAL_ENV` で評価用仮想環境、
+`SVNICP_PYTHON` でイメージ内の Python を変更できます。
+`--sequence`、`--config`、`--lidar-topic`、再生速度・タイムアウト等は既存評価スクリプトに渡します。
+
+## Docker で実行
+
 既存の `docker/Dockerfile` と `docker/start_docker.sh` を使用します。
 CUDA 対応 NVIDIA GPU、Docker、および変換済みの ROS 2 MCAP bag が必要です。
 データセットは読み取り専用でマウントし、Humble 用の metadata 互換コピーはコンテナの一時領域に作成します。
@@ -114,4 +180,4 @@ Singularity 内でソースを読み取り専用で bind する場合は、`UV_P
 
 C++ ユーティリティのテストには `g++` を使います。`robin-map-dev` のヘッダーも利用可能な場合は、
 実際の `tsl::robin_map` に120万 voxel を挿入するメモリ拡張の回帰テストも実行します。
-ROS ノード全体のビルドと実データ・GPUでの動作確認は、別途上記の Docker 実行で行ってください。
+ROS ノード全体のビルドと実データ・GPUでの動作確認は、上記の Singularity または Docker 実行で行ってください。

@@ -152,6 +152,13 @@ ament_target_dependencies(svnicp_lio_node
 install(TARGETS svnicp_lio_node
         DESTINATION lib/${PROJECT_NAME})
 
+# The installed node depends on these libraries at runtime.
+install(TARGETS svnicp odom
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin)
+ament_export_libraries(svnicp odom)
+
 install(DIRECTORY config DESTINATION share/${PROJECT_NAME})
 install(DIRECTORY launch DESTINATION share/${PROJECT_NAME} FILES_MATCHING PATTERN "*.py")
 install(DIRECTORY launch DESTINATION share/${PROJECT_NAME} FILES_MATCHING PATTERN "*.launch")

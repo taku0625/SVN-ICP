@@ -133,6 +133,23 @@ singularity exec --nv \
 `exec` では ROS の初期化用に明示的に `/ros_entrypoint.sh` を指定します。
 ソースは bind し、ビルド成果物・ログ・結果は書き込み可能な別ワークスペースに保存してください。
 
+### コンテナ内で Oxford Spires を評価する
+
+上のシェル内から次のランナーを使用します。
+
+```bash
+bash scripts/run_oxford_spires_singularity.sh --dataset-dir /dataset --list-sequences
+bash scripts/run_oxford_spires_singularity.sh \
+  --dataset-dir /dataset/oxford_spires_dataset/data/sequences \
+  --output-dir /work/results/oxford-run01
+```
+
+`--dataset-dir` は実際のシーケンス配置に合わせて変更してください。
+ランナーが `/work` 内に評価用 uv 環境とビルド先を用意し、ノードをビルドして評価します。
+ROS 用 Python と NumPy 1 系を使うため、既存のテスト用 uv 環境とは分けて管理します。
+詳細と `--dry-run` / `--build-only` / `--skip-build` の使用例は
+[評価手順](../scripts/README.md#singularity-コンテナ内で実行)を参照してください。
+
 ### 読み取り専用 bind 内で uv を実行する場合
 
 `uv` は既定で `docker/.venv` に依存関係をインストールします。
