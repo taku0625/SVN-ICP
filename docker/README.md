@@ -100,6 +100,7 @@ ABCI ではサイトの規則に従ってビルド資源を割り当てるか、
 この SIF は CUDA 12.4、LibTorch、ROS 2 Humble、GTSAM 等の**依存環境**です。
 SVN-ICP のソースやコンパイル済みノードは含みません。
 ビルドに GPU は不要です。GPU 実行には対応する NVIDIA ドライバが必要です。
+以下はホスト側のリポジトリルートで実行します。コンテナ内の場合は先に `exit` で戻ってください。
 
 ```bash
 singularity inspect images/svnicp-humble-cuda124.sif
@@ -112,6 +113,7 @@ SVNICP_WORK_DIR="$HOME/svnicp-work"
 mkdir -p -- "$SVNICP_WORK_DIR" &&
 singularity exec --nv \
   --bind "$PWD:/workspace/SVN-ICP:ro" \
+  --bind "$HOME/dataset:/dataset:ro" \
   --bind "$SVNICP_WORK_DIR:/work:rw" \
   --env UV_PROJECT_ENVIRONMENT=/work/uv-env \
   --env UV_CACHE_DIR=/work/uv-cache \
@@ -123,6 +125,9 @@ singularity exec --nv \
 作業領域は自身のホーム配下に作成します。別の保存先を使う場合は、
 `SVNICP_WORK_DIR` の代入を、利用者が書き込める絶対パスに変更してください。
 `mkdir` と起動を `&&` でつなぎ、ディレクトリ作成に失敗した場合はコンテナを起動しません。
+ホストの `~/dataset` はコンテナ内の `/dataset` から読み取り専用で参照できます。
+コンテナ内で `ls /dataset` を実行して配置を確認し、評価スクリプトの `--dataset-dir` には
+`/dataset` 配下の実際のシーケンスディレクトリを指定してください。評価結果は `/work` 配下に保存します。
 
 `singularity` は `apptainer` に置き換えられます。
 `exec` では ROS の初期化用に明示的に `/ros_entrypoint.sh` を指定します。
