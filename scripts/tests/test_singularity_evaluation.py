@@ -73,6 +73,33 @@ elif tool == "ldd":
         return subprocess.run(["bash", str(RUNNER), *args], env=self.env, cwd=self.root,
                               capture_output=True, text=True)
 
+    def run_startup(self, *args):
+        return subprocess.run(["bash", str(ROOT / "scripts/my_startup.sh"), *args],
+                              env=self.env, cwd=self.root, capture_output=True, text=True)
+
+    def test_startup_defaults_to_exactly_one_sequence(self):
+        self.env.pop("OXFORD_SEQUENCE", None)
+        sequence(self.dataset, "2024-03-12-keble-college-03")
+        result = self.run_startup("--dry-run")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        rows = json.loads((self.output / "validation.json").read_text())
+        self.assertEqual([row["sequence"] for row in rows], ["2024-03-12-keble-college-02"])
+        self.assertEqual(rows[0]["status"], "validated_only")
+        self.assertFalse(self.log.exists())
+
+    def test_startup_selects_another_sequence_and_preserves_results_on_unknown_name(self):
+        sequence(self.dataset, "2024-03-12-keble-college-03")
+        result = self.run_startup("--sequence", "2024-03-12-keble-college-03", "--dry-run")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = self.output / "validation.json"
+        original = report.read_text()
+        self.assertEqual([row["sequence"] for row in json.loads(original)], ["2024-03-12-keble-college-03"])
+        result = self.run_startup("--sequence", "unknown-sequence", "--dry-run")
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Unknown sequences", result.stderr)
+        self.assertEqual(report.read_text(), original)
+        self.assertFalse(self.log.exists())
+
     def test_inspection_uses_real_uv_and_evaluator_without_ros_or_build(self):
         self.env["SVNICP_ROS_SETUP"] = str(self.root / "missing ROS setup")
         result = self.run_runner("--list-sequences")

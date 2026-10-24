@@ -13,6 +13,25 @@ bash docker/start_singularity.sh \
 データのパスは実際の配置に合わせて変更してください。
 [自動起動手順](../docker/README.md#起動と同時にタスクを自動実行)には、事前検証・任意スクリプトの実行例も記載しています。
 
+1シーケンスの評価例として `scripts/my_startup.sh` を用意しています。
+既定では `2024-03-12-keble-college-02` を評価します。
+
+```bash
+# ホストから起動し、1シーケンスをビルド・評価。
+bash docker/start_singularity.sh -- bash scripts/my_startup.sh
+
+# 評価対象と結果保存先を変更。
+bash docker/start_singularity.sh -- bash scripts/my_startup.sh \
+  --sequence 2024-03-12-keble-college-03 --output-dir /work/results/keble03-run01
+
+# GPU 推定をせず、選択したシーケンスだけ事前検証。
+bash docker/start_singularity.sh --no-gpu -- bash scripts/my_startup.sh --dry-run
+```
+
+データの場所を限定する場合は、ランチャーの `--dataset-dir` にホスト側の Oxford Spires の
+ルートを指定してください。出力先を省略すると `/work/results/<シーケンス名>_<日時>_<PID>` に保存します。
+コンテナ内からは `bash scripts/my_startup.sh` で同じタスクを実行できます。
+
 [Singularity の起動手順](../docker/README.md#作成した-sif-の確認と-gpu-実行)に従い、
 ソースを `/workspace/SVN-ICP:ro`、`~/dataset` を `/dataset:ro`、
 書き込み可能な作業領域を `/work:rw` に bind して、以下を **`Singularity>` 内で** 実行します。

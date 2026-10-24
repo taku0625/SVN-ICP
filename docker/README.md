@@ -119,8 +119,12 @@ bash docker/start_singularity.sh --no-gpu --oxford-spires --list-sequences
 bash docker/start_singularity.sh -- \
   bash -c 'ros2 pkg prefix rclcpp && nvcc --version'
 
-# 任意のスクリプトを自動実行する例。スクリプトはリポジトリ内に用意する。
-bash docker/start_singularity.sh -- bash scripts/my_startup.sh arg1 arg2
+# 用意済みの起動タスクで1シーケンスを評価（既定: keble-college-02）。
+bash docker/start_singularity.sh -- bash scripts/my_startup.sh
+
+# 別のシーケンスを指定。
+bash docker/start_singularity.sh -- bash scripts/my_startup.sh \
+  --sequence 2024-03-12-keble-college-03 --output-dir /work/results/keble03-run01
 
 # 対話シェルを開く。
 bash docker/start_singularity.sh --shell
@@ -136,6 +140,9 @@ bash docker/start_singularity.sh --shell
 GPU の割り当てはスケジューラの環境を継承します。
 作業ディレクトリが作成できない場合等は起動前に停止し、タスクの終了コードはランチャーの終了コードになります。
 結果やビルド成果物はホスト側の作業領域に残ります。
+`my_startup.sh` は既定で `2024-03-12-keble-college-02` の1件だけを評価し、
+`/work/results/<シーケンス名>_<日時>_<PID>` に保存します。
+`--dry-run` や `--skip-build` 等も指定できます。
 
 ## 作成した SIF の確認と GPU 実行
 
