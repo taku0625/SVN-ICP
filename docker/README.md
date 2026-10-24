@@ -107,9 +107,9 @@ singularity exec images/svnicp-humble-cuda124.sif \
   /ros_entrypoint.sh bash -c 'ros2 pkg prefix rclcpp && nvcc --version'
 
 # uv の仮想環境・キャッシュ・ビルド成果物を置く、ホスト側の作業領域。
-SVNICP_WORK_DIR="${SVNICP_WORK_DIR:-$PWD/../svnicp-work}"
-mkdir -p "$SVNICP_WORK_DIR"
-
+# 以前の SVNICP_WORK_DIR の値も、この代入で更新する。
+SVNICP_WORK_DIR="$HOME/svnicp-work"
+mkdir -p -- "$SVNICP_WORK_DIR" &&
 singularity exec --nv \
   --bind "$PWD:/workspace/SVN-ICP:ro" \
   --bind "$SVNICP_WORK_DIR:/work:rw" \
@@ -119,6 +119,10 @@ singularity exec --nv \
   --pwd /workspace/SVN-ICP \
   images/svnicp-humble-cuda124.sif /ros_entrypoint.sh bash
 ```
+
+作業領域は自身のホーム配下に作成します。別の保存先を使う場合は、
+`SVNICP_WORK_DIR` の代入を、利用者が書き込める絶対パスに変更してください。
+`mkdir` と起動を `&&` でつなぎ、ディレクトリ作成に失敗した場合はコンテナを起動しません。
 
 `singularity` は `apptainer` に置き換えられます。
 `exec` では ROS の初期化用に明示的に `/ros_entrypoint.sh` を指定します。
