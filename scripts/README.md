@@ -108,6 +108,9 @@ uv run --project docker --locked --group test python -m unittest discover -s scr
 
 テスト用 Python 環境は `uv` で構築します。上記コマンドが `docker/uv.lock` に従って
 `spython`、NumPy、PyYAML を用意するため、個別のインストールや activate は不要です。
+Singularity 内でソースを読み取り専用で bind する場合は、`UV_PROJECT_ENVIRONMENT` と
+`UV_CACHE_DIR` を書き込み可能な領域に設定してください。
+[コンテナ内の uv 実行手順](../docker/README.md#読み取り専用-bind-内で-uv-を実行する場合)を参照してください。
 
 C++ ユーティリティのテストには `g++` を使います。`robin-map-dev` のヘッダーも利用可能な場合は、
 実際の `tsl::robin_map` に120万 voxel を挿入するメモリ拡張の回帰テストも実行します。

@@ -106,8 +106,16 @@ singularity inspect images/svnicp-humble-cuda124.sif
 singularity exec images/svnicp-humble-cuda124.sif \
   /ros_entrypoint.sh bash -c 'ros2 pkg prefix rclcpp && nvcc --version'
 
+# uv の仮想環境・キャッシュ・ビルド成果物を置く、ホスト側の作業領域。
+SVNICP_WORK_DIR="${SVNICP_WORK_DIR:-$PWD/../svnicp-work}"
+mkdir -p "$SVNICP_WORK_DIR"
+
 singularity exec --nv \
   --bind "$PWD:/workspace/SVN-ICP:ro" \
+  --bind "$SVNICP_WORK_DIR:/work:rw" \
+  --env UV_PROJECT_ENVIRONMENT=/work/uv-env \
+  --env UV_CACHE_DIR=/work/uv-cache \
+  --env UV_PYTHON=/usr/bin/python3 \
   --pwd /workspace/SVN-ICP \
   images/svnicp-humble-cuda124.sif /ros_entrypoint.sh bash
 ```
@@ -115,6 +123,30 @@ singularity exec --nv \
 `singularity` は `apptainer` に置き換えられます。
 `exec` では ROS の初期化用に明示的に `/ros_entrypoint.sh` を指定します。
 ソースは bind し、ビルド成果物・ログ・結果は書き込み可能な別ワークスペースに保存してください。
+
+### 読み取り専用 bind 内で uv を実行する場合
+
+`uv` は既定で `docker/.venv` に依存関係をインストールします。
+上記の `:ro` bind では書き込めないため、`UV_PROJECT_ENVIRONMENT` を
+書き込み可能な作業領域へ変更します。`UV_CACHE_DIR` も同じ領域に指定します。
+上の起動例では、この2つを `/work` 配下に設定済みです。
+ROS 2 Humble の Python パッケージを使えるよう、コンテナ内の `/usr/bin/python3`
+（Ubuntu 22.04 の Python 3.10）を `UV_PYTHON` で選択しています。
+コンテナ内で作成する仮想環境は、ホスト側とは別の作業領域で管理してください。
+
+既に `Singularity>` のシェルを開いている場合は、一時領域を使って実行できます。
+
+```bash
+SVNICP_UV_DIR="$(mktemp -d /tmp/svnicp-uv.XXXXXX)"
+export UV_PROJECT_ENVIRONMENT="$SVNICP_UV_DIR/venv"
+export UV_CACHE_DIR="$SVNICP_UV_DIR/cache"
+
+uv run --python /usr/bin/python3 --project docker --locked --group test \
+  python -m unittest discover -s scripts/tests -v
+```
+
+この一時領域はセッションごとに作成します。環境を再利用する場合は、上の `/work`
+bind のようにホストの書き込み可能なディレクトリに保存してください。
 
 ## テスト
 
@@ -125,3 +157,4 @@ uv run --project docker --locked --group test \
 
 `test` グループで評価スクリプト用の NumPy と PyYAML も導入します。
 C++ ユーティリティのテストにはホストの `g++` と、追加のメモリ回帰テストには robin-map のヘッダーが必要です。
+コンテナ内でソースを `:ro` bind している場合は、前節の uv 環境変数を設定してから実行してください。
