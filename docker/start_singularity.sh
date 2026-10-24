@@ -32,7 +32,7 @@ Start the SIF and immediately execute a task. Default: build and evaluate Oxford
 Put launcher options before --oxford-spires or --. Commands run in /workspace/SVN-ICP.
 The source and dataset are read-only; uv environments, builds and results go to /work.
 Environment: SIF_IMAGE, SVNICP_DATASET_DIR, SVNICP_WORK_DIR set host defaults.
-BUILD_JOBS, CMAKE_CUDA_ARCHITECTURES and ROS_DOMAIN_ID are forwarded when set.
+BUILD_JOBS, CMAKE_CUDA_ARCHITECTURES, ROS_DOMAIN_ID and ROS_LOG_DIR are forwarded when set.
 USAGE
 }
 die() { echo "Error: $*" >&2; exit 1; }
@@ -96,7 +96,7 @@ container_args+=(
   --env DATASET_DIR=/dataset
   --pwd /workspace/SVN-ICP
 )
-for name in BUILD_JOBS CMAKE_CUDA_ARCHITECTURES ROS_DOMAIN_ID; do
+for name in BUILD_JOBS CMAKE_CUDA_ARCHITECTURES ROS_DOMAIN_ID ROS_LOG_DIR; do
   if [[ -v "$name" ]]; then
     container_args+=(--env "${name}=${!name}")
   fi

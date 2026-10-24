@@ -59,6 +59,7 @@ raise SystemExit(int(os.environ.get("TEST_RUNTIME_EXIT", "0")))
 
     def test_default_launch_mounts_host_paths_and_automatically_runs_evaluator(self):
         self.env.update(BUILD_JOBS="3", CMAKE_CUDA_ARCHITECTURES="90", ROS_DOMAIN_ID="81",
+                        ROS_LOG_DIR="/work/results/ros_logs",
                         CUDA_VISIBLE_DEVICES="GPU-assigned-1,GPU-assigned-2")
         result = self.launch()
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -74,6 +75,7 @@ raise SystemExit(int(os.environ.get("TEST_RUNTIME_EXIT", "0")))
         self.assertIn("BUILD_JOBS=3", arguments)
         self.assertIn("CMAKE_CUDA_ARCHITECTURES=90", arguments)
         self.assertIn("ROS_DOMAIN_ID=81", arguments)
+        self.assertIn("ROS_LOG_DIR=/work/results/ros_logs", arguments)
         self.assertEqual(record["gpu"], self.env["CUDA_VISIBLE_DEVICES"])
         self.assertEqual(arguments[-4:], [str(self.image), "/ros_entrypoint.sh", "bash",
                                          "/workspace/SVN-ICP/scripts/run_oxford_spires_singularity.sh"])
