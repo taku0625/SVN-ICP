@@ -70,6 +70,8 @@ You must update the LibTorch path in the `CMakeList.txt` at `line 9`.
 
 ## :gear: Run
 
+Dockerfile から Singularity / Apptainer の `.sif` を作成する手順は [docker/README.md](docker/README.md) を参照してください。
+
 Oxford Spires の全シーケンスを Docker 上で評価する手順は [scripts/README.md](scripts/README.md) を参照してください。
 
 Running SVN-ICP on the SubT-MRS dataset is then straightforward as

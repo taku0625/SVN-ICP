@@ -8,4 +8,5 @@ IMAGE_NAME="${IMAGE_NAME:-svnicp:humble-cuda124}"
 docker build \
   -t "${IMAGE_NAME}" \
   -f "${SCRIPT_DIR}/Dockerfile" \
+  "$@" \
   "${REPO_ROOT}"
