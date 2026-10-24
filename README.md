@@ -74,6 +74,7 @@ Dockerfile から Singularity / Apptainer の `.sif` を作成する手順は [d
 
 Oxford Spires の全シーケンスを Docker 上で評価する手順は [scripts/README.md](scripts/README.md) を参照してください。
 Singularity コンテナ内でのビルド・評価には [専用ランナー](scripts/README.md#singularity-コンテナ内で実行)を使用できます。
+起動と同時に評価等のタスクを自動実行する場合は [起動スクリプト](docker/README.md#起動と同時にタスクを自動実行)を使用してください。
 
 Running SVN-ICP on the SubT-MRS dataset is then straightforward as
 ```

@@ -95,6 +95,48 @@ export APPTAINER_CACHEDIR=/scratch/your-user/apptainer-cache
 プロキシ環境ではランタイムとビルド内の各ツールに対応する CA 設定を使用し、TLS 検証を維持してください。
 ABCI ではサイトの規則に従ってビルド資源を割り当てるか、別マシンで作成した SIF を転送してください。
 
+## 起動と同時にタスクを自動実行
+
+**ホスト側**で `start_singularity.sh` を実行すると、ソース・データ・作業領域を bind し、
+ROS 環境を読み込んでから指定タスクを開始します。引数を省略した場合は
+Oxford Spires のビルドと全シーケンスの逐次評価を自動実行します。
+既存の SIF と、ホスト上の最新のスクリプトを使用できます。
+
+```bash
+# images/svnicp-humble-cuda124.sif を起動して評価を開始。
+# ~/dataset -> /dataset:ro、~/svnicp-work -> /work:rw を自動設定。
+bash docker/start_singularity.sh
+
+# データの場所と評価オプションを指定。
+bash docker/start_singularity.sh \
+  --dataset-dir "$HOME/dataset/oxford_spires_dataset/data/sequences" \
+  --oxford-spires --output-dir /work/results/oxford-run01 --play-rate 0.05
+
+# GPU を使わず、起動直後にシーケンス一覧を表示して終了。
+bash docker/start_singularity.sh --no-gpu --oxford-spires --list-sequences
+
+# 起動直後に別のコマンドを実行。
+bash docker/start_singularity.sh -- \
+  bash -c 'ros2 pkg prefix rclcpp && nvcc --version'
+
+# 任意のスクリプトを自動実行する例。スクリプトはリポジトリ内に用意する。
+bash docker/start_singularity.sh -- bash scripts/my_startup.sh arg1 arg2
+
+# 対話シェルを開く。
+bash docker/start_singularity.sh --shell
+```
+
+`--image FILE`、`--work-dir DIR`、`--runtime apptainer` でイメージ・作業領域・ランタイムを変更できます。
+`--dataset-dir` は **ホスト側**のパスです。`--oxford-spires` より後ろは評価ランナーへ渡すため、
+出力先や設定ファイルには `/work`、`/dataset`、`/workspace/SVN-ICP` 配下の **コンテナ内**のパスを使います。
+ランチャー用のオプションは `--oxford-spires` または `--` より前に指定してください。
+
+`SIF_IMAGE`、`SVNICP_DATASET_DIR`、`SVNICP_WORK_DIR` でもホスト側の既定値を指定できます。
+`BUILD_JOBS`、`CMAKE_CUDA_ARCHITECTURES`、`ROS_DOMAIN_ID` を設定している場合はコンテナへ渡します。
+GPU の割り当てはスケジューラの環境を継承します。
+作業ディレクトリが作成できない場合等は起動前に停止し、タスクの終了コードはランチャーの終了コードになります。
+結果やビルド成果物はホスト側の作業領域に残ります。
+
 ## 作成した SIF の確認と GPU 実行
 
 この SIF は CUDA 12.4、LibTorch、ROS 2 Humble、GTSAM 等の**依存環境**です。

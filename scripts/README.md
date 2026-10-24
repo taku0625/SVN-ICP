@@ -2,6 +2,17 @@
 
 ## Singularity コンテナ内で実行
 
+ホストから起動と評価をまとめて実行する場合は、次のランチャーを使用できます。
+
+```bash
+bash docker/start_singularity.sh \
+  --dataset-dir "$HOME/dataset/oxford_spires_dataset/data/sequences" \
+  --oxford-spires --output-dir /work/results/oxford-run01 --play-rate 0.05
+```
+
+データのパスは実際の配置に合わせて変更してください。
+[自動起動手順](../docker/README.md#起動と同時にタスクを自動実行)には、事前検証・任意スクリプトの実行例も記載しています。
+
 [Singularity の起動手順](../docker/README.md#作成した-sif-の確認と-gpu-実行)に従い、
 ソースを `/workspace/SVN-ICP:ro`、`~/dataset` を `/dataset:ro`、
 書き込み可能な作業領域を `/work:rw` に bind して、以下を **`Singularity>` 内で** 実行します。
