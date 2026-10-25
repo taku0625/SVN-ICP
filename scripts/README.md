@@ -3,6 +3,18 @@
 ABCI で1シーケンス1 GPUの独立ジョブとして全件を並列評価する場合は、
 [PBS 一括投入スクリプト](../abci/README.md)を使用してください。
 
+`ral2026/speed1/<sequence>/bag` 形式（`speed1`〜`speed5`）のデータは
+[RAL 2026 の一括投入](../abci/README.md#ral-2026-の速度別-rosbag)を使用できます。
+コンテナ内で1件を検証する場合は、既存ランナーにレイアウトと速度を含む識別子を指定します。
+
+```bash
+# ホスト側から起動。GTとmetadataの検証のみ行う。
+bash docker/start_singularity.sh \
+  --image images/svnicp-humble-cuda124-uv.sif \
+  --dataset-dir "$HOME/dataset/rosbag/ral2026" \
+  --oxford-spires --layout ral2026 --sequence speed1/keble-college-02 --dry-run
+```
+
 ## Singularity コンテナ内で実行
 
 ホストから起動と評価をまとめて実行する場合は、次のランチャーを使用できます。

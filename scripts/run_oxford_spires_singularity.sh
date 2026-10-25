@@ -19,6 +19,8 @@ usage() {
 Usage (inside Singularity): bash scripts/run_oxford_spires_singularity.sh [options]
 
   --dataset-dir DIR    Sequence root (default: $DATASET_DIR or /dataset)
+  --layout ral2026     Accept <speed>/<sequence>/bag and LiDAR-frame GT
+  --gt-file PATH       GT file relative to each sequence (layout default if omitted)
   --output-dir DIR     New results directory (default: a unique path in /work/results)
   --list-sequences     List paths without ROS, a GPU or a node build
   --dry-run            Validate bags/metadata/GT without ROS, a GPU or a node build

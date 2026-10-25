@@ -1,5 +1,63 @@
 # ABCI: 1シーケンス1 GPUで全シーケンスを評価
 
+## RAL 2026 の速度別 rosbag
+
+`~/dataset/rosbag/ral2026` の次の構成には `submit_ral2026.sh` を使用してください。
+
+```text
+ral2026/
+  speed1/ ... speed5/
+    keble-college-02/ ...
+      bag/metadata.yaml
+      bag/bag_0.mcap
+      ground-truth-lidar-tum.txt
+      ground-truth-tum.txt
+```
+
+添付のツリーは5速度 × 13シーケンスの65 rosbagです。
+全件を自動検出し、ビルド1件＋評価65件を投入します。各評価は1 GPUを要求し、
+ビルド成功後、空きGPU枠に応じて並列実行されます。SIFの再ビルドは不要です。
+
+ABCI のホスト側で、リポジトリのルートから実行してください。
+`FRAI` と `FRAI_RES` に設定済みの値を export するか、`--project "$FRAI" --queue "$FRAI_RES"` で渡します。
+
+```bash
+export FRAI FRAI_RES
+
+# 任意: 投入せずに65件のジョブを生成・確認する。
+bash abci/submit_ral2026.sh \
+  --run-dir "$HOME/svnicp-work/abci/ral2026-plan01" --plan
+
+# 全件を投入する。--run-dir は毎回未使用のパスを指定。
+bash abci/submit_ral2026.sh \
+  --run-dir "$HOME/svnicp-work/abci/ral2026-run01"
+
+# 完了後、速度別の結果を summary.json / summary.csv に集約する。
+bash abci/submit_ral2026.sh collect \
+  --run-dir "$HOME/svnicp-work/abci/ral2026-run01"
+```
+
+データの既定パスは `$HOME/dataset/rosbag/ral2026`、SIFは
+`images/svnicp-humble-cuda124-uv.sif` です。`--dataset-dir` / `--image` で変更できます。
+個別に試す場合は `--sequence speed1/keble-college-02` を指定します（繰り返し指定可能）。
+`--walltime`、`--play-rate`、`--lidar-topic`、`--skip-build --work-dir ...` も以下と共通です。
+
+`bag/` の metadata から PointCloud2 トピックを検出し、
+**`ground-truth-lidar-tum.txt`** に対してSE(3)整列したATEを計算します。
+投入前に全件の metadata・bagファイル・LiDAR GT を検証します。LiDAR GT が欠けている場合は停止します。
+`ground-truth-tum.txt` を使う必要がある場合のみ `--gt-file ground-truth-tum.txt` を明示し、
+その座標系が推定軌跡と対応することを確認してください。
+`simulation.json` や `retiming.csv` による追加変換は行わず、bagとGTに保存された時刻を使用します。
+速度条件を変える `speedN` と再生速度 `--play-rate` は別の設定です。再生速度の既定値は全件共通で `0.05` です。
+
+結果の `sequence` は `speed1/keble-college-02` のような識別子、`speed` は `speed1` 等です。
+`jobs/speed1/keble-college-02/{stdout,stderr}.log` のようにログを分け、
+結果保存先は `manifest.json` の各 `results_dir` に記録します。その直下に `summary.json`、
+さらに `<speed>/<sequence>/` 配下に `trajectory.tum` 等が作成されます。
+ROSドメインの既定値は0から連番で、65件では0〜64を使用します。
+
+## Oxford Spires の元データ
+
 `submit_all.sh` はホスト側でシーケンスを検出し、次の資源指定で `abci/job.sh` を投入します。
 `FRAI` と `FRAI_RES` には利用プロジェクト・キューを設定してください。
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Batch SVN-ICP on Oxford Spires ROS 2 bags and compute SE(3)-aligned ATE.
+"""Batch SVN-ICP on Oxford Spires / RAL 2026 ROS 2 bags and compute aligned ATE.
 
 ROS imports are deferred so discovery and metric tests also run without ROS.
 """
@@ -68,7 +68,14 @@ def ate_metrics(gt, estimate, max_difference):
     }
 
 
-def discover(root, selected):
+def sequence_id(sequence, layout="oxford"):
+    """Keep RAL speed variants distinct even when their sequence names match."""
+    if layout == "ral2026":
+        return f"{sequence.parent.name}/{sequence.name}"
+    return sequence.name
+
+
+def discover(root, selected, layout="oxford"):
     if not root.is_dir():
         raise ValueError(f"Dataset directory does not exist: {root}")
     sequences = []
@@ -81,7 +88,9 @@ def discover(root, selected):
     for current, directories, _ in os.walk(root, onerror=traversal_error):
         directories[:] = [name for name in directories if name not in {".git", ".docker", "__pycache__"}]
         path = Path(current)
-        if re.fullmatch(r"20\d{2}-\d{2}-\d{2}-.+", path.name) or "rosbag_mcap" in directories:
+        marker = "bag" if layout == "ral2026" else "rosbag_mcap"
+        dated = layout == "oxford" and re.fullmatch(r"20\d{2}-\d{2}-\d{2}-.+", path.name)
+        if marker in directories or dated:
             sequences.append(path)
             directories.clear()
     sequences.sort()
@@ -90,28 +99,31 @@ def discover(root, selected):
         visible = ", ".join(children[:20]) or "(empty directory)"
         if len(children) > 20:
             visible += ", ..."
+        expected = ("<speed>/<sequence>/bag/metadata.yaml and "
+                    "<speed>/<sequence>/ground-truth-lidar-tum.txt" if layout == "ral2026" else
+                    "<sequence>/rosbag_mcap/metadata.yaml and <sequence>/processed/trajectory/gt-tum.txt")
         raise ValueError(
             f"No Oxford Spires sequence directories found in {root}. "
-            f"Visible entries: {visible}. Expected <sequence>/rosbag_mcap/metadata.yaml "
-            "and <sequence>/processed/trajectory/gt-tum.txt. "
+            f"Visible entries: {visible}. Expected {expected}. "
             "Check DATASET_DIR on the Docker host and its read-only mount."
         )
     names = {}
     for path in sequences:
-        if path.name in names:
-            raise ValueError(f"Duplicate sequence name {path.name}: {names[path.name]} and {path}. "
+        name = sequence_id(path, layout)
+        if name in names:
+            raise ValueError(f"Duplicate sequence name {name}: {names[name]} and {path}. "
                              "Set --dataset-dir to one dataset root.")
-        names[path.name] = path
+        names[name] = path
     if selected:
-        unknown = set(selected) - {p.name for p in sequences}
+        unknown = set(selected) - names.keys()
         if unknown:
             raise ValueError(f"Unknown sequences: {sorted(unknown)}")
-        sequences = [p for p in sequences if p.name in selected]
+        sequences = [p for p in sequences if sequence_id(p, layout) in selected]
     return sequences
 
 
-def inspect_sequence(sequence, lidar_topic):
-    bag = sequence / "rosbag_mcap"
+def inspect_sequence(sequence, lidar_topic, layout="oxford", gt_file=None):
+    bag = sequence / ("bag" if layout == "ral2026" else "rosbag_mcap")
     metadata = yaml.safe_load((bag / "metadata.yaml").read_text())
     info = metadata["rosbag2_bagfile_information"]
     for relative in info["relative_file_paths"]:
@@ -130,7 +142,11 @@ def inspect_sequence(sequence, lidar_topic):
         raise ValueError(f"Specify --lidar-topic; PointCloud2 topics: {topics}")
     else:
         lidar_topic = topics[0]
-    gt = sequence / "processed/trajectory/gt-tum.txt"
+    default_gt = "ground-truth-lidar-tum.txt" if layout == "ral2026" else "processed/trajectory/gt-tum.txt"
+    relative_gt = Path(gt_file or default_gt)
+    if relative_gt.is_absolute() or ".." in relative_gt.parts:
+        raise ValueError("--gt-file must be a relative path within each sequence")
+    gt = sequence / relative_gt
     return bag, metadata, lidar_topic, gt
 
 
@@ -299,7 +315,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--sequence", action="append", help="Repeat to select a subset; default: all")
+    parser.add_argument("--layout", choices=("oxford", "ral2026"), default="oxford",
+                        help="ral2026 uses <speed>/<sequence>/bag and LiDAR-frame ground truth")
+    parser.add_argument("--gt-file", help="GT path relative to each sequence (default depends on --layout)")
+    parser.add_argument("--sequence", action="append", help="Repeat to select a subset; RAL: speed1/sequence-name")
     parser.add_argument("--config", type=Path, default=Path(__file__).resolve().parents[1] / "svn-icp/config/oxford_spires.yaml")
     parser.add_argument("--lidar-topic", help="Required if a bag has multiple PointCloud2 topics")
     parser.add_argument("--play-rate", type=positive, default=0.05)
@@ -317,7 +336,7 @@ def main(argv=None):
     if args.read_ahead_queue_size <= 0:
         parser.error("--read-ahead-queue-size must be positive")
     try:
-        sequences = discover(args.dataset_dir.resolve(), args.sequence)
+        sequences = discover(args.dataset_dir.resolve(), args.sequence, args.layout)
     except ValueError as error:
         parser.error(str(error))
     if args.list_sequences:
@@ -335,17 +354,24 @@ def main(argv=None):
     rows = []
     interrupted = False
     for sequence in sequences:
-        row = {"sequence": sequence.name, "status": "failed", "error": ""}
+        name = sequence_id(sequence, args.layout)
+        row = {"sequence": name, "status": "failed", "error": ""}
+        if args.layout == "ral2026":
+            row["speed"] = sequence.parent.name
         try:
-            bag, metadata, topic, gt = inspect_sequence(sequence, args.lidar_topic)
+            bag, metadata, topic, gt = inspect_sequence(sequence, args.lidar_topic, args.layout, args.gt_file)
             row["lidar_topic"] = topic
+            row["ground_truth"] = str(gt)
+            if args.layout == "ral2026":
+                # A missing or invalid LiDAR GT must not silently use the body trajectory.
+                load_tum(gt)
             if args.dry_run:
                 load_tum(gt)
                 row["status"] = "validated_only"
             else:
-                output = args.output_dir / sequence.name
+                output = args.output_dir / name
                 # Never truncate or silently reuse previous results.
-                output.mkdir(exist_ok=False)
+                output.mkdir(parents=True, exist_ok=False)
                 with tempfile.TemporaryDirectory(prefix="svnicp_oxford_") as temporary:
                     playback_bag = compatible_bag(bag, metadata, Path(temporary))
                     row.update(run_sequence(playback_bag, topic, config, output, args))

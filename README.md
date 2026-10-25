@@ -76,6 +76,7 @@ Oxford Spires の全シーケンスを Docker 上で評価する手順は [scrip
 Singularity コンテナ内でのビルド・評価には [専用ランナー](scripts/README.md#singularity-コンテナ内で実行)を使用できます。
 起動と同時に評価等のタスクを自動実行する場合は [起動スクリプト](docker/README.md#起動と同時にタスクを自動実行)を使用してください。
 ABCI で全シーケンスを1シーケンス1 GPUで並列評価する手順は [abci/README.md](abci/README.md) を参照してください。
+`ral2026/speedN/<sequence>/bag` 形式の速度別データには [RAL 2026 用スクリプト](abci/README.md#ral-2026-の速度別-rosbag)を使用できます。
 
 Running SVN-ICP on the SubT-MRS dataset is then straightforward as
 ```

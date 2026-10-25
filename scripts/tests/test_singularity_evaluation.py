@@ -8,6 +8,7 @@ import tempfile
 import unittest
 
 from test_oxford_spires import sequence
+from test_ral2026 import ral_sequence
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -115,6 +116,19 @@ elif tool == "ldd":
         python = Path(self.env["SVNICP_EVAL_ENV"]) / "bin/python"
         version = subprocess.check_output([str(python), "-c", "import numpy; print(numpy.__version__)"], text=True)
         self.assertTrue(version.startswith("1."))
+
+    def test_ral2026_dry_run_passes_layout_and_speed_selection_through_real_runner(self):
+        dataset = self.root / "ral2026"
+        ral_sequence(dataset, "speed1")
+        ral_sequence(dataset, "speed2")
+        result = self.run_runner("--dataset-dir", str(dataset), "--layout", "ral2026", "--dry-run",
+                                 "--sequence", "speed2/keble-college-02")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        rows = json.loads((self.output / "validation.json").read_text())
+        self.assertEqual([row["sequence"] for row in rows], ["speed2/keble-college-02"])
+        self.assertEqual(rows[0]["status"], "validated_only")
+        self.assertTrue(rows[0]["ground_truth"].endswith("ground-truth-lidar-tum.txt"))
+        self.assertFalse(self.log.exists())
 
     def test_build_workflow_keeps_artifacts_outside_source_and_selects_overlay(self):
         self.env["DATASET_DIR"] = str(self.root / "no dataset required")

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Submit one rt_HG PBS job per Oxford Spires sequence after a shared build."""
+"""Submit one rt_HG PBS job per Oxford Spires or RAL 2026 bag after a shared build."""
 
 import argparse
 import csv
@@ -16,7 +16,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from evaluate_oxford_spires import discover, positive
+from evaluate_oxford_spires import discover, inspect_sequence, load_tum, positive, sequence_id
 
 
 def save_json(path, value):
@@ -56,13 +56,19 @@ def submit(args):
     image = args.image.expanduser().resolve(strict=True)
     if not image.is_file() or image.stat().st_size == 0:
         raise ValueError("--image must be a nonempty SIF file")
-    sequences = discover(dataset, args.sequence)
-    if any(any(character in path.name for character in ("\n", "\r", ",", ":")) for path in sequences):
+    sequences = discover(dataset, args.sequence, args.layout)
+    if any(any(character in sequence_id(path, args.layout) for character in ("\n", "\r", ",", ":")) for path in sequences):
         raise ValueError("Sequence names cannot contain PBS/bind separators")
-    if not 0 <= args.domain_base <= 101 or args.domain_base + len(sequences) - 1 > 101:
+    if args.layout == "ral2026":
+        # Validate all metadata and LiDAR GT on the host before submitting anything.
+        for sequence in sequences:
+            _, _, _, gt = inspect_sequence(sequence, args.lidar_topic, args.layout, args.gt_file)
+            load_tum(gt)
+    domain_base = args.domain_base if args.domain_base is not None else (0 if args.layout == "ral2026" else 74)
+    if not 0 <= domain_base <= 101 or domain_base + len(sequences) - 1 > 101:
         raise ValueError("Choose --domain-base so all per-sequence ROS domains stay in 0..101")
     run_id = uuid.uuid4().hex[:12]
-    default_run = Path.home() / "svnicp-work/abci" / (datetime.now().strftime("oxford_%Y%m%d_%H%M%S_") + run_id)
+    default_run = Path.home() / "svnicp-work/abci" / (args.layout + datetime.now().strftime("_%Y%m%d_%H%M%S_") + run_id)
     run = (args.run_dir or default_run).expanduser().resolve()
     work = (args.work_dir or run / "work").expanduser().resolve()
     if args.skip_build and not (work / "svnicp_ws/install/setup.bash").is_file():
@@ -74,14 +80,14 @@ def submit(args):
             raise ValueError(f"Path contains an unsupported PBS/bind separator: {path}")
     run.mkdir(parents=True, exist_ok=False)
     work.mkdir(parents=True, exist_ok=True)
-    results_relative = Path("results") / ("oxford_batch_" + run_id)
+    results_relative = Path("results") / (args.layout + "_batch_" + run_id)
     launcher = ["bash", str(ROOT / "docker/start_singularity.sh"), "--image", str(image),
                 "--dataset-dir", str(dataset), "--work-dir", str(work)]
     # Pass only known build knobs to the host launcher, independently of qsub's environment.
     task_prefix = ["env", "BUILD_JOBS=" + str(args.build_jobs)]
     if args.cuda_architectures:
         task_prefix.append("CMAKE_CUDA_ARCHITECTURES=" + args.cuda_architectures)
-    manifest = {"repo_root": str(ROOT), "dataset_dir": str(dataset), "image": str(image),
+    manifest = {"repo_root": str(ROOT), "dataset_dir": str(dataset), "image": str(image), "layout": args.layout,
                 "work_dir": str(work), "results_dir": str(work / results_relative),
                 "walltime": args.walltime, "plan_only": args.plan, "prepare": None, "jobs": []}
     manifest_path = run / "manifest.json"
@@ -133,16 +139,25 @@ def submit(args):
             return 1
     failed = False
     for index, sequence in enumerate(sequences):
-        directory = run / "jobs" / sequence.name
-        container_output = "/work/" + (results_relative / sequence.name).as_posix()
+        name = sequence_id(sequence, args.layout)
+        directory = run / "jobs" / name
+        container_output = "/work/" + (results_relative / name).as_posix()
+        if args.layout == "ral2026":
+            evaluation = ["scripts/run_oxford_spires_singularity.sh", "--layout", args.layout]
+        else:
+            evaluation = ["scripts/my_startup.sh"]
         command = [*task_prefix, "ROS_LOG_DIR=" + container_output + "/ros_logs", *launcher,
-                   "--", "bash", "scripts/my_startup.sh", "--sequence", sequence.name,
+                   "--", "bash", *evaluation, "--sequence", name,
                    "--skip-build", "--output-dir", container_output, "--play-rate", str(args.play_rate)]
         if args.lidar_topic:
             command.extend(["--lidar-topic", args.lidar_topic])
-        make_task(directory, command, args.domain_base + index)
-        row = {"sequence": sequence.name, "job_dir": str(directory),
-               "results_dir": str(work / results_relative / sequence.name), "ros_domain_id": args.domain_base + index}
+        if args.gt_file:
+            command.extend(["--gt-file", args.gt_file])
+        make_task(directory, command, domain_base + index)
+        row = {"sequence": name, "job_dir": str(directory),
+               "results_dir": str(work / results_relative / name), "ros_domain_id": domain_base + index}
+        if args.layout == "ral2026":
+            row["speed"] = sequence.parent.name
         manifest["jobs"].append(row)
         job_id = enqueue(row, f"oxford_{index + 1:03d}", prepare_id)
         failed |= not args.plan and job_id is None
@@ -166,6 +181,8 @@ def collect(args):
         status = json.loads(path.read_text()) if path.exists() else {}
         row = {"sequence": job["sequence"], "status": "pending", "error": "",
                "job_id": job.get("job_id", ""), "job_dir": str(directory), "results_dir": job["results_dir"]}
+        if "speed" in job:
+            row["speed"] = job["speed"]
         result = Path(job["results_dir"]) / "summary.json"
         if job.get("submission_state") == "failed":
             row.update(status="failed", error=job.get("submission_stderr", "qsub failed"))
@@ -205,6 +222,8 @@ def main(argv=None):
     commands = parser.add_subparsers(required=True)
     start = commands.add_parser("submit", help="Submit a build job and one dependent GPU job per sequence")
     start.add_argument("--dataset-dir", type=Path, default=Path.home() / "dataset")
+    start.add_argument("--layout", choices=("oxford", "ral2026"), default="oxford")
+    start.add_argument("--gt-file", help="GT path relative to each sequence; RAL default: ground-truth-lidar-tum.txt")
     start.add_argument("--image", type=Path, default=ROOT / "images/svnicp-humble-cuda124-uv.sif")
     start.add_argument("--run-dir", type=Path, help="New shared directory for manifest and PBS logs")
     start.add_argument("--work-dir", type=Path, help="Shared /work bind (default: <run-dir>/work)")
@@ -215,7 +234,7 @@ def main(argv=None):
     start.add_argument("--sequence", action="append")
     start.add_argument("--play-rate", type=positive, default=0.05)
     start.add_argument("--lidar-topic")
-    start.add_argument("--domain-base", type=int, default=74)
+    start.add_argument("--domain-base", type=int, help="First ROS domain (default: Oxford 74, RAL 0)")
     start.add_argument("--build-jobs", type=int, default=2)
     start.add_argument("--cuda-architectures", default=os.environ.get("CMAKE_CUDA_ARCHITECTURES"))
     start.add_argument("--skip-build", action="store_true")

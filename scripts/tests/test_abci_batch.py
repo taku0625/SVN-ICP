@@ -9,6 +9,7 @@ import unittest
 from unittest.mock import patch
 
 from test_oxford_spires import sequence
+from test_ral2026 import ral_sequence, SEQUENCES
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -112,6 +113,53 @@ print(str(1000 + len(rows)) + ".pbs1")
         calls = json.loads(self.log.read_text())
         self.assertEqual(len(calls), 2)
         self.assertTrue(all("-W" not in call["args"] for call in calls))
+
+    def test_ral2026_submits_all_65_distinct_bags_with_valid_domains_and_one_shared_build(self):
+        dataset = self.root / "ral2026"
+        for speed in range(1, 6):
+            for name in SEQUENCES:
+                ral_sequence(dataset, f"speed{speed}", name)
+        self.assertEqual(self.launch("--layout", "ral2026", "--dataset-dir", str(dataset)), 0)
+        calls = json.loads(self.log.read_text())
+        self.assertEqual(len(calls), 66)
+        manifest = self.manifest()
+        self.assertEqual([job["ros_domain_id"] for job in manifest["jobs"]], list(range(65)))
+        self.assertEqual(len({job["sequence"] for job in manifest["jobs"]}), 65)
+        self.assertEqual(len({job["results_dir"] for job in manifest["jobs"]}), 65)
+        for call, job in zip(calls[1:], manifest["jobs"]):
+            self.assertIn("depend=afterok:1001.pbs1", call["args"])
+            self.assertIn("select=1", call["args"])
+            self.assertIn("RTYPE=rt_HG", call["args"])
+            task = (Path(job["job_dir"]) / "oxford-task.sh").read_text()
+            self.assertIn("scripts/run_oxford_spires_singularity.sh --layout ral2026", task)
+            self.assertIn("--sequence " + job["sequence"], task)
+            self.assertIn("--skip-build", task)
+            self.assertNotIn("scripts/my_startup.sh", task)
+
+    def test_ral2026_preflight_failure_submits_nothing_and_does_not_create_run(self):
+        dataset = self.root / "ral2026"
+        path = ral_sequence(dataset)
+        (path / "ground-truth-lidar-tum.txt").unlink()
+        with self.assertRaises(SystemExit):
+            self.launch("--layout", "ral2026", "--dataset-dir", str(dataset))
+        self.assertFalse(self.log.exists())
+        self.assertFalse(self.run.exists())
+
+    def test_ral2026_collect_keeps_matching_speed_variants_in_separate_rows(self):
+        dataset = self.root / "ral2026"
+        for speed in ("speed1", "speed2"):
+            ral_sequence(dataset, speed)
+        self.assertEqual(self.launch("--layout", "ral2026", "--dataset-dir", str(dataset), "--plan"), 0)
+        for index, job in enumerate(self.manifest()["jobs"]):
+            batch.save_json(Path(job["job_dir"]) / "status.json", {"state": "completed", "exit_code": 0})
+            output = Path(job["results_dir"])
+            output.mkdir(parents=True)
+            batch.save_json(output / "summary.json", [{"sequence": job["sequence"], "status": "completed",
+                                                      "speed": job["speed"], "ate_rmse_m": index + 0.1}])
+        self.assertEqual(batch.main(["collect", "--run-dir", str(self.run)]), 0)
+        rows = json.loads((self.run / "summary.json").read_text())
+        self.assertEqual([row["speed"] for row in rows], ["speed1", "speed2"])
+        self.assertEqual([row["ate_rmse_m"] for row in rows], [0.1, 1.1])
 
     def test_job_dispatcher_preserves_task_exit_code_and_status(self):
         task = self.root / "task"
